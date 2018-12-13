@@ -1,0 +1,82 @@
+
+{% load  staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+
+    <title>Bootstrap Admin Template </title>
+    <link rel="shortcut icon" href="{% static "img/favicon.ico"%}">
+
+    <!-- global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "font-awesome-4.7.0/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/font-icon-style.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.default.css" %}" id="theme-stylesheet">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="{% static "css/pages/login.css" %}">
+</head>
+
+<body>
+
+<!--====================================================
+                        PAGE CONTENT
+======================================================-->
+      <section class="hero-area">
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 ">
+                <div class="contact-h-cont">
+                  <h3 class="text-center"><img src="{% static "img/test6.png" %}" class="img-fluid" alt=""></h3><br>
+                  <form method="post">
+                      {%if errors%}
+                  <div class="col-sm-auto col-sm-offset-4 margint10">
+                  <span class="color-background2 ">
+                    {{ errors }}
+                  </span>
+                  </div>
+                  {%endif%}
+                    <div class="form-group">
+                      <label for="username">Username</label>
+                      {{ form1.username }}
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Password</label>
+                      {{ form1.password }}
+                    </div>
+
+                        <div align="left" style="width: 0px;float: left;border: solid 0px rosybrown">
+                          <button class="btn btn-general btn-blue" role="button"><i fa fa-right-arrow></i>Login</button>
+                        </div>
+
+
+
+
+                  </form>
+                <div  style="width: 20px;margin-top: 0px;margin-left: 355px">
+                            <a href="/signup">
+                          <button class="btn btn-general btn-blue" role="button" ><i fa fa-right-arrow></i>Signup</button>
+                                </a>
+                        </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!--Global Javascript -->
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/tether.min.js"%}"></script>
+    <script src="{% static "js/bootstrap.min.js"%}"></script>
+</body>
+
+</html>

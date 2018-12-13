@@ -1,0 +1,615 @@
+{% load  staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>BP</title>
+<!-- Bootstrap core CSS -->
+<link href="{% static "/asserts/css/bootstrap.min.css"%}" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+
+
+<style type="text/css">
+/* Chart.js */
+@
+-webkit-keyframes chartjs-render-animation {from { opacity:0.99
+	
+}
+
+to {
+	opacity: 1
+}
+
+}
+@
+keyframes chartjs-render-animation {from { opacity:0.99
+	
+}
+
+to {
+	opacity: 1
+}
+
+}
+.chartjs-render-monitor {
+	-webkit-animation: chartjs-render-animation 0.001s;
+	animation: chartjs-render-animation 0.001s;
+}
+
+.class1 {
+	width: 210px;
+	height: 400px;
+	background: #F8F9FA;
+	float: right;
+	margin-top: 0px;
+	margin-right: 0px;
+	text-align: center;
+}
+
+.class2 {
+	width: 100%;
+	height: 40px;
+	background: #F8F9FA;
+	margin-top: 0px;
+	text-align: left;
+	font-size: 26px;
+}
+
+.class3 {
+	width: 100%;
+	background: #343A40;
+	text-align: center;
+	color: white;
+	border-bottom: 1px solid #343A40;
+	font-family: "微软雅黑";
+	line-height: 50px;
+}
+
+.class4 {
+	width: 100%;
+	padding: 0px;
+	display: none;
+}
+
+.class4 p {
+	border: 1px dotted #545B62;
+	border-bottom: 0px;
+	height: 25px;
+}
+
+.class5 {
+	background: #343A40;
+	width: 210px;
+	color: white;
+	text-align: center;
+}
+
+.class6 {
+	padding-top: 30px;
+	padding-left: 170px;
+}
+
+.class7 {
+	margin-top: 40px;
+}
+
+td {
+	padding: 0px
+}
+
+.btn {
+	width: 100%;
+	height: 100%;
+	border-radius: 0
+}
+</style>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+		<div class="class5">
+			{% if request.user.id %}
+            <a>用户名:{{ user.username }}</a>
+            {% endif %}
+			<!--<input class="form-control form-control-dark w-100" type="text">-->
+		</div>
+
+		<ul class="navbar-nav px-3">
+			<li class="nav-item text-nowrap"><a class="nav-link"
+				href="复制 homev.html">文档</a></li>
+		</ul>
+		<ul class="navbar-nav px-3">
+			<li class="nav-item text-nowrap"><a class="nav-link"
+				href="复制 homev.html">教学视频</a></li>
+		</ul>
+		<ul class="navbar-nav px-3">
+			<li class="nav-item text-nowrap"><a class="nav-link"
+				href="/login">登出</a></li>
+		</ul>
+
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+				<div class="sidebar-sticky">
+					<ul>
+
+						<li class="class3">用户中心
+							<div class="class4"></div>
+
+						</li>
+						<li class="class3">搜索
+							<div class="class4">
+								<p>
+									<a href="B.html">编号</a>
+								</p>
+								<p>
+									<a href="B.html">元素</a>
+								</p>
+								<p>
+									<a href="B.html">特性</a>
+								</p>
+							</div>
+
+						</li>
+						<li class="class3">vasp
+							<div class="class4"></div>
+
+						</li>
+						<li class="class3">数据分析
+							<div class="class4" style="display: block;">
+								<p>
+									<a href="B.html">基础数据</a>
+								</p>
+								<p>
+									<a href="B.html">实验数据</a>
+								</p>
+
+							</div>
+
+						</li>
+
+
+
+					</ul>
+				</div>
+
+			</nav>
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+			<div class="chartjs-size-monitor"
+				style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+				<div class="chartjs-size-monitor-expand"
+					style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+					<div
+						style="position: absolute; width: 1000000px; height: 1000000px; left: 0; top: 0"></div>
+				</div>
+				<div class="chartjs-size-monitor-shrink"
+					style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+					<div
+						style="position: absolute; width: 200%; height: 200%; left: 0; top: 0"></div>
+				</div>
+			</div>
+
+			<!--<div class="class2">
+						<b>vasp</b>
+							
+						
+					</div>
+					
+						<div class="class1">
+							<br>
+							<a>用户自定义</a><br><br><br>
+					
+  									 <a class="button button-inverse" href="#">
+        								<i class="fa fa-envelope"> </i> incar
+        								
+   									 </a><br><br>
+   									 	 <a class="button button-inverse" href="#">
+        								<i class="fa fa-envelope"> </i> kpoint
+        								
+   									 </a><br><br>
+   									 	 <a class="button button-inverse" href="#">
+        								<i class="fa fa-envelope"> </i> poscar
+        								
+   									 </a><br><br>
+   									 	 <a class="button button-inverse" href="#">
+        								<i class="fa fa-envelope"> </i> potcar
+        								
+   									 </a><br><br>
+   									 	 	 <a class="button button-inverse" href="#">
+        								<i class="fa fa-envelope"> </i> upload
+        								
+   									 </a>
+
+
+			</div>-->
+			<div class="class6">
+				<form class="form-inline" role="form"
+					action="/search/searchelements" method="post">
+					<div class="form-group">
+						<label class="sr-only" for="name">名称</label> 方式：<select
+							name="option">
+							<option>请选择</option>
+							<option>id</option>
+							<option>formula</option>
+							<option>element</option>
+						</select> <input type="text" class="form-control" name="elements" id="name"
+							placeholder="请输入">
+					</div>
+					<div class="button-group">
+						<button type="submit"
+							class="button button-royal button-rounded button-raised">搜索</button>
+						<!-- <button type="button" class="button button-royal button-rounded button-raised">goto vasp</button>-->
+
+					</div>
+			</div>
+
+			<!--
+  							<button type="submit" class="btn btn-default">搜索</button>
+  							
+  							<button type="submit" class="btn btn-default">goto vasp</button>-->
+			</form>
+
+			<div class="class7">
+				<script type="text/javascript">
+							function add(obj)
+							{
+							document.getElementById("name").value+=obj.value;
+							}</script>
+
+
+				<tr>
+					<td>
+						<table style="border: solid 0 white;">
+
+							<tr>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="H" class="btn"
+									style="background-color: pink;"></td>
+								<td colspan="16"></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="He" class="btn"
+									style="background-color: plum;" /></td>
+							</tr>
+							<tr>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Li" class="btn"
+									style="background-color: goldenrod;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Be" class="btn"
+									style="background-color: burlywood;" /></td>
+								<td colspan="10" rowspan="2"></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="B" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="C" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="N" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="O" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="F" class="btn"
+									style="background-color: #077ACE;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ne" class="btn"
+									style="background-color: plum;" /></td>
+							</tr>
+							<tr>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Na" class="btn"
+									style="background-color: goldenrod;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Mg" class="btn"
+									style="background-color: burlywood;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Al" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Si" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="P" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="S" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Cl" class="btn"
+									style="background-color: #077ACE;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ar" class="btn"
+									style="background-color: plum;" /></td>
+							</tr>
+							<tr>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="K" class="btn"
+									style="background-color: goldenrod;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ca" class="btn"
+									style="background-color: burlywood;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Sc" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ti" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="V" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Cr" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Mn" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Fe" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Co" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ni" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Cu" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Zn" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ga" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ge" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="As" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Se" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Br" class="btn"
+									style="background-color: #077ACE;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Kr" class="btn"
+									style="background-color: plum;" /></td>
+							</tr>
+							<tr>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Rb" class="btn"
+									style="background-color: goldenrod;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Sr" class="btn"
+									style="background-color: burlywood;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Y" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Zr" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Nb" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Mo" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Tc" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ru" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Rh" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Pd" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ag" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Cd" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="In" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Sn" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Sb" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Te" class="btn"
+									style="background-color: pink;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="I" class="btn"
+									style="background-color: #077ACE;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Xe" class="btn"
+									style="background-color: plum;" /></td>
+							</tr>
+							<tr>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Cs" class="btn"
+									style="background-color: goldenrod;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ba" class="btn"
+									style="background-color: burlywood;" /></td>
+								<td style="background-color: antiquewhite;">镧系</td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Hf" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ta" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="W" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Re" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Os" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Lr" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Pt" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Au" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Hg" class="btn"
+									style="background-color: mistyrose;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ti" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Pb" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Bi" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Po" class="btn"
+									style="background-color: greenyellow;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="At" class="btn"
+									style="background-color: #077ACE;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Rn" class="btn"
+									style="background-color: plum;" /></td>
+							</tr>
+							<tr>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Fr" class="btn"
+									style="background-color: goldenrod;" /></td>
+								<td style="padding: 0%;"><input type="button"
+									onclick="add(this)" id="Button1" value="Ra" class="btn"
+									style="background-color: burlywood;" /></td>
+								<td style="background-color: wheat;">锕系</td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Rf" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Db" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Sg" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Bh" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Hs" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Mt" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Uun" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Uuu" class="btn" style="background-color: mistyrose;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Uub" class="btn" style="background-color: mistyrose;" /></td>
+								<td colspan="7"></td>
+							</tr>
+							<tr>
+								<td colspan="2" rowspan="2"></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="La" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Ce" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Pr" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Nd" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Pm" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Sm" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Eu" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Gd" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Tb" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Dy" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Ho" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Er" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Tm" class="btn" style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Yb" class="btn " style="background-color: antiquewhite;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Lu" class="btn" style="background-color: antiquewhite;" /></td>
+								<td rowspan="2"></td>
+							</tr>
+							<tr>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Ac" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Th" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Pa" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="U" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Np" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Pu" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Am" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Cm" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Bk" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Cf" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Es" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Fm" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Md" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="No" class="btn" style="background-color: wheat;" /></td>
+								<td><input type="button" onclick="add(this)" id="Button1"
+									value="Lr" class="btn" style="background-color: wheat;" /></td>
+							</tr>
+							</td>
+							</tr>
+							</div>
+
+							<!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1076" height="454" style="display: block; width: 1076px; height: 454px;"></canvas>
+				 -->
+
+
+							</main>
+
+
+							</div>
+							</div>
+</body>
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+		document.getElementsByClassName("class3").CLICK(function()[
+		$(this).find(".class4").slideToggle("slow");]);
+		
+		
+		</script>
+</html>
