@@ -27,58 +27,58 @@
 │  │  │  ├─gallery  
 │  │  │  ├─search  
 │  │  │  └─work  
-│  │  └─js
-│  │      ├─magnific-popup
-│  │      └─popper
-│  └─__pycache__
-├─DatabaseCreate
-├─templates
-└─venv
-    ├─Lib
-    │  ├─site-packages
-    │  │  └─pip-10.0.1-py3.6.egg
-    │  │      ├─EGG-INFO
-    │  │      └─pip
-    │  │          ├─_internal
-    │  │          │  ├─commands
-    │  │          │  ├─models
-    │  │          │  ├─operations
-    │  │          │  ├─req
-    │  │          │  ├─utils
-    │  │          │  └─vcs
-    │  │          └─_vendor
-    │  │              ├─cachecontrol
-    │  │              │  └─caches
-    │  │              ├─certifi
-    │  │              ├─chardet
-    │  │              │  └─cli
-    │  │              ├─colorama
-    │  │              ├─distlib
-    │  │              │  └─_backport
-    │  │              ├─html5lib
-    │  │              │  ├─filters
-    │  │              │  ├─treeadapters
-    │  │              │  ├─treebuilders
-    │  │              │  ├─treewalkers
-    │  │              │  └─_trie
-    │  │              ├─idna
-    │  │              ├─lockfile
-    │  │              ├─msgpack
-    │  │              ├─packaging
-    │  │              ├─pkg_resources
-    │  │              ├─progress
-    │  │              ├─pytoml
-    │  │              ├─requests
-    │  │              ├─urllib3
-    │  │              │  ├─contrib
-    │  │              │  │  └─_securetransport
-    │  │              │  ├─packages
-    │  │              │  │  ├─backports
-    │  │              │  │  └─ssl_match_hostname
-    │  │              │  └─util
-    │  │              └─webencodings
-    │  └─tcl8.6
-    └─Scripts
+│  │  └─js  
+│  │      ├─magnific-popup  
+│  │      └─popper  
+│  └─__pycache__  
+├─DatabaseCreate  
+├─templates  
+└─venv  
+    ├─Lib  
+    │  ├─site-packages  
+    │  │  └─pip-10.0.1-py3.6.egg  
+    │  │      ├─EGG-INFO  
+    │  │      └─pip  
+    │  │          ├─_internal  
+    │  │          │  ├─commands  
+    │  │          │  ├─models  
+    │  │          │  ├─operations  
+    │  │          │  ├─req  
+    │  │          │  ├─utils  
+    │  │          │  └─vcs  
+    │  │          └─_vendor  
+    │  │              ├─cachecontrol  
+    │  │              │  └─caches  
+    │  │              ├─certifi  
+    │  │              ├─chardet  
+    │  │              │  └─cli  
+    │  │              ├─colorama  
+    │  │              ├─distlib  
+    │  │              │  └─_backport  
+    │  │              ├─html5lib  
+    │  │              │  ├─filters  
+    │  │              │  ├─treeadapters  
+    │  │              │  ├─treebuilders  
+    │  │              │  ├─treewalkers  
+    │  │              │  └─_trie  
+    │  │              ├─idna  
+    │  │              ├─lockfile  
+    │  │              ├─msgpack  
+    │  │              ├─packaging  
+    │  │              ├─pkg_resources  
+    │  │              ├─progress  
+    │  │              ├─pytoml  
+    │  │              ├─requests  
+    │  │              ├─urllib3  
+    │  │              │  ├─contrib  
+    │  │              │  │  └─_securetransport  
+    │  │              │  ├─packages  
+    │  │              │  │  ├─backports  
+    │  │              │  │  └─ssl_match_hostname  
+    │  │              │  └─util  
+    │  │              └─webencodings  
+    │  └─tcl8.6  
+    └─Scripts  
 ## 项目配置： 
 ### 安装环境：  
 * python 3  
