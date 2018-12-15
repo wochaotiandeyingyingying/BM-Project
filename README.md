@@ -3,30 +3,30 @@
 本项目是针对化学元素可以进行化学物质的查询，并且同时可以对这个化学进行物质分析和一些相关的化学运算，在此项目中我们会采用VASP进行化学物质的相关运算。并且运算后我们根据得到的数据，对数据进行数据分析。
 ## 项目目录： 
 .
-├─.idea
-│  └─inspectionProfiles
-├─bm_project
-│  ├─migrations
-│  │  └─__pycache__
-│  ├─static
-│  │  ├─css
-│  │  │  ├─apps
-│  │  │  ├─magnific-popup
-│  │  │  ├─pages
-│  │  │  └─ui-elements
-│  │  ├─font-awesome-4.7.0
-│  │  │  ├─css
-│  │  │  ├─fonts
-│  │  │  ├─less
-│  │  │  └─scss
-│  │  ├─fonts
-│  │  ├─icons-reference
-│  │  │  └─fonts
-│  │  ├─img
-│  │  │  ├─card
-│  │  │  ├─gallery
-│  │  │  ├─search
-│  │  │  └─work
+├─.idea  
+│  └─inspectionProfiles  
+├─bm_project  
+│  ├─migrations  
+│  │  └─__pycache__  
+│  ├─static  
+│  │  ├─css  
+│  │  │  ├─apps  
+│  │  │  ├─magnific-popup  
+│  │  │  ├─pages  
+│  │  │  └─ui-elements  
+│  │  ├─font-awesome-4.7.0  
+│  │  │  ├─css  
+│  │  │  ├─fonts  
+│  │  │  ├─less  
+│  │  │  └─scss  
+│  │  ├─fonts  
+│  │  ├─icons-reference  
+│  │  │  └─fonts  
+│  │  ├─img  
+│  │  │  ├─card  
+│  │  │  ├─gallery  
+│  │  │  ├─search  
+│  │  │  └─work  
 │  │  └─js
 │  │      ├─magnific-popup
 │  │      └─popper
