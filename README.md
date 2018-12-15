@@ -5,10 +5,10 @@
 .
 ├─.idea  
 │  └─inspectionProfiles  
-├─bm_project  
+├─bm_project   //django项目路径  
 │  ├─migrations  
 │  │  └─__pycache__  
-│  ├─static  
+│  ├─static    //静态资源  
 │  │  ├─css  
 │  │  │  ├─apps  
 │  │  │  ├─magnific-popup  
@@ -31,8 +31,8 @@
 │  │      ├─magnific-popup  
 │  │      └─popper  
 │  └─__pycache__  
-├─DatabaseCreate  
-├─templates  
+├─DatabaseCreate   //数据爬虫代码  
+├─templates        //html页面  
 └─venv  
     ├─Lib  
     │  ├─site-packages  
