@@ -1,0 +1,61 @@
+{% load  staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static "/bootstrap-3.3.7-dist/css/bootstrap.css"%}" rel="stylesheet">
+    <script src="{% static "/bootstrap-3.3.7-dist/js/bootstrap.js" %}"></script>
+    <script src="{% static "/asserts/js/jquery-3.2.1.slim.min.js" %}"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form class="form-inline" action="" method="post">
+            {% csrf_token %}
+            {{ form2 }}
+        <button type="submit" class="btn-outline-info">搜索</button>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <caption>搜索结果</caption>
+            <thead>
+            <tr class="danger">
+                <th>mp-id</th>&nbsp;
+                <th>prettyformula</th>&nbsp;
+                <th>elements</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                    <tr class="warning">
+                        <td>{{ contact.materialid }}</td>&nbsp;
+                        <td>{{ contact.prettyformula }}</td>&nbsp;
+                        <td>{{ contact.elements }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+<div>
+    <ul class="pager">
+        {% if contacts.has_previous %}
+            <li><a href="?page=1">&laquo; first</a></li>
+            <li><a href="?page={{ contacts.previous_page_number }}">previous</a></li>
+        {% endif %}
+
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
+
+        {% if contacts.has_next %}
+             <li><a href="?page={{ contacts.next_page_number }}">next</a></li>
+             <li><a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+
+</body>
+</html>
