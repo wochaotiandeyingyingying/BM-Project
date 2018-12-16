@@ -1,6 +1,10 @@
 # BM-Project
 ## 项目介绍： 
-本项目是针对化学元素可以进行化学物质的查询，并且同时可以对这个化学进行物质分析和一些相关的化学运算，在此项目中我们会采用VASP进行化学物质的相关运算。并且运算后我们根据得到的数据，对数据进行数据分析。
+本项目是针对化学元素可以进行化学物质的查询，并且同时可以对这个化学进行物质分析和一些相关的化学运算，在此项目中我们会采用VASP进行化学物质的相关运算。并且运算后我们根据得到的数据，对数据进行数据分析。  
+> ## 辽宁大学计算机研究所  
+> ### 硅所项目组  
+> ### 项目组Github：[https://github.com/wochaotiandeyingyingying/BM-Project](https://github.com/wochaotiandeyingyingying/BM-Project)
+
 ## 项目目录： 
 .
 ├─.idea  
