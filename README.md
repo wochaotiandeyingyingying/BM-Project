@@ -6,6 +6,13 @@
 > ### 辽宁大学官网：[http://www.lnu.edu.cn](http://www.lnu.edu.cn)
 > ### 项目组Github：[https://github.com/wochaotiandeyingyingying/BM-Project](https://github.com/wochaotiandeyingyingying/BM-Project)  
 > ### 参与成员：  
+Name	Title	Degree	Homepage
+陈廷伟	Professor		
+纪文迪			
+孙博			
+赵纹萱			
+宁春梅			
+齐传凯			
 
 ## 项目目录： 
 .
