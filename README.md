@@ -8,10 +8,10 @@
 > ### 参与成员：  
 > <table>
 >    <tr>
->       <td>Name</td>
->       <td>Title</td>
->       <td>Degree</td>
->       <td>Homepage</td>
+>       <td align="center">Name</td>
+>       <td align="center">Title</td>
+>       <td align="center">Degree</td>
+>       <td align="center">Homepage</td>
 >   </tr>
 >    <tr>
 >       <td align="center">陈廷伟</td>
@@ -21,33 +21,33 @@
 >   </tr>
 >    <tr>
 >       <td align="center">纪文迪</td>
->       <td>Lecturer</td>
->       <td>Doctor</td>
->       <td>https://github.com/WendyLNU</td>
+>       <td align="center">Lecturer</td>
+>       <td align="center">Doctor</td>
+>       <td align="center">https://github.com/WendyLNU</td>
 >   </tr>
 >    <tr>
 >       <td align="center">孙博</td>
->       <td>Postgraduate</td>
->       <td></td>
->       <td>https://github.com/wochaotiandeyingyingying</td>
+>       <td align="center">Postgraduate</td>
+>       <td align="center"></td>
+>       <td align="center">https://github.com/wochaotiandeyingyingying</td>
 >   </tr>
 >    <tr>
 >       <td align="center">赵纹萱</td>
->       <td>Postgraduate</td>
->       <td></td>
->       <td>https://github.com/MRZhaowenxuan</td>
+>       <td align="center">Postgraduate</td>
+>       <td align="center"></td>
+>       <td align="center">https://github.com/MRZhaowenxuan</td>
 >   </tr>
 >    <tr>
 >       <td align="center">宁春梅</td>
->       <td>Postgraduate</td>
->       <td></td>
->       <td>https://github.com/CMning</td>
+>       <td align="center">Postgraduate</td>
+>       <td align="center"></td>
+>       <td align="center">https://github.com/CMning</td>
 >   </tr>
 >    <tr>
 >       <td align="center">齐传凯</td>
->       <td>Postgraduate</td>
->       <td></td>
->       <td>https://github.com/qcklxw</td>
+>       <td align="center">Postgraduate</td>
+>       <td align="center"></td>
+>       <td align="center">https://github.com/qcklxw</td>
 >   </tr>
 >   </table>		
 
