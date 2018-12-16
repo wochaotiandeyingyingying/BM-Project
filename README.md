@@ -25,25 +25,25 @@
 >       <td>Doctor</td>
 >       <td>[https://github.com/WendyLNU](https://github.com/WendyLNU)</td>
 >   </tr>
-    >    <tr>
+>    <tr>
 >       <td>孙博</td>
 >       <td>Postgraduate</td>
 >       <td></td>
 >       <td>[https://github.com/wochaotiandeyingyingying](https://github.com/wochaotiandeyingyingying)</td>
 >   </tr>
-    >    <tr>
+>    <tr>
 >       <td>赵纹萱</td>
 >       <td>Postgraduate</td>
 >       <td></td>
 >       <td>[https://github.com/MRZhaowenxuan](https://github.com/MRZhaowenxuan)</td>
 >   </tr>
-        >    <tr>
+>    <tr>
 >       <td>宁春梅</td>
 >       <td>Postgraduate</td>
 >       <td></td>
 >       <td>[https://github.com/CMning](https://github.com/CMning)</td>
 >   </tr>
-        >    <tr>
+>    <tr>
 >       <td>齐传凯</td>
 >       <td>Postgraduate</td>
 >       <td></td>
