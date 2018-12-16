@@ -6,14 +6,14 @@
 > ### 辽宁大学官网：[http://www.lnu.edu.cn](http://www.lnu.edu.cn)
 > ### 项目组Github：[https://github.com/wochaotiandeyingyingying/BM-Project](https://github.com/wochaotiandeyingyingying/BM-Project)  
 > ### 参与成员：  
- <table>
-    <tr>
-        <td>Name</td>
-        <td>Title</td>
-        <td>Degree</td>
-        <td>Homepage</td>
-    </tr>
-    </table>		
+> <table>
+>    <tr>
+>       <td>Name</td>
+>       <td>Title</td>
+>       <td>Degree</td>
+>       <td>Homepage</td>
+>   </tr>
+>   </table>		
 
 ## 项目目录： 
 .
