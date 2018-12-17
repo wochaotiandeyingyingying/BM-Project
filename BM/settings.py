@@ -86,8 +86,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'bm',
-        'HOST':'39.108.210.141',
-        'PORT':27107,
     }
 }
 

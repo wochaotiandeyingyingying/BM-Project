@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{% static "css/font-icon-style.css"%}">
     <link rel="stylesheet" href="{% static "css/style.default.css"%}" id="{% static "theme-stylesheet"%}">
     <style type="text/css" media="screen">
-        .btn {
+        .btnn {
     width: 5vmin;
     height: 5vmin;
     border-radius: 1vmin;
@@ -79,11 +79,25 @@
 .btn6 {
     width: 6vmin;
     height: 5vmin;
-
+    border-radius: 1vmin;
     border: 0.25vmin solid rgb(75, 75, 75);
     border-color: #607D8B;
     color: #607D8B;
     background-color: #a2d06c;
+}
+.btn7 {
+    width: 6vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color: #3F51B5;
+    color: #3F51B5;
+    background-color: #a2d06c;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #009688;
+    border-color: #009688;
 }
 
     </style>
@@ -352,7 +366,7 @@
             <hr>
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
-                <li> <a href="index.html"><i class="icon-home"></i>Home</a></li>
+                <li> <a href="/rehome"><i class="icon-home"></i>Home</a></li>
                 <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Apps </a>
                     <ul id="apps" class="collapse list-unstyled">
                         <li><a href="calendar.html">Calendar</a></li>
@@ -361,7 +375,7 @@
                         <li><a href="invoice.html">Invoice</a></li>
                     </ul>
                 </li>
-                <li> <a href="chart.html"> <i class="fa fa-bar-chart"></i>Chart </a></li>
+                <li> <a href="chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
                 <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Forms </a>
                     <ul id="forms" class="collapse list-unstyled">
                         <li><a href="basic-form.html">Basic Form</a></li>
@@ -399,15 +413,40 @@
         <div class="content-inner chart-cont">
 
             <!--***** CONTENT *****-->
-            <input type="text"/>
-            <button class="  btn-primary " type="submit">search</button>
+            <form action="/searchid/" method="post">
+                {% csrf_token %}
+                <div class="col-lg-6">
+                    <div class="input-group mb-4">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
+                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <a class="dropdown-item" href="#">by Elements</a>
+                                <a class="dropdown-item" href="#">by Formula</a>
+                                <a class="dropdown-item" href="#">by IDs</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Separated link</a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                        <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">Go!</button>
+                    </span>
+                    </div>
+                </div>
+                <div class="input-group mb-4">
+                    <input type="text"name="materialid" class="form-control" placeholder="Search for..." >
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">Go!</button>
+                    </span>
+                </div>
+            </form>
             <div class="row">
 
                 <table style="border: solid 0 white;">
 
                             <tr>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="H" class="btn"></td>
+                                    onclick="add(this)" id="Button1" value="H" class="btnn"></td>
                                 <td colspan="16"></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="He" class="btn2"
@@ -421,16 +460,16 @@
                                     /></td>
                                 <td colspan="10" rowspan="2"></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="B" class="btn"
+                                    onclick="add(this)" id="Button1" value="B" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="C" class="btn"
+                                    onclick="add(this)" id="Button1" value="C" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="N" class="btn"
+                                    onclick="add(this)" id="Button1" value="N" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="O" class="btn"
+                                    onclick="add(this)" id="Button1" value="O" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="F" class="btn4"
@@ -447,16 +486,16 @@
                                     onclick="add(this)" id="Button1" value="Mg" class="btn3"
                                     /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Al" class="btn"
+                                    onclick="add(this)" id="Button1" value="Al" class="btnn"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Si" class="btn"
+                                    onclick="add(this)" id="Button1" value="Si" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="P" class="btn"
+                                    onclick="add(this)" id="Button1" value="P" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="S" class="btn"
+                                    onclick="add(this)" id="Button1" value="S" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Cl" class="btn4"
@@ -473,46 +512,46 @@
                                     onclick="add(this)" id="Button1" value="Ca" class="btn3"
                                      /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Sc" class="btn"
+                                    onclick="add(this)" id="Button1" value="Sc" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ti" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ti" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="V" class="btn"
+                                    onclick="add(this)" id="Button1" value="V" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Cr" class="btn"
+                                    onclick="add(this)" id="Button1" value="Cr" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Mn" class="btn"
+                                    onclick="add(this)" id="Button1" value="Mn" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Fe" class="btn"
+                                    onclick="add(this)" id="Button1" value="Fe" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Co" class="btn"
+                                    onclick="add(this)" id="Button1" value="Co" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ni" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ni" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Cu" class="btn"
+                                    onclick="add(this)" id="Button1" value="Cu" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Zn" class="btn"
+                                    onclick="add(this)" id="Button1" value="Zn" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ga" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ga" class="btnn"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ge" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ge" class="btnn"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="As" class="btn"
+                                    onclick="add(this)" id="Button1" value="As" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Se" class="btn"
+                                    onclick="add(this)" id="Button1" value="Se" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Br" class="btn4"
@@ -529,46 +568,46 @@
                                     onclick="add(this)" id="Button1" value="Sr" class="btn3"
                                      /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Y" class="btn"
+                                    onclick="add(this)" id="Button1" value="Y" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Zr" class="btn"
+                                    onclick="add(this)" id="Button1" value="Zr" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Nb" class="btn"
+                                    onclick="add(this)" id="Button1" value="Nb" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Mo" class="btn"
+                                    onclick="add(this)" id="Button1" value="Mo" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Tc" class="btn"
+                                    onclick="add(this)" id="Button1" value="Tc" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ru" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ru" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Rh" class="btn"
+                                    onclick="add(this)" id="Button1" value="Rh" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Pd" class="btn"
+                                    onclick="add(this)" id="Button1" value="Pd" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ag" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ag" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Cd" class="btn"
+                                    onclick="add(this)" id="Button1" value="Cd" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="In" class="btn"
+                                    onclick="add(this)" id="Button1" value="In" class="btnn"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Sn" class="btn"
+                                    onclick="add(this)" id="Button1" value="Sn" class="btnn"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Sb" class="btn"
+                                    onclick="add(this)" id="Button1" value="Sb" class="btnn"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Te" class="btn"
+                                    onclick="add(this)" id="Button1" value="Te" class="btnn"
                                     style="background-color: pink;" /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="I" class="btn4"
@@ -586,43 +625,43 @@
                                      /></td>
                                 <td class="btn6">镧系</td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Hf" class="btn"
+                                    onclick="add(this)" id="Button1" value="Hf" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ta" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ta" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="W" class="btn"
+                                    onclick="add(this)" id="Button1" value="W" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Re" class="btn"
+                                    onclick="add(this)" id="Button1" value="Re" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Os" class="btn"
+                                    onclick="add(this)" id="Button1" value="Os" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Lr" class="btn"
+                                    onclick="add(this)" id="Button1" value="Lr" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Pt" class="btn"
+                                    onclick="add(this)" id="Button1" value="Pt" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Au" class="btn"
+                                    onclick="add(this)" id="Button1" value="Au" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Hg" class="btn"
+                                    onclick="add(this)" id="Button1" value="Hg" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ti" class="btn"
+                                    onclick="add(this)" id="Button1" value="Ti" class="btn7"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Pb" class="btn"
+                                    onclick="add(this)" id="Button1" value="Pb" class="btn7"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Bi" class="btn"
+                                    onclick="add(this)" id="Button1" value="Bi" class="btn7"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Po" class="btn"
+                                    onclick="add(this)" id="Button1" value="Po" class="btn7"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="At" class="btn4"
@@ -638,25 +677,25 @@
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Ra" class="btn3"
                                      /></td>
-                                <td class="bth6">锕系</td>
+                                <td class="btn6">锕系</td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Rf" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Rf" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Db" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Db" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Sg" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Sg" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Bh" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Bh" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Hs" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Hs" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Mt" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Mt" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Uun" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Uun" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Uuu" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Uuu" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Uub" class="btn" style="background-color: mistyrose;" /></td>
+                                    value="Uub" class="btn7" style="background-color: mistyrose;" /></td>
                                 <td colspan="7"></td>
                             </tr>
                             <tr>

@@ -15,10 +15,13 @@ from .models import Material
 def home(request):
     return render(request,'index.html')
 
+def rehome(request):
+    return redirect("home")
+
 def chart(request):
     return render(request,'chart.html')
 
-def searchbyid(request):
+def searchall(request):
     contact_list = Material.matobj.all()
     print(contact_list)
     paginator = Paginator(contact_list, 10)
@@ -69,40 +72,42 @@ def login(request):
         return render(request, 'login1.html', context)
 
 
-def search(request):
-    contact_list=Material.matobj.all()
+# def searchid(request):
+#     if request.method == 'POST':
+#         form2=SearchForm(request.POST)
+#         if form2.is_valid():
+#             materialid=form2.cleaned_data['materialid']
+#             print(materialid)
+#             contact_list = Material.matobj.filter(materialid=materialid)
+#             # contact_list=Material.matobj.filter(type_name_icontains='')模糊查询
+#             paginator = Paginator(contact_list, 2)
+#             page = request.GET.get('page')
+#             contacts = paginator.get_page(page)
+#             context={}
+#             context['form2']=form2
+#             context['contacts']=contacts
+#             return render(request,"search.html",context)
+#         else:
+#             form2 = SearchForm()
+#             context = {}
+#             context['form2'] = form2
+#             return render(request, "search.html", context)
+#     else:
+#         form2 = SearchForm()
+#         context = {}
+#         context['form2'] = form2
+#         return render(request, "search.html", context)
+
+def searchid(request):
+    materialid=request.POST.get('materialid')
+    print(materialid)
+    contact_list = Material.matobj.filter(materialid=materialid)
     print(contact_list)
     paginator = Paginator(contact_list, 5)
     page = request.GET.get('page')
     contacts = paginator.get_page(page)
-    return render(request,"helllo.html",{'contacts':contacts})
+    return render(request, "search.html", {'contacts': contacts})
 
-def searchid(request):
-    if request.method == 'POST':
-        form2=SearchForm(request.POST)
-        if form2.is_valid():
-            materialid=form2.cleaned_data['materialid']
-            print(materialid)
-            contact_list = Material.matobj.filter(materialid=materialid)
-            paginator = Paginator(contact_list, 2)
-            page = request.GET.get('page')
-            contacts = paginator.get_page(page)
-            context={}
-            context['form2']=form2
-            context['contacts']=contacts
-            return render(request,"search.html",context)
-        else:
-            form2 = SearchForm()
-            context = {}
-            context['form2'] = form2
-            return render(request, "search.html", context)
-    else:
-        form2 = SearchForm()
-        context = {}
-        context['form2'] = form2
-        return render(request, "search.html", context)
 
-def home1(request):
-    return render(request,'index.html')
 
 
