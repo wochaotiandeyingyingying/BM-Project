@@ -413,13 +413,14 @@
         <div class="content-inner chart-cont">
 
             <!--***** CONTENT *****-->
-            <form action="/searchid/" method="post">
+        <center>
+            <form  action="/searchid/" method="post">
                 {% csrf_token %}
-                <div class="col-lg-6">
+                <div  class="col-lg-6"style="margin-left: 0px;">
                     <div class="input-group mb-4">
-                        <div class="input-group-btn">
+                        <div  class="input-group-btn">
                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
-                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <div  class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
                                 <a class="dropdown-item" href="#">by Elements</a>
                                 <a class="dropdown-item" href="#">by Formula</a>
                                 <a class="dropdown-item" href="#">by IDs</a>
@@ -440,11 +441,13 @@
                     </span>
                 </div>
             </form>
-            <div class="row">
+        </center>
+            <div style="class:row; ">
+                <center>
 
                 <table style="border: solid 0 white;">
 
-                            <tr>
+                            <tr >
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="H" class="btnn"></td>
                                 <td colspan="16"></td>
@@ -765,6 +768,7 @@
                                     value="Lr" class="btn5"  /></td>
                             </tr>
                             </table>
+                    </center>
 
             </div>
             <div class="table-responsive">
