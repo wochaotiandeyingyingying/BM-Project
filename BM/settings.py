@@ -85,7 +85,9 @@ WSGI_APPLICATION = 'BM.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'bm',
+        'NAME': 'BM-project',
+        'HOST':'39.108.210.141',
+        'PORT':27017,
     }
 }
 
