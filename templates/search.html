@@ -419,19 +419,30 @@
                 <div  class="col-lg-6"style="margin-left: 0px;">
                     <div class="input-group mb-4">
                         <div  class="input-group-btn">
+                            <form class="form-inline" role="form">
+
                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                             <div  class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                <a class="dropdown-item" href="#">by Elements</a>
-                                <a class="dropdown-item" href="#">by Formula</a>
-                                <a class="dropdown-item" href="#">by IDs</a>
+
+                                <a ><select  id="slList" onchange="selectShow()">
+								 <option >--请选择--</option>
+								 <option class="dropdown-item" href="#" value="mp-1007" selected="">by IDs</option>
+								 <option class="dropdown-item" href="#" value="H2O" selected="">by Formula</option>
+								 <option class="dropdown-item" href="#" value="H" selected="">by Elements</option>
+
+                                </select></a>
+
                                 <div role="separator" class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                 <a class="dropdown-item" href="#">Separated link</a>
+
                             </div>
+                                  </form>
                         </div>
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                        <input type="text" class="form-control" aria-label="Text input with dropdown button"  id="txtShow">
                         <span class="input-group-btn">
                         <button class="btn btn-info" type="submit">Go!</button>
                     </span>
+
                     </div>
                 </div>
                 <div class="input-group mb-4">
@@ -855,5 +866,20 @@
         });
     </script>
 </body>
+<script type="text/javascript" >
+		function add(obj)
+		{
+			document.getElementById("txtShow").value+=obj.value;
+		}
+		function search() {
+			var val = $("#txtshow").value
+			var type = $("#slList").value
+			var url = "http://localhost:8080/search/searchid="+val + "/type="+type
+			htmlobj=$.ajax({url:"http://localhost:8080/search/searchid="+val,async:false});
+			$("#myDiv").html(htmlobj.responseText);
+		}
+
+</script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
 </html>
