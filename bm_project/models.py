@@ -24,7 +24,7 @@ class Material(models.Model):
     prettyformula = models.CharField(max_length=30, verbose_name="化学式")
     elements = models.CharField(max_length=30, verbose_name="元素")
     structure = models.CharField(max_length=500, verbose_name="结构")
-    information = models.CharField(max_length=500, verbose_name="信息")
+    # information = models.CharField(max_length=500, verbose_name="信息")
     energy = models.CharField(max_length=100, verbose_name="能量")
     energyperatom = models.CharField(max_length=100)
     volum = models.CharField(max_length=100)

@@ -32,7 +32,7 @@ for l in range(0,1000):#此处的循环变量是l，为了与之后的i相区分
 
 
     client=MongoClient('localhost',27017)#建立MongoDB数据库连接
-    mydb=client.mydb#连接所需数据库,db为数据库名
+    mydb=client.BMproject#连接所需数据库,db为数据库名
     collection=mydb.material#连接所用集合，也就是我们通常所说的表，local为表名
 
 
