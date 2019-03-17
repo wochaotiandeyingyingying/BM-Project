@@ -1,0 +1,54 @@
+SYSTEM = Cu3SbSe3 - relaxation
+
+ENCUT = 250
+
+ISTART = 0
+ICHARG = 2
+ISMEAR = 0
+SIGMA  = 0.1
+NSW    = 1000
+IBRION = 2
+ISIF   = 3
+POTIM = 0.2
+EDIFF  = 1E-6
+EDIFFG = -0.01
+
+NPAR = 4
+#LUSE_VDW = .TRUE.
+#SYMPREC=1E-10
+#ISYM  =0
+#NELMIN = 4
+
+#LWAVE  = .TRUE.
+#LCHARG = .TRUE.
+
+#GGA = PE
+#VOSKOWN = 1
+
+#Antiferromagnetic
+#MAGMOM = 0 0 2  0 0 2  0 0 -2  0 0 -2  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0
+#SAXIS =  0.0 0.0 1.0
+
+#spin-polarized LDA->LSDA
+ISPIN=2
+
+#LSDA+U
+LDAU = .TRUE.
+LDAUTYPE = 2
+LDAUL = -1 -1
+LDAUU = 0   2
+LDAUJ = 0  0
+
+
+
+LMAXMIX = 4
+
+#+SO(Spin-Orbit)
+#LSORBIT = .TRUE.
+
+ALGO=FAST
+#LREAL = .TRUE.
+
+
+
+
