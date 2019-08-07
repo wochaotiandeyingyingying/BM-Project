@@ -20,6 +20,7 @@ class MaterialManager(models.Manager):
 
 class Material(models.Model):
     matobj = MaterialManager()
+    slid = models.CharField(max_length=30, verbose_name="slid")
     materialid = models.CharField(max_length=30, verbose_name="mpid")
     prettyformula = models.CharField(max_length=30, verbose_name="化学式")
     elements = models.CharField(max_length=30, verbose_name="元素")
@@ -38,6 +39,8 @@ class Material(models.Model):
     density = models.CharField(max_length=100)
     totalmagnetization = models.CharField(max_length=100)
     oxidetype = models.CharField(max_length=100)
+    makerone = models.CharField(max_length=100)
+    makertwo = models.CharField(max_length=100)
 
     class Meta:
         db_table="material"

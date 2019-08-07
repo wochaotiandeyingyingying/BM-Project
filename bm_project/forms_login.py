@@ -5,9 +5,9 @@ from django.contrib.auth import authenticate,login
 import re
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="用户名",widget=forms.TextInput(attrs={'class':'form-control','placeholder': '请输入用户名'}))
+    username = forms.CharField(label="用户名",widget=forms.TextInput(attrs={'class':'form-control','placeholder': 'please enter user name'}))
 
-    password = forms.CharField(label="密码",widget=forms.PasswordInput(attrs={'class':'form-control','placeholder': '请输入密码'}))
+    password = forms.CharField(label="密码",widget=forms.PasswordInput(attrs={'class':'form-control','placeholder': 'Please enter your password'}))
 
     class Meta:
         model = get_user_model()

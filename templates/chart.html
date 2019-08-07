@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
 
-    <title>Bootstrap Admin Template </title>
+    <title>Data-Driven Material Platform </title>
     <link rel="shortcut icon" href="{% static "img/favicon.ico"%}">
 
     <!-- global stylesheets -->
@@ -40,14 +40,10 @@
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <div class="navbar-header">
                         <a href="index.html" class="navbar-brand">
-                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logo-white.png"%}" alt="Logo" class="img-fluid"></div>
-                            <div class="brand-text brand-small"><img src="{% static "img/logo-icon.png"%}" alt="Logo" class="img-fluid"></div>
+                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="Logo" class="img-fluid"></div>
+                            <div class="brand-text brand-small"><img src="{% static "img/smalltest123.png"%}" alt="Logo" class="img-fluid"></div>
                         </a>
-                        <a id="toggle-btn" href="#" class="menu-btn active">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </a>
+
                     </div>
                 </div>
                 <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
@@ -58,87 +54,27 @@
                     <!-- Notifications-->
                     <li class="nav-item dropdown">
                         <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"></i><span class="noti-numb-bg"></span><span class="badge">12</span></a>
-                        <ul aria-labelledby="notifications" class="dropdown-menu">
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-envelope bg-red"></i>You have 6 new messages </div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-twitter bg-skyblue"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-upload bg-blue"></i>Server Rebooted</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-twitter bg-skyblue"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>10 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
-                        </ul>
+
                     </li>
                     <!-- Messages                        -->
                     <li class="nav-item dropdown"> <a id="messages" class="nav-link logout" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope-o"></i><span class="noti-numb-bg"></span><span class="badge">10</span></a>
-                        <ul aria-labelledby="messages" class="dropdown-menu">
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Jason Doe</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-2.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Frank Williams</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src=" {% static "img/avatar-3.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Ashley Wood</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages    </strong></a></li>
-                        </ul>
+
                     </li>
-                    <li class="nav-item dropdown"><a id="profile" class="nav-link logout" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle" style="height: 30px; width: 30px;"></a>
+                    <li class="nav-item dropdown"><a id="profile" class="nav-link logout" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static "img/person.png"%}" alt="..." class="img-fluid rounded-circle" style="height: 30px; width: 30px;"></a>
                         <ul aria-labelledby="profile" class="dropdown-menu profile">
                             <li>
                                 <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
+                                    <div class="msg-profile"> <img src="{% static "img/person.png"%}" alt="..." class="img-fluid rounded-circle"></div>
                                     <div class="msg-body">
-                                        <h3 class="h5">Steena Ben</h3><span>steenaben@Businessbox.com</span>
+                                        <h3 class="h5">{{ username }}</h3><span>{{ email }}</span>
                                     </div>
                                 </a>
                                 <hr>
                             </li>
                             <li>
-                                <a rel="nofollow" href="profile.html" class="dropdown-item">
+                                <a rel="nofollow" href="/taskmanage/" class="dropdown-item">
                                     <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-user "></i>My Profile</div>
+                                        <div class="notification-content"><i class="fa fa-user "></i>My Task</div>
                                     </div>
                                 </a>
                             </li>
@@ -158,7 +94,7 @@
                                 <hr>
                             </li>
                             <li>
-                                <a rel="nofollow" href="profile.html" class="dropdown-item">
+                                <a rel="nofollow" href="/logout/" class="dropdown-item">
                                     <div class="notification">
                                         <div class="notification-content"><i class="fa fa-power-off"></i>Logout</div>
                                     </div>
@@ -212,7 +148,7 @@
                                         </li>
                                         <li class="border border-primary">
                                             <a rel="nofollow" href="#" class=" d-flex">
-                                                <div class="news-f-img"> <img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
+                                                <div class="news-f-img"> <img src="{% static "img/person.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
                                                 <div class="msg-body">
                                                     <h6 class="h5 msg-nav-h6">Low cost Modern printer</h6>
                                                     <small>A dot matrix printer modified at...</small>
@@ -278,32 +214,31 @@
         <!--***** SIDE NAVBAR *****-->
         <nav class="side-navbar">
             <div class="sidebar-header d-flex align-items-center">
-                <div class="avatar"><img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                <div class="title">
-                    <h1 class="h4">Steena Ben</h1>
-                </div>
+                <img src="{% static "img/upper-left2.jpg"%}" >
+
             </div>
             <hr>
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
-                <li> <a href="index.html"><i class="icon-home"></i>Home</a></li>
-                <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Apps </a>
+                <li class="active"> <a href="/rehome"><i class="icon-home"></i>Home</a></li>
+                <li > <a href="../vasp"><i class="fa fa-globe"></i>VASP</a></li>
+
+                <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Search </a>
                     <ul id="apps" class="collapse list-unstyled">
-                        <li><a href="calendar.html">Calendar</a></li>
-                        <li><a href="email.html">Email</a></li>
-                        <li><a href="media.html">Media</a></li>
-                        <li><a href="invoice.html">Invoice</a></li>
+                        <li><a href="/searchall_elements">by Elements</a></li>
+                        <li><a href="/searchall_formula">by Formula</a></li>
+                        <li><a href="/searchall_ids">by IDs</a></li>
                     </ul>
                 </li>
-                <li class="active"> <a href="chart.html"> <i class="fa fa-bar-chart"></i>Chart </a></li>
-                <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Forms </a>
+                <li> <a href= "/chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
+                <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Data Analysis </a>
                     <ul id="forms" class="collapse list-unstyled">
-                        <li><a href="basic-form.html">Basic Form</a></li>
-                        <li><a href="form-layouts.html">Form Layouts</a></li>
+                        <li><a href="basic-form.html">Basic Analysis</a></li>
+                        <li><a href="form-layouts.html">Experiment Analysis</a></li>
                     </ul>
                 </li>
-                <li> <a href="maps.html"> <i class="fa fa-map-o"></i>Maps </a></li>
-                <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file-o"></i>Pages </a>
+                <li> <a href="maps.html"> <i class="fa fa-map-o"></i>Tutorials </a></li>
+                <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file-o"></i>Documentation </a>
                     <ul id="pages" class="collapse list-unstyled">
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="search.html">Empty</a></li>
@@ -314,16 +249,7 @@
                         <li><a href="404.html">404</a></li>
                     </ul>
                 </li>
-                <li> <a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
-                <li><a href="#elements" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-globe"></i>UI Elements </a>
-                    <ul id="elements" class="collapse list-unstyled">
-                        <li><a href="ui-buttons.html">Buttons</a></li>
-                        <li><a href="ui-cards.html">Cards</a></li>
-                        <li><a href="ui-progressbars.html">Progress Bar</a></li>
-                        <li><a href="ui-timeline.html">Timeline</a></li>
-                    </ul>
-                </li>
-            </ul><span class="heading">Extras</span>
+            </ul>
             <ul class="list-unstyled">
                 <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
             </ul>

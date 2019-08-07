@@ -7,7 +7,6 @@ from pymatgen.core.structure import Structure
 session=HTMLSession()
 
 a = xlrd.open_workbook('b.xlsx')
-
 table = a.sheet_by_index(0) #通过索引顺序获取,0表示第一张表
 m = [table.cell(i,ord('A')-ord('A')).value for i in range(4000, 5000)]
 #表示将excel中含有化学id的那一栏取出，作为列表返回

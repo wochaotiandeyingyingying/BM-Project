@@ -21,18 +21,18 @@ def lowercase_email(email):
 class SignupForm(forms.ModelForm):
     username = forms.CharField(
         label='用户名', required=True,
-        error_messages={'required': '请填写你的用户名', 'max_length': '最多只能输入15个字符', 'min_length': '至少输入3个字符'}, max_length=15,
-        min_length=3, widget=forms.TextInput(attrs={'class':'form-control','placeholder': '3~15位字母/数字/汉字'}))
-    email = forms.EmailField(error_messages={'required': '请填写你的email', 'invalid': 'email格式不正确'},
+        error_messages={'required': 'Please fill in your username', 'max_length': 'Can only enter up to 15 characters', 'min_length': 'Enter at least 3 characters'}, max_length=15,
+        min_length=3, widget=forms.TextInput(attrs={'class':'form-control','placeholder': '3~15 letters/numbers/Chinese characters'}))
+    email = forms.EmailField(error_messages={'required': 'Please fill in your email', 'invalid': 'Email format is incorrect'},
                              label='邮箱', required=True,
-                             widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '填写正确email激活你的账户'}))
+                             widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Fill in the correct email to activate your account'}))
     password = forms.CharField(
-        error_messages={'required': '请输入密码', 'max_length': '最多只能输入20个字符', 'min_length': '至少输入6个字符'},
-        label='密码', required=True, max_length=20, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '长度在6~20个字符以内'}))
+        error_messages={'required': 'Please enter your password', 'max_length': 'Can only enter up to 20 characters', 'min_length': 'Enter at least 6 characters'},
+        label='密码', required=True, max_length=20, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'The length is within 6~20 characters'}))
     confirm_password = forms.CharField(
-        error_messages={'required': '请输入密码', 'max_length': '最多只能输入20个字符', 'min_length': '至少输入6个字符'},
+        error_messages={'required': 'Please fill in your password', 'max_length': 'Can only enter up to 20 characters', 'min_length': 'Enter at least 6 characters'},
         label='确认密码', required=True, max_length=20, min_length=6,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': '长度在6~20个字符以内'}))
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'The length is within 6~20 characters'}))
 
     class Meta:
         model = get_user_model()

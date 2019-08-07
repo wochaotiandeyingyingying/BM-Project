@@ -23,10 +23,35 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path('', views.home, name="home"),
-    path('rehome/',views.rehome),
+    path('rehome/', views.rehome),
+    path('searchall_elements/', views.searchall_elements),
+    path('searchall_formula/', views.searchall_formula),
+    path('searchall_ids/', views.searchall_ids),
     path('signup/', views.signup),
     path('login/', views.login),
+    path('door/', views.door),
     path('chart/', views.chart),
-    path('searchall/', views.searchall),
-    path('searchid/',views.searchid),
+    path('search_id/', views.search_id),
+    path('search_elements/', views.search_elements),
+    path('search_formula/', views.search_formula),
+    path('vasp/', views.vasp),
+    path('search_id/gotovasp/', views.readytovasp),
+    path('search_formula/gotovasp/', views.readytovasp),
+    path('search_elements/gotovasp/', views.readytovasp),
+    path('automatic/', views.automatic),
+    path('manual/', views.manual),
+    path('home/', views.home),
+    path('taskmanage/', views.taskmanage),
+    path('logout/', views.logout),
+    path('materialdetail/', views.materialdetail),
+    path('her_data/', views.her_data),
+    path('high_throughput/', views.high_throughput),
+    path('svc/', views.svc),
+    path('high_throughput_go/', views.high_throughput_go),
+    path('serverinput/', views.serverinput),
+
+
+
+
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

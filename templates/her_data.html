@@ -2,7 +2,11 @@
 <!DOCTYPE html>
 <html>
 
+
+
+
 <head>
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -224,7 +228,7 @@
             <ul class="list-unstyled">
                 <li class="active"> <a href=""><i class="icon-home"></i>Home</a></li>
                 <li > <a href="../vasp"><i class="fa fa-globe"></i>VASP</a></li>
-                <li > <a href="../high_throughput"><i class="fa fa-globe"></i>High-Throughput</a></li>
+
                 <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Search </a>
                     <ul id="apps" class="collapse list-unstyled">
                         <li><a href="../searchall_elements">by Elements</a></li>
@@ -237,7 +241,6 @@
                     <ul id="forms" class="collapse list-unstyled">
                         <li><a href="basic-form.html">Basic Analysis</a></li>
                         <li><a href="../her_data">HER</a></li>
-                        <li><a href="../svc">Support Vector Classify</a></li>
                     </ul>
                 </li>
                 <li> <a href="maps.html"> <i class="fa fa-map-o"></i>Tutorials </a></li>
@@ -257,96 +260,87 @@
                 <li> <a href="#"> <i class="icon-picture"></i>Back Top </a></li>
             </ul>
         </nav>
+        <div class="data_input" style="display: {{ hidden }}">
+            <text class="text-success" style="font-size: 35px">   DataBase</text>
+            <div class="table-responsive">
+            <table class="table table-hover" name="database" id="table">
+                  <thead>
+                    <tr class="bg-info text-white">
+                        <th> select</th>
+                      <th>#</th>
+                      <th>sl-id</th>
+                      <th>prettyformula</th>
+                      <th>elements</th>
+                        <th>是否删除</th>
+                        <th>是否编辑</th>
+                    </tr>
+                  </thead>
+                <tbody>
+<tr>
 
-        <div class="content-inner">
+</tr>
+                    {% for contact in contacts %}
+                        <tr>
+                        <td width="32" align="center" bgcolor="#EFEFEF" Name="Num"><input type="checkbox" name="{{ contact.slid }}" value="checkbox" /></td>
+                          <th scope="row">{{ contact.id }}</th>
+                          <td >{{ contact.slid }}</td>
+                          <td>{{ contact.prettyformula }}</td>
+                          <td>{{ contact.elements }}</td>
+                          <td><input  value="Delete"  type="submit" onclick="window.location='../her_data?slid={{contact.slid }}';"></td>
+                          <td><input  value="Edit"  type="submit" onclick="update(this,{{ forloop.counter }})"></td>
 
-            <!--***** REPORT-1 *****-->
-            <div class="row" id="report1">
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  text-align:center; padding-top:50px;">
+                        </tr>
+                    {% endfor %}
 
-                            <img src="{% static "img/composition and structure.jpg"%}"   >
+                </tbody>
 
-                            <p><small>composition and structure</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  margin-top:0px;margin-left:28px; padding-top:50px;">
-                            <img src="{% static "img/thermodynamic stability.jpg"%}">
-                            <p style="margin-left:17px;"><small>thermodynamic stability</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  margin-left:32px; padding-top:50px;">
-                            <img src="{% static "img/electronic structure.jpg"%}">
-                            <p style="margin-left:27px;"><small>electronic structure</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="card-block" style="  margin-left:28px;  margin-bottom:14px;padding-top:53px;">
-                                <img src="{% static "img/macroscopic property.png"%}">
+            </table>
 
+    </div>
+        <div>
+    <ul class="pager">
+        {% if contacts.has_previous %}
+            {{ elements }}
 
-                            </div>
-                            <p style="margin-left:50px;margin-top:0px;"><small>macroscopic property</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <li><a href="?page=1&elements={{ elements }}">&laquo; first</a></li>
+            <li><a href="?page={{ contacts.previous_page_number }}&elements={{ elements }}">previous</a></li>
+        {% endif %}
 
-            <!--***** REPORT-2 *****-->
-            <div class="row" id="report2">
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Artificial Neural Network.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Artificial Neural Network</h4>
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
 
-                        </div>
+        {% if contacts.has_next %}
 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Linear Regression.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Linear Regression</h4>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Support Vector Machine.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Support Vector Machine</h4>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
-
-            <!--***** REPORT-3 *****-->
-            </br><
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
+             <li><a href="?page={{ contacts.next_page_number }}&elements={{ elements }}">next</a></li>
+             <li><a href="?page={{ contacts.paginator.num_pages }}&elements={{ elements }}">last &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
 
         </div>
+        <div class="prediction">
+            <text class="text-success" style="font-size: 35px">   Data Expansion</text>
+            <form method="post">
+                {% csrf_token %}
+                <label>id:</label>
+                <input type="text" name="id" value="{{ id }}" readonly>
+                <br>
+                <label>slid:</label>
+                <input type="text" name="insertslid"  required>
+                <br>
+                <label>prettyformula:</label>
+                <input type="text" name="prettyformula"  required>
+                <br>
+                <label>elements:</label>
+                <input type="text" name="elements"  required>
+                <br>
+                <input type="submit">
+
+            </form>
+        </div>
+
+
     </div>
 
     <!--Global Javascript -->
@@ -361,6 +355,48 @@
 
     <!--Core Javascript -->
     <script src="{% static "js/mychart.js"%}"></script>
+<script>
+
+    function f(obj,x){
+        x=x+1
+    var table = document.getElementById("table");
+    for(var i=2;i<table.rows[x].cells.length-2;i++){
+        console.log(i)
+        console.log(x)
+    var text = table.rows[x].cells[i].innerText;
+        console.log(text)
+    table.rows[x].cells[i].innerText = text;
+    var input = document.getElementsByName("input" + x);
+    console.log(input[i].value)
+    input[i].value = text;
+    input[0].focus();
+    input[0].select();
+    }
+    obj.innerHTML = "确定";
+    obj.onclick = function onclick(event) {
+                    update_success(this,x)
+                    };
+    }
+    function update_success(obj,x){
+        var arr = [];
+        var table = document.getElementById("table");
+        var input = document.getElementsByName("input" + x);
+        for(var i=0;i<table.rows[x].cells.length-1;i++){
+        var text = input[i].value;
+        arr.push(text);
+        }
+        //把值赋值给表格，不能在取值的时候给，会打乱input的个数
+        for(var j=0;j<arr.length;j++){
+            table.rows[x].cells[j].innerHTML = arr[j];
+        }
+        //回到原来状态
+        obj.innerHTML = "修改";
+        obj.onclick = function onclick(event) {
+                    update(this,x)
+                    };
+        alert(arr + ",传到后端操作成功，刷新页面");
+    }
+</script>
 </body>
 
 </html>

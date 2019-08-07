@@ -1,25 +1,9 @@
 {% load  staticfiles %}
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <style rel="stylesheet" type="text/css">
-label{
-            position: relative;
-        }
-        #fileinp{
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-        #btn{
-            margin-right: 5px;
-        }
-        #text{
-            color: red;
-        }
-</style>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,16 +14,93 @@ label{
     <title>Data-Driven Material Platform </title>
     <link rel="shortcut icon" href="{% static "img/smalltest1.png"%}">
 
+
     <!-- global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
     <link rel="stylesheet" href="{% static "font-awesome-4.7.0/css/font-awesome.min.css"%}">
     <link rel="stylesheet" href="{% static "css/font-icon-style.css"%}">
     <link rel="stylesheet" href="{% static "css/style.default.css"%}" id="{% static "theme-stylesheet"%}">
+    <style type="text/css" media="screen">
+        .btnn {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color:rgb(150, 0, 255);
+    color:rgb(150, 0, 255);
+    background-color:white;
+}
+.btn1 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color:rgb(0, 255, 100);
+    color:rgb(0, 255, 100);
+    background-color:white;
+}
+.btn2 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color:rgb(255, 0, 75);
+    color:rgb(255, 0, 75);
+    background-color:white;
+}
+.btn3 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color: #2196F3;
+    color: #2196F3;
+    background-color:white;
+}
+.btn4 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color: #F44336;
+    color: #F44336;
+    background-color:white;
+}
+.btn5 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color: #009688;
+    color: #009688;
+    background-color:white;
+}
+.btn6 {
+    width: 6vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color: #607D8B;
+    color: #607D8B;
+    background-color: #a2d06c;
+}
+.btn7 {
+    width: 6vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(75, 75, 75);
+    border-color: #3F51B5;
+    color: #3F51B5;
+    background-color: #a2d06c;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #009688;
+    border-color: #009688;
+}
 
-    <!-- Core stylesheets -->
-    <link rel="stylesheet" href="{% static "css/ui-elements/card.css"%}">
-    <link rel="stylesheet" href="{% static "css/style.css"%}">
+    </style>
 </head>
 
 <body>
@@ -59,105 +120,41 @@ label{
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <div class="navbar-header">
                         <a href="index.html" class="navbar-brand">
-                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="{% static "Logo"%}" class="img-fluid"></div>
+                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="Logo" class="img-fluid"></div>
                             <div class="brand-text brand-small"><img src="{% static "img/smalltest123.png"%}" alt="Logo" class="img-fluid"></div>
                         </a>
-                        <a id="toggle-btn" href="#" class="menu-btn active">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </a>
+
                     </div>
                 </div>
                 <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                     <!-- Expand-->
-                    <li class="nav-item d-flex align-items-center full_scr_exp"><a class="nav-link" href="#"><img src="{% static "img/expand.png"%}" onclick="toggleFullScreen(document.body)" class="img-fluid" alt=""></a></li>
+                    <li class="nav-item d-flex align-items-center full_scr_exp"><a class="nav-link" href="#"><img src="{% static "img/expand.png"%}"  onclick="toggleFullScreen(document.body)" class="img-fluid" alt=""></a></li>
                     <!-- Search-->
                     <li class="nav-item d-flex align-items-center"><a id="search" class="nav-link" href="#"><i class="icon-search"></i></a></li>
                     <!-- Notifications-->
                     <li class="nav-item dropdown">
                         <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"></i><span class="noti-numb-bg"></span><span class="badge">12</span></a>
-                        <ul aria-labelledby="notifications" class="dropdown-menu">
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-envelope bg-red"></i>You have 6 new messages </div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-twitter bg-skyblue"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-upload bg-blue"></i>Server Rebooted</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-twitter bg-skyblue"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>10 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
-                        </ul>
+
                     </li>
                     <!-- Messages                        -->
                     <li class="nav-item dropdown"> <a id="messages" class="nav-link logout" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope-o"></i><span class="noti-numb-bg"></span><span class="badge">10</span></a>
-                        <ul aria-labelledby="messages" class="dropdown-menu">
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/person.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Jason Doe</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-2.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Frank Williams</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-3.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Ashley Wood</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages    </strong></a></li>
-                        </ul>
+
                     </li>
                     <li class="nav-item dropdown"><a id="profile" class="nav-link logout" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static "img/person.png"%}" alt="..." class="img-fluid rounded-circle" style="height: 30px; width: 30px;"></a>
                         <ul aria-labelledby="profile" class="dropdown-menu profile">
                             <li>
                                 <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/person.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
+                                    <div class="msg-profile"> <img src="{% static "img/person.png"%}" alt="..." class="img-fluid rounded-circle"></div>
                                     <div class="msg-body">
-                                        <h3 class="h5">Steena Ben</h3><span>steenaben@Businessbox.com</span>
+                                        <h3 class="h5">{{ username }}</h3><span>{{ email }}</span>
                                     </div>
                                 </a>
                                 <hr>
                             </li>
                             <li>
-                                <a rel="nofollow" href="profile.html" class="dropdown-item">
+                                <a rel="nofollow" href="/taskmanage/" class="dropdown-item">
                                     <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-user "></i>My Profile</div>
+                                        <div class="notification-content"><i class="fa fa-user "></i>My Task</div>
                                     </div>
                                 </a>
                             </li>
@@ -177,7 +174,7 @@ label{
                                 <hr>
                             </li>
                             <li>
-                                <a rel="nofollow" href="profile.html" class="dropdown-item">
+                                <a rel="nofollow" href="/logout/" class="dropdown-item">
                                     <div class="notification">
                                         <div class="notification-content"><i class="fa fa-power-off"></i>Logout</div>
                                     </div>
@@ -231,7 +228,7 @@ label{
                                         </li>
                                         <li class="border border-primary">
                                             <a rel="nofollow" href="#" class=" d-flex">
-                                                <div class="news-f-img"> <img src="{% static "img/person.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
+                                                <div class="news-f-img"> <img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
                                                 <div class="msg-body">
                                                     <h6 class="h5 msg-nav-h6">Low cost Modern printer</h6>
                                                     <small>A dot matrix printer modified at...</small>
@@ -303,17 +300,17 @@ label{
             <hr>
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
-                <li class="active"> <a href="/home/"><i class="icon-home"></i>Home</a></li>
+                <li class="active"> <a href="/rehome"><i class="icon-home"></i>Home</a></li>
                 <li > <a href="../vasp"><i class="fa fa-globe"></i>VASP</a></li>
 
                 <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Search </a>
                     <ul id="apps" class="collapse list-unstyled">
-                        <li><a href="/searchall_elements/">by Elements</a></li>
-                        <li><a href="/searchall_formula/">by Formula</a></li>
-                        <li><a href="/searchall_ids/">by IDs</a></li>
+                        <li><a href="/searchall_elements">by Elements</a></li>
+                        <li><a href="/searchall_formula">by Formula</a></li>
+                        <li><a href="/searchall_ids">by IDs</a></li>
                     </ul>
                 </li>
-                <li> <a href= "chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
+                <li> <a href= "/chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
                 <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Data Analysis </a>
                     <ul id="forms" class="collapse list-unstyled">
                         <li><a href="basic-form.html">Basic Analysis</a></li>
@@ -338,1121 +335,82 @@ label{
             </ul>
         </nav>
 
-        <div class="content-inner">
 
-            <!--***** REPORT-1 *****-->
-            <div class="row" id="report1">
+        <div class="content-inner chart-cont">
 
-            <br/>
-                <label for="name">Automatic mode:</label>
-                    <form action="/automatic/" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                      <div class="form-group">
-                          <label for="name">Please select the type of POTCAR:</label>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="Potcar" id="optionsRadios1" value="pwe" checked> PWE
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="Potcar" id="optionsRadios2" value="gga">GGA
-                                </label>
-                            </div>
-                             <div class="radio">
-                                <label>
-                                    <input type="radio" name="Potcar" id="optionsRadios2" value="lda">LDA
-                                </label>
-                            </div>
-                          <!--INCAR选取-->
-                          <label for="name">Please select the type of INCAR:</label>
-                          <script id="justdo" language=JavaScript>
-                                            var defaultValue = ""
-                                            function Changes() {
-                                            var defaultValue = "changedd";
-                                            }
-                                            iee = document.all?1:0
-                                            ns44 = document.layers?1:0
-                                            var cc = 1
-                                            function hideIt(id) {
-                                            if (iee) {
-                                            document.all[id].style.zIndex = cc--;
-                                            document.all[id].style.visibility = "hidden";
-                                            document.all['hider'].style.visibility = "visible";
-                                            }
-                                            else if (ns44) {
-                                            document.layers[cat].layers[id].zIndex = cc--;
-                                            document.layers[cat].layers[id].visibility = "hide";
-                                            document.layers[cat].layers['hider'].visibility = "show";
-                                            }
-                                            }
+            <!--***** CONTENT *****-->
+        <center>
+            <form  action="/taskmanage/" method="post">
+                {% csrf_token %}
 
-                                             function showIt(id) {
-                                            if (iee) {
-                                            document.all[id].style.zIndex = cc++;
-                                            document.all[id].style.visibility = "visible";
-                                            }
-                                            else if (ns44) {
-                                            document.layers[cat].layers[id].zIndex = cc++;
-                                            document.layers[cat].layers[id].visibility = "show";
-                                            }
-                                            else {
-                                            document.getElementById(id).style.zIndex = cc++;
-                                            document.getElementById(id).style.visibility = "visible";
-                                            }
-                                            }
-                                            function imgLbl(tab) {
-                                            premier = frmWc.elements[tab - 1];
-                                            if (premier.checked == 1) {
-                                            premier.checked = 0;
-                                            } else {
-                                            premier.checked = 1;
-                                            }
-                                            }
-                                            </script>
-                          <div>
-                                                                      <TABLE width=560>
-                                              <TR>
-                                             <TD>
-                                              <TABLE cellPadding=2>
-                                              <TR align=left>
-                                              <TD vAlign=top align=left>
-                                              <INPUT onclick="showIt( 'off');return true" type=radio value=1 name=Level checked>
-                                              INCAR_bader</TD>
-                                              <TD align=left width=20> </TD>
-                                              <TD vAlign=top align=left><INPUT
-                                              onclick="showIt( 'low');return true" type=radio value=2
-                                               name=Level>
-                                              INCAR_dos</TD>
-                                              <TD align=left width=20> </TD>
-                                              <TD vAlign=top align=left>
-                                              <INPUT
-                                              onclick="showIt( 'high');return true" type=radio value=3 name=Level>
-                                              INCAR_nbo</TD>
-                                              <TD align=left width=20> </TD>
-                                              <TD vAlign=top align=left><INPUT
-                                              onclick="showIt( 'excl');return true" type=radio
-                                              value=4 name=Level>
-                                              INCAR_relax</TD>
 
-                                              <TD align=left width=20> </TD>
-                                              <TD vAlign=top align=left><INPUT
-                                              onclick="showIt( 'test');return true" type=radio
-                                              value=5 name=Level>
-                                              INCAR_static</TD>
 
-                                              </TR></TABLE></TD></TR></TABLE></div>
-                                              <table cellspacing=1 cellpadding=0 width=562 border="0" bgcolor="7285CF" height="240">
-                                              <tr>
-                                              <td colspan=3 height="145" valign="top" bgcolor="F2F2F2">
-                                              <div id=off style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                              <table cellspacing=5 cellpadding=2 width="560" border="0">
-                                              <tr>
-                                            <textarea name="Incar1" type="radio" spellcheck="false" cols="40"   rows="4"   style="width:562px; height:240px">
-                                                SYSTEM = FeF3 - static
-                                                PREC = Accurate
-                                                ENCUT = 600
 
-                                                ISTART = 0
-                                                ICHARG = 2
-                                                ISMEAR = 0;
-                                                SIGMA  = 0.05
-                                                NSW    = 0;
-                                                IBRION = -1
-                                                ISIF   = 2
-                                                POTIM = 0
-                                                EDIFF  = 1E-6;
-                                                #EDIFFG = -1E-3
 
-                                                #SYMPREC=1E-10
-                                                ISYM  =0
 
-                                                #NELMIN = 50
-                                                #NELM = 280
-                                                #NELMDL = 10
-                                                #WEIMIN = 0
+                <div class="input-group mb-4">
+<button class="btn btn-info" type="submit">completed!</button>
+</div>
 
-                                                LAECHG =.TRUE.
-                                                LCHARG =.TRUE.
-                                                #LWAVE  = .FALSE.
-                                                #LCHARG = .FALSE.
-
-                                                #Antiferromagnetic
-                                                #MAGMOM = 192*0  0 0 3  0 0 3  0 0 -3  0 0 3  0 0 -3  0 0 3  0 0 3  0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3
-                                                #SAXIS =  0.0 0.0 1.0
-
-                                                GGA = PE
-
-                                                #spin-polarized LDA->LSDA
-                                                ISPIN=2
-
-                                                #LSDA+U
-                                                LDAU = .TRUE.
-                                                LDAUTYPE = 2
-                                                LDAUL = -1  2   -1
-                                                LDAUU =  0  WJQIU  0
-                                                LDAUJ =  0  0    0
-
-                                                #+SO(Spin-Orbit)
-                                                #LSORBIT = .TRUE.
-
-                                                ALGO=Fast
-                                                lmaxmix = 4
-                                                #LUSE_VDW = .TRUE.
-                                                #AMIX     = 0.2
-                                                #BMIX     = 0.0001
-                                                #AMIX_MAG = 0.8
-                                                #BMIX_MAG = 0.0001
-                                                #LREAL = .TRUE.
-                                                #LORBIT   = 11
-
-
-                                            </textarea>
-                                              </tr>
-                                             </table>
-                                             </div>
-                                              <div id=low
-                                              style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 2; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                              <table cellspacing=5 cellpadding=2 width="560">
-                                              <tr >
-                                              <textarea name="Incar2" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
-                                                SYSTEM = FeF3 - dos
-                                                PREC = Accurate
-                                                ENCUT = 600
-
-                                                ISTART = 1
-                                                ICHARG = 11
-                                                ISMEAR = 0    # static or dos  && kpoints>4
-                                                SIGMA  = 0.05
-                                                NSW    = 0
-                                                IBRION = -1
-                                                ISIF   = 2
-                                                POTIM = 0
-                                                EDIFF  = 1E-6
-                                                #EDIFFG = -0.004
-
-
-                                                #SYMPREC=1E-10
-                                                #ISYM  =0
-                                                #NELMIN = 4
-
-                                                #LWAVE  = .TRUE.
-                                                #LCHARG = .TRUE.
-
-                                                GGA = PE
-                                                #VOSKOWN = 1
-
-                                                #Antiferromagnetic
-                                                #MAGMOM = 0 0 2  0 0 2  0 0 -2  0 0 -2  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0
-                                                #SAXIS =  0.0 0.0 1.0
-
-                                                #spin-polarized LDA->LSDA
-                                                ISPIN=2
-
-                                                LDAU = .TRUE.
-                                                LDAUTYPE = 2
-                                                LDAUL = -1  2   -1
-                                                LDAUU =  0  WJQIU  0
-                                                LDAUJ =  0  0    0
-                                                LMAXMIX = 4          bandstructure calculation--d elements:4, f elements:6
-
-                                                #+SO(Spin-Orbit)
-                                                #LSORBIT = .TRUE.
-
-                                                ALGO=Fast
-                                                #LUSE_VDW = .TRUE.
-                                                NPAR = 4
-                                                #LREAL = .TRUE.
-                                                #EMIN = -2
-                                                #EMAX = 18
-                                                NEDOS = 5000
-                                                LORBIT = 11
-
-                                              </textarea>
-                                              </tr>
-                                             </table>
-                                             </div>
-                                              <div id=high
-                                              style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                              <table cellspacing=5 cellpadding=2 width="560">
-                                              <tr>
-                                              <textarea name="Incar3" type="radio" spellcheck="false"  cols="40"   rows="4" style="width:562px; height:240px"  >
-                                                SYSTEM = FeF3 - static
-                                                PREC = Accurate
-                                                ENCUT = 600
-
-                                                ISTART = 0
-                                                ICHARG = 2
-                                                ISMEAR = 0;
-                                                SIGMA  = 0.05
-                                                NSW    = 0;
-                                                IBRION = -1
-                                                ISIF   = 2
-                                                POTIM = 0
-                                                EDIFF  = 1E-6;
-                                                #EDIFFG = -1E-3
-
-                                                #SYMPREC=1E-10
-                                                ISYM  =0
-
-                                                #NELMIN = 50
-                                                #NELM = 280
-                                                #NELMDL = 10
-                                                #WEIMIN = 0
-
-                                                #LWAVE  = .FALSE.
-                                                #LCHARG = .FALSE.
-
-                                                #Antiferromagnetic
-                                                #MAGMOM = 192*0  0 0 3  0 0 3  0 0 -3  0 0 3  0 0 -3  0 0 3  0 0 3  0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3
-                                                #SAXIS =  0.0 0.0 1.0
-
-                                                GGA = PE
-
-                                                #spin-polarized LDA->LSDA
-                                                ISPIN=2
-
-                                                #LSDA+U
-                                                LDAU = .TRUE.
-                                                LDAUTYPE = 2
-                                                LDAUL = -1  2   -1
-                                                LDAUU =  0  WJQIU  0
-                                                LDAUJ =  0  0    0
-
-                                                #+SO(Spin-Orbit)
-                                                #LSORBIT = .TRUE.
-
-                                                ALGO=Fast
-                                                lmaxmix = 4
-                                                #LUSE_VDW = .TRUE.
-                                                #AMIX     = 0.2
-                                                #BMIX     = 0.0001
-                                                #AMIX_MAG = 0.8
-                                                #BMIX_MAG = 0.0001
-                                                #LREAL = .TRUE.
-                                                #LORBIT   = 11
-                                                LNBO=.TRUE.
-
-                                              </textarea>
-                                              </tr>
-                                             </table>
-                                             </div>
-                                              <div id=excl
-                                              style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                              <table cellspacing=5 cellpadding=2 width="560">
-                                              <tr>
-                                              <textarea name="Incar4" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
-                                                SYSTEM = Cu3SbSe3 - relaxation
-
-                                                ENCUT = 600
-
-                                                ISTART = 0
-                                                ICHARG = 2
-                                                ISMEAR = 0
-                                                SIGMA  = 0.05
-                                                NSW    = 1000
-                                                IBRION = 2
-                                                ISIF   = 3
-                                                POTIM = 0.5
-                                                EDIFF  = 1E-6
-                                                EDIFFG = -0.001
-
-
-                                                #SYMPREC=1E-10
-                                                #ISYM  =0
-                                                #NELMIN = 4
-
-                                                #LWAVE  = .TRUE.
-                                                #LCHARG = .TRUE.
-
-                                                GGA = PE
-                                                #VOSKOWN = 1
-
-                                                #Antiferromagnetic
-                                                #MAGMOM = 0 0 2  0 0 2  0 0 -2  0 0 -2  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0  0 0 0
-                                                #SAXIS =  0.0 0.0 1.0
-
-                                                #spin-polarized LDA->LSDA
-                                                ISPIN=2
-
-                                                #LSDA+U
-                                                LDAU = .TRUE.
-                                                LDAUTYPE = 2
-                                                LDAUL = -1  2   -1
-                                                LDAUU =  0  WJQIU  0
-                                                LDAUJ =  0  0    0
-                                                lmaxmix = 4
-
-                                                #+SO(Spin-Orbit)
-                                                #LSORBIT = .TRUE.
-
-                                                ALGO=Fast
-                                                #LREAL = .TRUE.
-
-
-                                              </textarea>
-                                              </tr>
-                                             </table>
-                                             </div>
-
-                                               <div id=test
-                                              style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                              <table cellspacing=5 cellpadding=2 width="560">
-                                              <tr>
-                                               <textarea name="Incar5" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
-                                                   SYSTEM = FeF3 - static
-                                                   PREC = Accurate
-                                                   ENCUT = 600
-
-                                                   ISTART = 0
-                                                   ICHARG = 2
-                                                   ISMEAR = 0;
-                                                   SIGMA  = 0.05
-                                                   NSW    = 0;
-                                                   IBRION = -1
-                                                   ISIF   = 2
-                                                   POTIM = 0
-                                                   EDIFF  = 1E-6;
-                                                   #EDIFFG = -1E-3
-
-                                                   #SYMPREC=1E-10
-                                                   ISYM  =0
-                                                   #NELMIN = 50
-                                                   #NELM = 280
-                                                   #NELMDL = 10
-                                                   #WEIMIN = 0
-
-                                                   #LWAVE  = .FALSE.
-                                                   #LCHARG = .FALSE.
-
-                                                   #Antiferromagnetic
-                                                   #MAGMOM = 192*0  0 0 3  0 0 3  0 0 -3  0 0 3  0 0 -3  0 0 3  0 0 3  0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3 0 0 -3 0 0 3 0 0 -3 0 0 -3 0 0 3
-                                                   #SAXIS =  0.0 0.0 1.0
-
-                                                   GGA = PE
-
-                                                   #spin-polarized LDA->LSDA
-                                                   ISPIN=2
-
-                                                   #LSDA+U
-                                                   LDAU = .TRUE.
-                                                   LDAUTYPE = 2
-                                                   LDAUL = -1  2   -1
-                                                   LDAUU =  0  WJQIU  0
-                                                   LDAUJ =  0  0    0
-
-                                                   #+SO(Spin-Orbit)
-                                                   #LSORBIT = .TRUE.
-
-                                                   ALGO=Fast
-                                                   lmaxmix = 4
-                                                   #LUSE_VDW = .TRUE.
-                                                   #AMIX     = 0.2
-                                                   #BMIX     = 0.0001
-                                                   #AMIX_MAG = 0.8
-                                                   #BMIX_MAG = 0.0001
-                                                   #LREAL = .TRUE.
-                                                   #LORBIT   = 11
-
-
-                                               </textarea>
-                                              </tr>
-                                             </table>
-                                             </div>
-                                             </td>
-                                             </tr>
-                                             </table>
-                                             <TABLE cellSpacing=0 cellPadding=0 width=560>
-                                              <TR>
-                                              <TD align=right height="30">
-
-                                             </TD></TR></TABLE>
-                          <script id="justdoit" language=JavaScript>
-                                            var defaultValue = ""
-                                            function Changes() {
-                                            var defaultValue = "changed";
-                                            }
-                                            ie = document.all?1:0
-                                            ns4 = document.layers?1:0
-                                            var c = 1
-                                            function hideIt(id) {
-                                            if (ie) {
-                                            document.all[id].style.zIndex = c--;
-                                            document.all[id].style.visibility = "hidden";
-                                            document.all['hider'].style.visibility = "visible";
-                                            }
-                                            else if (ns4) {
-                                            document.layers[cat].layers[id].zIndex = c--;
-                                            document.layers[cat].layers[id].visibility = "hide";
-                                            document.layers[cat].layers['hider'].visibility = "show";
-                                            }
-                                            }
-
-                                             function showItjob(id) {
-                                            if (ie) {
-                                            document.all[id].style.zIndex = c++;
-                                            document.all[id].style.visibility = "visible";
-                                            }
-                                            else if (ns4) {
-                                            document.layers[cat].layers[id].zIndex = c++;
-                                            document.layers[cat].layers[id].visibility = "show";
-                                            }
-                                            else {
-                                            document.getElementById(id).style.zIndex = c++;
-                                            document.getElementById(id).style.visibility = "visible";
-                                            }
-                                            }
-                                            function imgLbl(tab) {
-                                            premier = frmWc.elements[tab - 1];
-                                            if (premier.checked == 1) {
-                                            premier.checked = 0;
-                                            } else {
-                                            premier.checked = 1;
-                                            }
-                                            }
-                                            </script>
-
-                          <label for="name">Please select the type of Job script:</label>
-                          <div>
-
-                                                              <TABLE width=560>
-                                      <TR>
-                                     <TD>
-                                      <TABLE cellPadding=2>
-                                      <TR align=left>
-                                      <TD vAlign=top align=left>
-                                      <INPUT
-                                      onclick="showItjob( 'plan1');return true" type=radio value=25
-                                      name=Levell checked>
-                                      VASP without opreation</TD>
-                                      <TD align=left width=20> </TD>
-                                      <TD vAlign=top align=left><INPUT
-                                      onclick="showItjob( 'plan2');return true" type=radio value=50
-                                       name=Levell>
-                                      Relax after VASP</TD>
-                                      <TD align=left width=20> </TD>
-                                      <TD vAlign=top align=left>
-                                      <INPUT
-                                      onclick="showItjob( 'plan3');return true" type=radio value=75 name=Levell>
-                                      Bader after VASP</TD>
-                                      <TD align=left width=20> </TD>
-                                      <TD vAlign=top align=left><INPUT
-                                      onclick="showItjob( 'plan4');return true" type=radio
-                                      value=100 name=Levell>
-                                      Static Dos after VASP</TD>
-
-                                      </TR></TABLE></TD></TR></TABLE></div>
-                                      <table cellspacing=1 cellpadding=0 width=700 border="0" bgcolor="7285CF" height="400">
-                                      <tr>
-                                      <td colspan=3 height="145" valign="top" bgcolor="F2F2F2">
-                                      <div id=plan1 style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                      <table cellspacing=5 cellpadding=2 width="560" border="0">
-                                      <tr>
-                                    <textarea name="jobscript1" spellcheck="false"  cols="40"   rows="4"   style="width:700px; height:400px">
-#!/bin/bash
-#BSUB -J WJQIU
-#BSUB -e %J.err
-#BSUB -o %J.out
-#BSUB -q newibm-256
-#BSUB -n 24
-#BSUB -R "span[ptile=24]"
-##BSUB -R "span[host=1]"
-
-# source /gpfs/compiler/parallel_studio_xe_2017.5.061/bin/psxevars.sh >/dev/null 2>&1
-
-mpirun -bootstrap lsf /gpfs/software/vasp/vasp.5.3-20181107 >result.log
-
-
-                                    </textarea>
-                                      </tr>
-                                     </table>
-                                     </div>
-                                      <div id=plan2
-                                      style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 2; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                      <table cellspacing=5 cellpadding=2 width="560">
-                                      <tr >
-                                      <textarea name="jobscript2" spellcheck="false"  cols="40"   rows="4" style="width:700px; height:400px"  >
-                                     #!/bin/bash
-                                     #BSUB -q newibm-256
-                                     #BSUB -o out%J.txt
-                                     #BSUB -e error%J.txt
-                                     #BSUB -J WJQIU
-                                     #BSUB -n 24
-                                     #BSUB -R "span[ptile=24]"
-                                     ##BSUB -R "span[host=1]"
-
-
-                                     ##################################################################################
-                                     #                                                                                #
-                                     # file inputs:(All files should be in 'backup' folder )                          #
-                                     # POSCAR INCAR_relax INCAR_static INCAR_bader INCAR_nbo INCAR_dos                #
-                                     # LDAUList                                                                       #
-                                     # WJQIU: wjqiu1988@gmail.com                                                     #
-                                     #                                                                                #
-                                     ##################################################################################
-                                    for i in 1 2 3
-                                     do
-                                     mpirun -bootstrap lsf /gpfs/home/wjqiu/software/vasp/vasp-20181107-WJQIU-normal-nbo
-                                     #############################################
-                                     cp CONTCAR POSCAR                           #
-                                     cp CONTCAR POSCAR_$i                        #
-                                     cp CONTCAR CONTCAR_$i                       #
-                                     mv OSZICAR OSZICAR_$i                       #
-                                     mv OUTCAR OUTCAR_$i                         #
-                                     mv vasprun.xml vasprun.xml_$i               #
-                                     mv XDATCAR XDATCAR_$i                       #
-                                     mv VELOCITY VELOCITY_$i                     #
-                                     rm CHG* WAVE*                               #
-                                     #############################################
-                                     done
-
-                                     #############################################
-                                     tar -cvf OUTCAR.tar OUTCAR_*                #
-                                     gzip OUTCAR.tar                             #
-                                     cp ~/jobs/plot_EvolutionEnergy.m .          #
-                                     nohup matlab <plot_EvolutionEnergy.m> a.out #
-                                     rm a.out                                    #
-                                     rm CONTCAR OSZICAR OUTCAR_*                 #
-                                     #############################################
-                                      </textarea>
-                                      </tr>
-                                     </table>
-                                     </div>
-                                      <div id=plan3
-                                      style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                      <table cellspacing=5 cellpadding=2 width="560">
-                                      <tr>
-                                      <textarea name="jobscript3" spellcheck="false"  cols="40"   rows="4" style="width:700px; height:400px"  >
-                                     #!/bin/bash
-                                     #BSUB -q newibm-256
-                                     #BSUB -o out%J.txt
-                                     #BSUB -e error%J.txt
-                                     #BSUB -J WJQIU
-                                     #BSUB -n 24
-                                     #BSUB -R "span[ptile=24]"
-                                     ##BSUB -R "span[host=1]"
-
-
-                                     ##################################################################################
-                                     #                                                                                #
-                                     # file inputs:(All files should be in 'backup' folder )                          #
-                                     # POSCAR INCAR_relax INCAR_static INCAR_bader INCAR_nbo INCAR_dos                #
-                                     # LDAUList                                                                       #
-                                     # WJQIU: wjqiu1988@gmail.com                                                     #
-                                     #                                                                                #
-                                     ##################################################################################
-                                     mpirun -bootstrap lsf /gpfs/home/wjqiu/software/vasp/vasp-20181107-WJQIU-normal-nbo
-                                    ##################################################
-                                     cp ~/bin/chgsum.pl .                            #
-                                     cp OSZICAR OSZICAR_bader                        #
-                                     cp OUTCAR OUTCAR_bader                          #
-                                     AtomName=`grep TITEL POTCAR |awk '{print $4}'`  #
-                                     AtomNum=`head -7 CONTCAR |tail -1`              #
-                                     ZvalNum=`grep ZVAL POTCAR |awk '{print $6}'`    #
-                                     echo $AtomName > ZVALData                       #
-                                     echo $AtomNum >> ZVALData                       #
-                                     echo $ZvalNum >> ZVALData                       #
-                                     perl chgsum.pl AECCAR0 AECCAR2                  #
-                                     bader CHGCAR -ref CHGCAR_sum                    #
-                                     rm CHG* WAVECAR                                 #
-                                     tar -cvf BaderData.tar AECCAR*                  #
-                                     gzip BaderData.tar                              #
-                                     rm AECCAR*                                      #
-                                     cd ..                                           #
-                                     #################################################
-                                      </textarea>
-                                      </tr>
-                                     </table>
-                                     </div>
-                                      <div id=plan4
-                                      style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
-                                      <table cellspacing=5 cellpadding=2 width="560">
-                                      <tr>
-                                      <textarea name="jobscript4"  spellcheck="false" cols="40"   rows="4" style="width:700px; height:400px"  >
-                                     #!/bin/bash
-                                     #BSUB -q newibm-256
-                                     #BSUB -o out%J.txt
-                                     #BSUB -e error%J.txt
-                                     #BSUB -J WJQIU
-                                     #BSUB -n 24
-                                     #BSUB -R "span[ptile=24]"
-                                     ##BSUB -R "span[host=1]"
-
-
-                                     ##################################################################################
-                                     #                                                                                #
-                                     # file inputs:(All files should be in 'backup' folder )                          #
-                                     # POSCAR INCAR_relax INCAR_static INCAR_bader INCAR_nbo INCAR_dos                #
-                                     # LDAUList                                                                       #
-                                     # WJQIU: wjqiu1988@gmail.com                                                     #
-                                     #                                                                                #
-                                     ##################################################################################
-                                     dos2unix *
-                                     mpirun -bootstrap lsf /gpfs/home/wjqiu/software/vasp/vasp-20181107-WJQIU-normal-nbo
-                                     ##########################################################
-                                     mv OSZICAR OSZICAR_static                                #
-                                     mv OUTCAR OUTCAR_static                                  #
-                                     grep 'free energy TOTEN' OUTCAR_static>Gibbs.txt         #
-                                     ##########################################################
-                                     # nbo begin #########################################################################
-                                     mkdir nbo                                                                           #
-                                     cp POSCAR POTCAR KPOINTS ../../backup/INCAR_nbo nbo/.                               #
-                                     cd nbo/                                                                             #
-                                     cp ~/jobs/GenBasisInp.m .                                                           #
-                                     matlab -nojvm <GenBasisInp.m                                                        #
-                                     cp INCAR_nbo INCAR                                                                  #
-                                     sed -i "s/WJQIU/$Uvalue/g" INCAR                                                    #
-                                     mpirun -bootstrap lsf /gpfs/home/wjqiu/software/vasp/vasp-20181107-WJQIU-normal-nbo #
-                                     ulimit -s unlimited                                                                 #
-                                     projection.exe >projection.log                                                      #
-                                     nbo.exe-ifort NBO.out nbo.chk >nbo-ifort.log                                        #
-                                     if [ ! -a "core.*" ]; then                                                          #
-                                     mpirun -bootstrap lsf nbo.exe-mpiifort NBO.out >nbo-mpiifort.log                    #
-                                     fi                                                                                  #
-                                     cd ..                                                                               #
-                                     # nbo end ###########################################################################
-                                     # DOS begin
-                                     mkdir dos
-                                     cd dos # In dos folder
-                                     cp ../CHG* .
-                                     cp ../WAVE* .
-                                     cp ../POSCAR .
-                                     cp ../POTCAR .
-
-                                     ######### INCAR #########################
-                                     cp ../../../backup/INCAR_dos INCAR      #
-                                     sed -i "s/WJQIU/$Uvalue/g" INCAR        #
-                                     ######### INCAR #########################
-
-                                     ######### KPOINTS #############################################################
-                                     cp ~/jobs/GenKpoints.m .                                                      #
-                                     sed -i "s/AmplificationFactor=1/AmplificationFactor=2/g" GenKpoints.m         #
-                                     matlab -nojvm <GenKpoints.m                                                   #
-                                     ######### KPOINTS #############################################################
-
-                                     #cp ../vdw_kernel.bindat .
-
-                                     mpirun -bootstrap lsf /gpfs/home/wjqiu/software/vasp/vasp-20181107-WJQIU-normal-nbo
-                                     ############################################################################
-                                     AtomName=`grep -a TITEL POTCAR |awk '{print $4}'`                          #
-                                     AtomNum=`head -7 POSCAR |tail -1`                                          #
-                                     ZvalNum=`grep -a ZVAL POTCAR |awk '{print $6}'`                            #
-                                     echo $AtomName > ZVALData                                                  #
-                                     echo $AtomNum >> ZVALData                                                  #
-                                     echo $ZvalNum >> ZVALData                                                  #
-                                     mv OSZICAR OSZICAR_dos                                                     #
-                                     cp OUTCAR OUTCAR_dos                                                       #
-                                     sed -i '6,6 d' POSCAR                                                      #
-                                     getgap                                                                     #
-                                     awk 'NR==1 {print $9}' gap.txt | pdosVBM                                   #
-                                     awk 'NR==1 {print $9}' gap.txt > gap_temp                                  #
-                                     cat gap_temp gap.txt > get_check                                           #
-                                     rm gap_temp gap.txt                                                        #
-                                     # DOS done                                                                 #
-                                     #################################                                          #
-                                     cp ~/bin/split_dos ~/bin/vp .   #                                          #
-                                     ./split_dos                     #                                          #
-                                     rm split_dos vp                 #                                          #
-                                     mkdir split_dos                 #                                          #
-                                     mv DOS* split_dos/.             #                                          #
-                                     mv split_dos/DOSCAR .           #                                          #
-                                     cd split_dos/.                  #                                          #
-                                     sed -i "s/#/%/g" *              #                                          #
-                                     cd ..                           #                                          #
-                                     #################################                                          #
-                                     rm CHG* WAVE* ../CHG* ../WAVE*                                             #
-                                     tar -cvf DOSCAR.tar DOSCAR;gzip DOSCAR.tar;rm DOSCAR                       #
-                                     tar -cvf PROCAR.tar PROCAR;gzip PROCAR.tar;rm PROCAR                       #
-                                     tar -cvf vasprun.xml.tar vasprun.xml;gzip vasprun.xml.tar;rm vasprun.xml   #
-                                     ############################################################################
-                                     cd .. # In static folder
-                                     tar -cvf DOSCAR.tar DOSCAR;gzip DOSCAR.tar;rm DOSCAR
-                                     tar -cvf vasprun.xml.tar vasprun.xml;gzip vasprun.xml.tar;rm vasprun.xml
-                                     # DOS done
-                                     cd .. # In relaxation folder
-                                     cd .. # In main folder
-                                     done
-
-                                      </textarea>
-                                      </tr>
-                                     </table>
-                                     </div>
-
-
-                                     </td>
-                                     </tr>
-                                     </table>
-                                     <TABLE cellSpacing=0 cellPadding=0 width=560>
-                                      <TR>
-                                      <TD align=right height="30">
-                                     </TD></TR></TABLE>
-
-
-                                          <input type="text" value="{{ slid }}" name="materialid">
-                                            <input type="submit" value="submit" >
-
-                      </div>
-
-                    </form>
-
-
-
-            </div>
-            <label for="name">Manual mode:</label>
-            <form action="/manual/" id="domeform" method="post" enctype="multipart/form-data">
-                <label for="fileinp">
-        <input type="button" id="btn" value="Click me to upload" name="potcar" ><span id="text">POTCAR</span>
-        <input type="file" id="fileinp" name="potcar" >
-</label></br>
-                <label for="fileinp">
-                <input type="button" id="btn" value="Click me to upload" name="poscar" ><span id="text">POSCAR</span>
-        <input type="file" id="fileinp" name="poscar" >
-</label></br>
-                <label for="fileinp">
-                <input type="button" id="btn" value="Click me to upload" name="kpoints" ><span id="text">KPOINTS</span>
-        <input type="file" id="fileinp" name="kpoints" >
-</label></br>
-                <label for="fileinp">
-                <input type="button" id="btn" value="Click me to upload" name="incar" ><span id="text">INCAR</span>
-        <input type="file" id="fileinp" name="incar" >
-</label></br>
-                                <label for="fileinp">
-                <input type="button" id="btn" value="Click me to upload" name="jobscript" ><span id="text">JOBSCRIPT</span>
-        <input type="file" id="fileinp" name="jobscript" >
-</label></br>
-
-                <input type="submit" value="submit">
-
-</form>
-
-
-            <!--***** REPORT-2 *****-->
-            <div class="row" id="report2">
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Artificial Neural Network.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Artificial Neural Network</h4>
-
-                        </div>
-
-                    </div>
+                <div class="input-group mb-4">
+                    <button class="btn btn-info" type="submit">&nbsp; &nbsp;running!&nbsp;&nbsp;&nbsp; </button>
                 </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Linear Regression.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Linear Regression</h4>
+            </form>
+        </center>
 
-                        </div>
+            <div class="table-responsive">
+            <table class="table table-hover">
+                  <thead>
+                    <tr class="bg-info text-white">
+                      <th>#</th>
+                        <th>task-id</th>
+                      <th>sl-id</th>
+                      <th>prettyformula</th>
+                      <th>elements</th>
+                        <th>Operating status</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                          <th scope="row">{{ contact.id }}</th>
+                          <td>{{ contact.slid }}</td>
+                          <td>{{ contact.prettyformula }}</td>
+                          <td>{{ contact.elements }}</td>
+                          <td><input  value="VASP"  type="submit" onclick="window.location='gotovasp?slid={{contact.slid }}';"></td>
 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Support Vector Machine.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Support Vector Machine</h4>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-            <!--***** REPORT-3 *****-->
-            <div class="row" id="report3">
-                <div class="col-md-8">
-                    <div class="card card-c2">
-                        <table class="table table-hover">
-                          <thead>
-                            <div class="dropdown pull-right menu-sett-card">
-                                <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-v men"></i>
-                                </a>
-                                <ul aria-labelledby="notifications" class="dropdown-menu">
-                                    <li>
-                                        <a rel="nofollow" href="#" class="dropdown-item nav-link">Edit</a>
-                                    </li>
-                                    <li>
-                                        <a rel="nofollow" href="#" class="dropdown-item nav-link">FAQ</a>
-                                    </li>
-                                    <li>
-                                        <a rel="nofollow" href="#" class="dropdown-item nav-link">Support</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <tr>
-                              <th>Case Study</th>
-                              <th>Target Date</th>
-                              <th>Progress <!-- <i class="fa fa-ellipsis-v pull-right" ></i> -->
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Tech Wireframes</td>
-                              <td>23/03/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 75%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Mobile Boz</td>
-                              <td>02/06/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Reskel Soft</td>
-                              <td>11/02/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 95%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Desan Shop</td>
-                              <td>05/03/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 75%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr><tr>
-                              <td>Effel Soft</td>
-                              <td>24/02/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr><tr>
-                              <td>Tech Box</td>
-                              <td>01/09/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 55%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr><tr>
-                              <td>Lesto Firm</td>
-                              <td>15/12/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 85%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Technoborn</td>
-                              <td>08/08/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 45%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>Redor Books</td>
-                              <td>18/08/2018</td>
-                              <td>
-                                <div class="progress">
-                                  <div class="progress-bar bg-info" role="progressbar" style="width: 55%; height:10px;" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c2">
-                        <div class="dropdown pull-right menu-sett-card" >
-                            <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-ellipsis-v men"></i>
-                            </a>
-                            <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li>
-                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">Edit</a>
-                                </li>
-                                <li>
-                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">FAQ</a>
-                                </li>
-                                <li>
-                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">Support</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="header">
-                            <h4 class="title">Email Statistics</h4>
-                            <p class="category">Last Campaign Performance</p>
-                        </div>
-                        <div class="content">
-                            <canvas class="ct-chart" id="polar-chart" height="250"></canvas>
-                            <!-- <canvas class="ct-chart" id="myChart4" height="250"></canvas> -->
-                            <div class="footer">
-                                <div class="legend">
-                                    <i class="fa fa-circle text-info"></i> Open
-                                    <i class="fa fa-circle text-danger"></i> Bounce
-                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                </div>
-                                <hr>
-                                <div class="stats">
-                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </div>
+        <div>
+    <ul class="pager">
+        {% if contacts.has_previous %}
+            <li><a href="?page=1">&laquo; first</a></li>
+            <li><a href="?page={{ contacts.previous_page_number }}">previous</a></li>
+        {% endif %}
 
-            <!--***** REPORT-4 *****-->
-            <div class="row" id="report4">
-                <div class="col-md-4" id="card-1">
-                    <div class="card card-inverse card-info">
-                        <img class="card-img-top" src="{% static "img/card/c-1.jpg"%}">
-                        <div class="card-block">
-                            <h4 class="card-title">Clean Tech Box </h4>
-                            <div class="card-text">
-                                Lorem Ipsum has been the industry's standard.
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <small>Last updated 3 mins ago</small>
-                            <button class="btn btn-info float-right btn-sm">Follow</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mt-0" id="card-2">
-                    <div class="card hovercard">
-                        <div class="cardheader"></div>
-                        <div class="avatar">
-                            <img alt="" src="{% static "img/person.jpg"%}" class="img-fluid">
-                        </div>
-                        <div class="info">
-                            <div class="title">
-                                <a target="_blank" href="#">Steena Ben</a>
-                            </div>
-                            <div class="desc">Passionate designer</div>
-                            <div class="desc">Curious developer</div>
-                            <div class="desc">Tech geek</div>
-                        </div>
-                        <div class="bottom">
-                            <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
-                                <i class="fa fa-twitter"></i>
-                            </a>
-                            <a class="btn btn-danger btn-sm" rel="publisher"
-                               href="https://plus.google.com/+ahmshahnuralam">
-                                <i class="fa fa-google-plus"></i>
-                            </a>
-                            <a class="btn btn-primary btn-sm" rel="publisher"
-                               href="https://plus.google.com/shahnuralam">
-                                <i class="fa fa-facebook"></i>
-                            </a>
-                            <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
-                                <i class="fa fa-behance"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c2">
-                        <div class="dropdown pull-right menu-sett-card" >
-                            <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-ellipsis-v men"></i>
-                            </a>
-                            <ul aria-labelledby="notifications" class="dropdown-menu">
-                                <li>
-                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">Edit</a>
-                                </li>
-                                <li>
-                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">FAQ</a>
-                                </li>
-                                <li>
-                                    <a rel="nofollow" href="#" class="dropdown-item nav-link">Support</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="header">
-                            <h4 class="title">Newsfeed</h4>
-                            <p class="category">Latest News Update</p>
-                            <hr>
-                        </div>
-                        <div class="content newsf-list">
-                            <ul class="list-unstyled">
-                                <li class="border border-primary">
-                                    <a rel="nofollow " href="#" class=" d-flex">
-                                        <div class="news-f-img"> <img src="{% static "img/avatar-2.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                        <div class="msg-body">
-                                            <h3 class="h5 msg-nav-h3">New Innovation world</h3>
-                                            <small>Tech soft is great innovation for...</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="border border-success">
-                                    <a rel="nofollow" href="#" class=" d-flex">
-                                        <div class="news-f-img"> <img src="{% static "img/avatar-3.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                        <div class="msg-body">
-                                            <h3 class="h5 msg-nav-h3">Modified hand-cart steering</h3>
-                                            <small>The idea is to incorporate easy...</small>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="border border-info">
-                                    <a rel="nofollow" href="#" class=" d-flex">
-                                        <div class="news-f-img"> <img src="{% static "img/avatar-4.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                        <div class="msg-body">
-                                            <h3 class="h5 msg-nav-h3">Low cost Modern printer</h3>
-                                            <small>A dot matrix printer modified at...</small>
-                                        </div>
-                                    </a>
-                                </li>
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--***** FOOTER *****-->
-            <div class="row" id="report4">
-                <div class="col-md-3">
-                    <div class="card text-center social-bottom sb-fb">
-                        <i class="fa fa-facebook"></i>
-                        <div>3250 +</div>
-                        <p>Likes</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center social-bottom sb-tw">
-                        <i class="fa fa-twitter"></i>
-                        <div>2345 +</div>
-                        <p>Following</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center social-bottom sb-gp">
-                        <i class="fa fa-google-plus"></i>
-                        <div>1253 +</div>
-                        <p>Followers</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center social-bottom sb-in">
-                        <i class="fa fa-instagram"></i>
-                        <div>4524 +</div>
-                        <p>Likes</p>
-                    </div>
-                </div>
-
-            </div>
+        {% if contacts.has_next %}
+             <li><a href="?page={{ contacts.next_page_number }}">next</a></li>
+             <li><a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+            </br><
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
 
         </div>
     </div>
@@ -1468,7 +426,48 @@ mpirun -bootstrap lsf /gpfs/software/vasp/vasp.5.3-20181107 >result.log
     <script src="{% static "js/front.js"%}"></script>
 
     <!--Core Javascript -->
-    <script src="{% static "js/mychart.js"%}"></script>
+    <script>
+        new Chart(document.getElementById("myChart4").getContext('2d'), {
+          type: 'doughnut',
+          data: {
+            labels: ["M", "T", "W", "T", "F", "S", "S"],
+            datasets: [{
+              backgroundColor: [
+                "#2ecc71",
+                "#3498db",
+                "#95a5a6",
+                "#9b59b6",
+                "#f1c40f",
+                "#e74c3c",
+                "#34495e"
+              ],
+              data: [12, 19, 3, 17, 28, 24, 7]
+            }]
+          },
+          options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: ''
+               }
+            }
+        });
+    </script>
 </body>
+<script type="text/javascript" >
+		function add(obj)
+		{
+			document.getElementById("txtShow").value+=obj.value;
+		}
+		function search() {
+			var val = $("#txtshow").value
+			var type = $("#slList").value
+			var url = "http://localhost:8080/search/searchid="+val + "/type="+type
+			htmlobj=$.ajax({url:"http://localhost:8080/search/searchid="+val,async:false});
+			$("#myDiv").html(htmlobj.responseText);
+		}
+
+</script>
+	<script type="text/javascript" src="{% static "js/jquery-3.3.1.js"%}"></script>
 
 </html>

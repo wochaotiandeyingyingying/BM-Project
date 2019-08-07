@@ -1,19 +1,21 @@
+{% load  staticfiles %}
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Wellinor Consulting HTML Template | Homepage</title>
+<title>Data-Driven Material Platform</title>
 <!-- Stylesheets -->
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="plugins/revolution/css/settings.css" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
-<link href="plugins/revolution/css/layers.css" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
-<link href="plugins/revolution/css/navigation.css" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
-<link href="css/style.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet">
+<link href="{% static "css/bootstrap.css"%}" rel="stylesheet">
+<link href="{% static "plugins/revolution/css/settings.css"%}" rel="stylesheet" type="text/css"><!-- REVOLUTION SETTINGS STYLES -->
+<link href="{% static "plugins/revolution/css/layers.css"%}" rel="stylesheet" type="text/css"><!-- REVOLUTION LAYERS STYLES -->
+<link href="{% static "plugins/revolution/css/navigation.css"%}" rel="stylesheet" type="text/css"><!-- REVOLUTION NAVIGATION STYLES -->
+<link href="{% static "css/styledoor.css"%}" rel="stylesheet">
+<link href="{% static "css/responsive.css"%}" rel="stylesheet">
 
 <!--Favicon-->
-<link rel="shortcut icon" href="images/small-logo.png" type="image/x-icon">
-<link rel="icon" href="images/small-logo.png" type="image/x-icon">
+<link rel="shortcut icon" href="{% static "img/smalltest1.png"%}" type="image/x-icon">
+<link rel="icon" href="{% static "img/small-logo.png"%}" type="image/x-icon">
 <!-- Responsive -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -35,7 +37,7 @@
         	<div class="clearfix">
 
                 <div class="pull-left logo-outer">
-                    <div class="logo"><a href="index.html"><img src="images/logotest2.png" alt="" title=""></a></div>
+                    <div class="logo"><a href="{% static "index.html"%}"><img src="{% static "img/logotest41.png"%}" alt="" title=""></a></div>
                 </div>
 
                 <div class="pull-right upper-right clearfix">
@@ -56,43 +58,43 @@
                                 <ul class="navigation clearfix">
                                     <li class="current dropdown"><a href="#">Home</a>
                                         <ul>
-                                            <li><a href="index.html">Home 01</a></li>
-                                            <li><a href="index-2.html">Home 02</a></li>
-                                            <li><a href="index-3.html">Home 03</a></li>
+                                            <li><a href="{% static "index.html"%}">Home 01</a></li>
+                                            <li><a href="{% static "index-2.html"%}">Home 02</a></li>
+                                            <li><a href="{% static "index-3.html"%}">Home 03</a></li>
                                             <li class="dropdown"><a href="#">Header Styles</a>
                                                 <ul>
-                                                    <li><a href="index.html">Header 01</a></li>
-                                                    <li><a href="index-2.html">Header 02</a></li>
-                                                    <li><a href="index-3.html">Header 03</a></li>
+                                                    <li><a href="{% static "index.html"%}">Header 01</a></li>
+                                                    <li><a href="{% static "index-2.html"%}">Header 02</a></li>
+                                                    <li><a href="{% static "index-3.html"%}">Header 03</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="dropdown"><a href="#">About us</a>
                                         <ul>
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="company.html">Company History</a></li>
-                                            <li><a href="team.html">Team</a></li>
+                                            <li><a href="{% static "about.html"%}">About Us</a></li>
+                                            <li><a href="{% static "company.html"%}">Company History</a></li>
+                                            <li><a href="{% static "team.html"%}">Team</a></li>
                                         </ul>
                                     </li>
 
 
                                     <li class="dropdown"><a href="#">Document</a>
                                         <ul>
-                                            <li><a href="error.html">404 Page</a></li>
-                                            <li><a href="comming-soon.html">Coming Soon page</a></li>
-                                            <li><a href="testimonial.html">Testimonials</a></li>
-                                            <li><a href="faq.html">Faq</a></li>
+                                            <li><a href="{% static "error.html"%}">404 Page</a></li>
+                                            <li><a href="{% static "comming-soon.html"%}">Coming Soon page</a></li>
+                                            <li><a href="{% static "testimonial.html"%}">Testimonials</a></li>
+                                            <li><a href="{% static "faq.html"%}">Faq</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown"><a href="#">Tutorials</a>
                                         <ul>
-                                            <li><a href="blog-sidebar.html">Blog with sidebar</a></li>
-                                            <li><a href="blog-2.html">Blog 2 column</a></li>
-                                            <li><a href="blog-detail.html">Blog details</a></li>
+                                            <li><a href="{% static "blog-sidebar.html"%}">Blog with sidebar</a></li>
+                                            <li><a href="{% static "blog-2.html"%}">Blog 2 column</a></li>
+                                            <li><a href="{% static "blog-detail.html"%}">Blog details</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">Login</a></li>
+                                    <li><a href="/login">Login</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -112,7 +114,7 @@
         	<div class="sticky-inner-container clearfix">
             	<!--Logo-->
             	<div class="logo pull-left">
-                	<a href="index.html" class="img-responsive"><img src="images/small-logo.png" alt="" title=""></a>
+                	<a href="{% static "index.html"%}" class="img-responsive"><img src="{% static "img/small-logo.png"%}" alt="" title=""></a>
                 </div>
 
                 <!--Right Col-->
@@ -132,48 +134,48 @@
                             <ul class="navigation clearfix">
                                 <li class="current dropdown"><a href="#">Home</a>
                                     <ul>
-                                        <li><a href="index.html">Home 01</a></li>
-                                        <li><a href="index-2.html">Home 02</a></li>
-                                        <li><a href="index-3.html">Home 03</a></li>
-                                        <li class="dropdown"><a href="#">Header Styles</a>
+                                        <li><a href="{% static "index.html"%}">Home 01</a></li>
+                                        <li><a href="{% static "index-2.html"%}">Home 02</a></li>
+                                        <li><a href="{% static "index-3.html"%}">Home 03</a></li>
+                                        <li class="{% static "dropdown"%}"><a href="#">Header Styles</a>
                                             <ul>
-                                                <li><a href="index.html">Header 01</a></li>
-                                                <li><a href="index-2.html">Header 02</a></li>
-                                                <li><a href="index-3.html">Header 03</a></li>
+                                                <li><a href="{% static "index.html"%}">Header 01</a></li>
+                                                <li><a href="{% static "index-2.html"%}">Header 02</a></li>
+                                                <li><a href="{% static "index-3.html"%}">Header 03</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">About us</a>
                                     <ul>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="company.html">Company History</a></li>
-                                        <li><a href="team.html">Team</a></li>
+                                        <li><a href="{% static "about.html"%}">About Us</a></li>
+                                        <li><a href="{% static "company.html"%}">Company History</a></li>
+                                        <li><a href="{% static "team.html"%}">Team</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Documents</a>
                                     <ul>
-                                        <li><a href="services.html">All services</a></li>
-                                        <li><a href="market-analysis.html">Market Analysis</a></li>
-                                        <li><a href="business-development.html">Business Development</a></li>
-                                        <li><a href="investment-plan.html">Investment Planning</a></li>
-                                        <li><a href="general-consultant.html">General Consultancy</a></li>
-                                        <li><a href="wealth-management.html">Wealth Management</a></li>
+                                        <li><a href="{% static "services.html"%}">All services</a></li>
+                                        <li><a href="{% static "market-analysis.html"%}">Market Analysis</a></li>
+                                        <li><a href="{% static "business-development.html"%}">Business Development</a></li>
+                                        <li><a href="{% static "investment-plan.html"%}">Investment Planning</a></li>
+                                        <li><a href="{% static "general-consultant.html"%}">General Consultancy</a></li>
+                                        <li><a href="{% static "wealth-management.html"%}">Wealth Management</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Tutorials</a>
                                     <ul>
-                                        <li><a href="cases.html">Cases 1</a></li>
-                                        <li><a href="cases-2.html">Cases 2</a></li>
-                                        <li><a href="cases-detail.html">Cases Details Page</a></li>
+                                        <li><a href="{% static "cases.html"%}">Cases 1</a></li>
+                                        <li><a href="{% static "cases-2.html"%}">Cases 2</a></li>
+                                        <li><a href="{% static "cases-detail.html"%}">Cases Details Page</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Login</a>
                                     <ul>
-                                        <li><a href="error.html">404 Page</a></li>
-                                        <li><a href="comming-soon.html">Coming Soon page</a></li>
-                                        <li><a href="testimonial.html">Testimonials</a></li>
-                                        <li><a href="faq.html">Faq</a></li>
+                                        <li><a href="{% static "error.html"%}">404 Page</a></li>
+                                        <li><a href="{% static "comming-soon.html"%}">Coming Soon page</a></li>
+                                        <li><a href="{% static "testimonial.html"%}">Testimonials</a></li>
+                                        <li><a href="{% static "faq.html"%}">Faq</a></li>
                                     </ul>
                                 </li>
 
@@ -256,8 +258,8 @@
             <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
                 <ul>
 
-                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1689" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="images/main-slider/image-1.jpg" data-title="Slide Title" data-transition="parallaxvertical">
-                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="images/main-slider/test5.jpg">
+                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1689" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="{% static "img/main-slider/image-1.jpg"%}" data-title="Slide Title" data-transition="parallaxvertical">
+                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{% static "img/main-slider/test5.jpg"%}">
 
                     <div class="tp-caption"
                     data-paddingbottom="[0,0,0,0]"
@@ -325,8 +327,8 @@
 
                     </li>
 
-                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1687" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="images/main-slider/image-2.jpg" data-title="Slide Title" data-transition="parallaxvertical">
-                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="images/main-slider/test7.jpg">
+                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1687" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="img/main-slider/image-2.jpg" data-title="Slide Title" data-transition="parallaxvertical">
+                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{% static "img/main-slider/test7.jpg"%}">
 
                     <div class="tp-caption"
                     data-paddingbottom="[0,0,0,0]"
@@ -394,8 +396,8 @@
 
                     </li>
 
-                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1688" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="images/main-slider/image-3.jpg" data-title="Slide Title" data-transition="parallaxvertical">
-                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="images/main-slider/test8.jpg">
+                    <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1688" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="img/main-slider/image-3.jpg" data-title="Slide Title" data-transition="parallaxvertical">
+                    <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="{% static "img/main-slider/test8.jpg"%}">
 
                     <div class="tp-caption"
                     data-paddingbottom="[0,0,0,0]"
@@ -455,7 +457,7 @@
                     data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
                     >
                     	<div class="btns-box">
-                        	<a href="https://github.com/wochaotiandeyingyingying/BM-Project" class="theme-btn btn-style-one">Github</a>
+                        	<a href="{% static "https://github.com/wochaotiandeyingyingying/BM-Project"%}" class="theme-btn btn-style-one">Github</a>
                         </div>
                     </div>
 
@@ -474,9 +476,9 @@
             	<!--Title Column-->
                 <div class="title-column col-md-6 col-sm-12 col-xs-12">
                 	<div class="inner-column">
-                    	<img src="images/main-slider/total1.jpg">
+                    	<img src="{% static "img/main-slider/total1.jpg"%}">
                         <div class="text">Overall overview of the website.</div>
-                        <a href="about.html" class="theme-btn btn-style-one">Login</a>
+                        <a href="/login" class="theme-btn btn-style-one">Login</a>
                     </div>
                 </div>
                 <!--Services Column-->
@@ -489,7 +491,7 @@
                             	<div class="icon-box">
                                 	<span class="icon flaticon-diamond-2"></span>
                                 </div>
-                                <h3><a href="market-analysis.html">NEWS</a></h3>
+                                <h3><a href="{% static "market-analysis.html"%}">NEWS</a></h3>
                                 <div class="text">Latest news about Battery matterial.</div>
                             </div>
                         </div>
@@ -502,28 +504,28 @@
 
  s
 
-<script src="js/jquery.js"></script>
+<script src="{% static "js/jquery.js"%}"></script>
 <!--Revolution Slider-->
-<script src="plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
-<script src="plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
-<script src="js/main-slider-script.js"></script>
+<script src="{% static "plugins/revolution/js/jquery.themepunch.revolution.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/jquery.themepunch.tools.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.actions.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.carousel.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.migration.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.navigation.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.parallax.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"%}"></script>
+<script src="{% static "plugins/revolution/js/extensions/revolution.extension.video.min.js"%}"></script>
+<script src="{% static "js/main-slider-script.js"%}"></script>
 
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.fancybox.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/owl.js"></script>
-<script src="js/appear.js"></script>
-<script src="js/wow.js"></script>
-<script src="js/script.js"></script>
+<script src="{% static "js/bootstrap.min.js"%}"></script>
+<script src="{% static "js/jquery.fancybox.js"%}"></script>
+<script src="{% static "js/jquery-ui.js"%}"></script>
+<script src="{% static "js/owl.js"%}"></script>
+<script src="{% static "js/appear.js"%}"></script>
+<script src="{% static "js/wow.js"%}"></script>
+<script src="{% static "js/script.js"%}"></script>
 
 </body>
 </html>

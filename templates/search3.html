@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
 
-    <title>Bootstrap Admin Template </title>
-    <link rel="shortcut icon" href="{% static "img/favicon.ico"%}">
+    <title>Data-Driven Material Platform </title>
+    <link rel="shortcut icon" href="{% static "img/smalltest1.png"%}">
 
 
     <!-- global stylesheets -->
@@ -120,17 +120,13 @@
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <div class="navbar-header">
                         <a href="index.html" class="navbar-brand">
-                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logo-white.png"%}" alt="Logo" class="img-fluid"></div>
-                            <div class="brand-text brand-small"><img src="{% static "img/logo-icon.png"%}" alt="Logo" class="img-fluid"></div>
+                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="Logo" class="img-fluid"></div>
+                            <div class="brand-text brand-small"><img src="{% static "img/smalltest123.png"%}" alt="Logo" class="img-fluid"></div>
                         </a>
-                        <a id="toggle-btn" href="#" class="menu-btn active">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </a>
+
                     </div>
                 </div>
-                <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                <li class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                     <!-- Expand-->
                     <li class="nav-item d-flex align-items-center full_scr_exp"><a class="nav-link" href="#"><img src="{% static "img/expand.png"%}"  onclick="toggleFullScreen(document.body)" class="img-fluid" alt=""></a></li>
                     <!-- Search-->
@@ -138,87 +134,27 @@
                     <!-- Notifications-->
                     <li class="nav-item dropdown">
                         <a id="notifications" class="nav-link" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"></i><span class="noti-numb-bg"></span><span class="badge">12</span></a>
-                        <ul aria-labelledby="notifications" class="dropdown-menu">
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-envelope bg-red"></i>You have 6 new messages </div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-twitter bg-skyblue"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-upload bg-blue"></i>Server Rebooted</div>
-                                        <div class="notification-time"><small>4 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item nav-link">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-twitter bg-skyblue"></i>You have 2 followers</div>
-                                        <div class="notification-time"><small>10 minutes ago</small></div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
-                        </ul>
+
                     </li>
                     <!-- Messages                        -->
                     <li class="nav-item dropdown"> <a id="messages" class="nav-link logout" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope-o"></i><span class="noti-numb-bg"></span><span class="badge">10</span></a>
-                        <ul aria-labelledby="messages" class="dropdown-menu">
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Jason Doe</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-2.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Frank Williams</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-3.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
-                                    <div class="msg-body">
-                                        <h3 class="h5 msg-nav-h3">Ashley Wood</h3><span>Sent You Message</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages    </strong></a></li>
-                        </ul>
+
                     </li>
-                    <li class="nav-item dropdown"><a id="profile" class="nav-link logout" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static "avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle" style="height: 30px; width: 30px;"></a>
+                    <li class="nav-item dropdown"><a id="profile" class="nav-link logout" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static "img/person.png"%}" alt="..." class="img-fluid rounded-circle" style="height: 30px; width: 30px;"></a>
                         <ul aria-labelledby="profile" class="dropdown-menu profile">
                             <li>
                                 <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                                    <div class="msg-profile"> <img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
+                                    <div class="msg-profile"> <img src="{% static "img/person.png"%}" alt="..." class="img-fluid rounded-circle"></div>
                                     <div class="msg-body">
-                                        <h3 class="h5">Steena Ben</h3><span>steenaben@Businessbox.com</span>
+                                        <h3 class="h5">{{ username }}</h3><span>{{ email }}</span>
                                     </div>
                                 </a>
                                 <hr>
                             </li>
                             <li>
-                                <a rel="nofollow" href="profile.html" class="dropdown-item">
+                                <a rel="nofollow" href="/taskmanage/" class="dropdown-item">
                                     <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-user "></i>My Profile</div>
+                                        <div class="notification-content"><i class="fa fa-user "></i>My Task</div>
                                     </div>
                                 </a>
                             </li>
@@ -238,7 +174,7 @@
                                 <hr>
                             </li>
                             <li>
-                                <a rel="nofollow" href="profile.html" class="dropdown-item">
+                                <a rel="nofollow" href="/logout/" class="dropdown-item">
                                     <div class="notification">
                                         <div class="notification-content"><i class="fa fa-power-off"></i>Logout</div>
                                     </div>
@@ -365,13 +301,13 @@
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
                 <li class="active"> <a href="/rehome"><i class="icon-home"></i>Home</a></li>
-                <li > <a href=""><i class="fa fa-globe"></i>VASP</a></li>
+                <li > <a href="../vasp"><i class="fa fa-globe"></i>VASP</a></li>
 
                 <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Search </a>
                     <ul id="apps" class="collapse list-unstyled">
-                        <li><a href="searchall_elements">by Elements</a></li>
-                        <li><a href="searchall_formula">by Formula</a></li>
-                        <li><a href="searchall_ids">by IDs</a></li>
+                        <li><a href="/searchall_elements">by Elements</a></li>
+                        <li><a href="/searchall_formula">by Formula</a></li>
+                        <li><a href="/searchall_ids">by IDs</a></li>
                     </ul>
                 </li>
                 <li> <a href= "/chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
@@ -404,39 +340,16 @@
 
             <!--***** CONTENT *****-->
         <center>
-            <form  action="/searchid/" method="post">
+            <form  action="/search_id/" method="post">
                 {% csrf_token %}
-                <div  class="col-lg-6"style="margin-left: 0px;">
-                    <div class="input-group mb-4">
-                        <div  class="input-group-btn">
-                            <form class="form-inline" role="form">
 
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
-                            <div  class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;">
 
-                                <a ><select  id="slList" onchange="selectShow()">
-								 <option >--请选择--</option>
-								 <option class="dropdown-item" href="#" value="mp-1007" selected="">by IDs</option>
-								 <option class="dropdown-item" href="#" value="H2O" selected="">by Formula</option>
-								 <option class="dropdown-item" href="#" value="H" selected="">by Elements</option>
 
-                                </select></a>
 
-                                <div role="separator" class="dropdown-divider"></div>
-                                 <a class="dropdown-item" href="#">Separated link</a>
 
-                            </div>
-                                  </form>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button"  id="txtShow">
-                        <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">Go!</button>
-                    </span>
 
-                    </div>
-                </div>
                 <div class="input-group mb-4">
-                    <input type="text"name="materialid" class="form-control" placeholder="Search for..." >
+                    <input type="text"name="materialid" class="form-control" id="txtShow" placeholder="sl-0" >
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="submit">Go!</button>
                     </span>
@@ -644,7 +557,7 @@
                                     onclick="add(this)" id="Button1" value="Os" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Lr" class="btnn"
+                                    onclick="add(this)" id="Button1" value="Ir" class="btnn"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Pt" class="btn7"
@@ -656,7 +569,7 @@
                                     onclick="add(this)" id="Button1" value="Hg" class="btn7"
                                     style="background-color: mistyrose;" /></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Ti" class="btn7"
+                                    onclick="add(this)" id="Button1" value="TI" class="btn7"
                                     style="background-color: greenyellow;" /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Pb" class="btn7"
@@ -713,7 +626,7 @@
                                 <td><input type="button" onclick="add(this)" id="Button1"
                                     value="Nd" class="btn5" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
-                                    value="Pm" class="btn5" style="/></td>
+                                    value="Pm" class="btn5" ></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
                                     value="Sm" class="btn5" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
@@ -777,18 +690,22 @@
                   <thead>
                     <tr class="bg-info text-white">
                       <th>#</th>
-                      <th>mp-id</th>
+                      <th>sl-id</th>
                       <th>prettyformula</th>
                       <th>elements</th>
+                        <th>vasp</th>
                     </tr>
                   </thead>
                 <tbody>
                     {% for contact in contacts %}
                         <tr>
                           <th scope="row">{{ contact.id }}</th>
-                          <td>{{ contact.materialid }}</td>
+                          <td>{{ contact.slid }}</td>
                           <td>{{ contact.prettyformula }}</td>
                           <td>{{ contact.elements }}</td>
+                          <td><input  value="VASP"  type="submit" onclick="window.location='gotovasp?slid={{contact.slid }}';"></td>
+
+
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -812,7 +729,14 @@
         {% endif %}
     </ul>
 </div>
-
+            </br><
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
 
         </div>
     </div>
@@ -859,7 +783,7 @@
 <script type="text/javascript" >
 		function add(obj)
 		{
-			document.getElementById("txtShow").value+=obj.value;
+			document.getElementById("txtShow").value+=obj.value+'-';
 		}
 		function search() {
 			var val = $("#txtshow").value
@@ -870,6 +794,6 @@
 		}
 
 </script>
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="{% static "js/jquery-3.3.1.js"%}"></script>
 
 </html>

@@ -121,7 +121,7 @@
                     <div class="navbar-header">
                         <a href="index.html" class="navbar-brand">
                             <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="Logo" class="img-fluid"></div>
-                            <div class="brand-text brand-small"><img src="{% static "img/logo-icon.png"%}" alt="Logo" class="img-fluid"></div>
+                            <div class="brand-text brand-small"><img src="{% static "img/smalltest123.png"%}" alt="Logo" class="img-fluid"></div>
                         </a>
 
                     </div>
@@ -340,17 +340,25 @@
 
             <!--***** CONTENT *****-->
         <center>
-            <form  action="/search_formula/" method="post">
+            <form   method="post">
                 {% csrf_token %}
-
-
                 <div class="input-group mb-4">
-                    <input type="text"name="prettyformula" class="form-control" id="txtShow" placeholder="Li3Cr" >
+                    <input type="text"name="materialid" class="form-control" id="txtShow" placeholder="Cr-Li-" >
                     <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">Go!</button>
+                        <button class="btn btn-info"  type="button" id="xiaoxiaobonew" >Go!</button>
                     </span>
                 </div>
+
             </form>
+            <form action="/high_throughput_go/" method="post">
+                {% csrf_token %}
+            <div class="input-group mb-4">
+                    <input type="text"name="vaspid" class="form-control" id="VaspShow" placeholder="Selected material" >
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">VASP!</button>
+                    </span>
+                </div>
+                </form>
         </center>
             <div style="class:row; ">
                 <center>
@@ -682,27 +690,17 @@
 
             </div>
             <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="jieguo">
                   <thead>
                     <tr class="bg-info text-white">
                       <th>#</th>
                       <th>sl-id</th>
                       <th>prettyformula</th>
                       <th>elements</th>
-                        <th>vasp</th>
+                        <th>choose</th>
                     </tr>
                   </thead>
-                <tbody>
-                    {% for contact in contacts %}
-                        <tr>
-                          <th scope="row">{{ contact.id }}</th>
-                          <td>{{ contact.slid}}</td>
-                          <td>{{ contact.prettyformula }}</td>
-                          <td>{{ contact.elements }}</td>
-                        <td><input  value="VASP"  type="submit" onclick="window.location='gotovasp?slid={{contact.slid }}';"></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
+                <tbody></tbody>
             </table>
 
     </div>
@@ -777,8 +775,44 @@
 <script type="text/javascript" >
 		function add(obj)
 		{
-			document.getElementById("txtShow").value+=obj.value;
+			document.getElementById("txtShow").value+=obj.value+'-';
 		}
+		function add2(obj)
+
+		{
+		    console.log('aaaaaaa')
+			document.getElementById("VaspShow").value+=obj+',';
+		}
+		   $(document).ready(function(){
+     $("#xiaoxiaobonew").click(function(){
+     $.ajax({
+         url:"/high_throughput/",
+         type: "POST",
+         dataType: "json",
+         data:{"slid": $("#txtShow").val(),
+
+         },
+         success:function(data){
+             console.log('aaaaa')
+             console.log(data)
+             var obj=eval(data.list);
+             console.log('bbbb')
+             console.log(obj)
+            var tbody=$('<tbody ></tbody>');
+            //$(data).each(function (index)
+             $.each($.parseJSON(data),function(n,value){
+            //var val = data[index];
+            console.log('cccc')
+             console.log(value)
+        var tr = $('<tr></tr>');
+        tr.append('<td >aaa'  +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.elements + '</td>' + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>');
+        tbody.append(tr);})
+             $('#jieguo tbody').html(tbody)
+        },
+     });
+     });
+    });
+
 		function search() {
 			var val = $("#txtshow").value
 			var type = $("#slList").value

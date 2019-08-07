@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
 
-    <title>Bootstrap Admin Template </title>
-    <link rel="shortcut icon" href="{% static "img/favicon.ico"%}">
+    <title>Data-Driven Material Platform </title>
+    <link rel="shortcut icon" href="{% static "img/smalltest1.png"%}">
 
     <!-- global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
@@ -31,7 +31,9 @@
                 <div class="contact-h-cont">
                   <h3 class="text-center"><img src="{% static "img/test6.png" %}" class="img-fluid" alt=""></h3><br>
 	<form method="post">
+        {% csrf_token %}
                       {%if errors%}
+                          {% csrf_token %}
                   <div class="col-sm-auto col-sm-offset-4 margint10">
                   <span class="color-background2 ">
                     {{ errors }}
@@ -39,7 +41,7 @@
                   </div>
                   {%endif%}
        <div class="form-group {%if form.username.errors%} has-error {%endif%}">
-                    <label for="username" class="col-sm-4 ">用户名 :</label>
+                    <label for="username" class="col-sm-4 ">Username :</label>
                     <div class="col-sm-auto">
                     {{form.username}}
                     </div>
@@ -69,7 +71,7 @@
                   {%endif%}
                 </div>
        <div class="form-group {%if form.password.errors%} has-error {%endif%}">
-                  <label for="pssword" class="col-sm-4 control-label">密码:</label>
+                  <label for="pssword" class="col-sm-4 control-label">Password:</label>
                   <div class="col-sm-auto">
                     {{form.password}}
                   </div>
@@ -84,7 +86,7 @@
                   {%endif%}
                 </div>
                        <div class="form-group {%if form.password2.errors%} has-error {%endif%}">
-                  <label for="pssword2" class="col-sm-4 control-label">确认密码:</label>
+                  <label for="pssword2" class="col-sm-4 control-label">Password Again:</label>
                   <div class="col-sm-auto">
                     {{form.confirm_password}}
                   </div>
@@ -99,7 +101,7 @@
                   {%endif%}
                 </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 
 
 
