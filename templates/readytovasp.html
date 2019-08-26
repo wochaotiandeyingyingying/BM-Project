@@ -43,10 +43,29 @@ label{
     <script type="text/javascript">
 function show_confirm()
 {
-  alert("Submitted successfully");
+var r=confirm("是否准备提交?");
+if (r==true)
+  {
+    alert("提交成功");
+    var r=confirm("是否返回主页面");
+        if (r==true)
+         {
+            alert("即将返回主页面");
+            window.location.href='';
+         }
+        else
+         {
+         alert("即将返回my task");
+           window.location.href='';
+         }
+  }
+else
+  {
+  alert("提交失败");
+  window.location.href='';
+  }
 
 
-setTimeout(jumurl,3000);
 }
 </script>
 
