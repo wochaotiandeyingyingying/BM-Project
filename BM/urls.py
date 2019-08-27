@@ -47,8 +47,12 @@ urlpatterns = [
     path('her_data/', views.her_data),
     path('high_throughput/', views.high_throughput),
     path('svc/', views.svc),
+    path('dtc/', views.dtc),
     path('high_throughput_go/', views.high_throughput_go),
     path('serverinput/', views.serverinput),
+    path('readytohigh_throughput/', views.readytohigh_throughput),
+    path('tutorials/', views.tutorials),
+
 
 
 

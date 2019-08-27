@@ -293,8 +293,8 @@
     </nav>
 
     <div class="content-inner">
-        <h2 class="page-header-new">SVC</h2>
-        <form  action="/svc/" method="post">
+        <h2 class="page-header-new">Decision Trees Classify</h2>
+        <form  action="/dtc/" method="post">
                 {% csrf_token %}
         <div style="width: 400px;padding: 10px 10px 10px;">
             <div class="input-group">
@@ -314,53 +314,69 @@
                 <h3> Algorithm Settings</h3>
                 <div style="width: 400px; padding: 10px 10px 10px;">
                     <div class="input-group">
-                        <span class="input-group-addon box">kernel</span>
+                        <span class="input-group-addon box">criterion</span>
                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" id="kernel_btn">
-                            rbf
+                            entropy
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 
 
-                            <li><a href="#">rbf</a></li>
+                            <li><a href="#">entropy</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div style="width: 500px; padding: 10px 10px 10px;">
+                    <div class="input-group">
+                        <span class="input-group-addon box"style="width: 130px" >random_state</span>
+                        <input id="random_state"  name="random_state" type="text" class="form-control alg_param" data-toggle="tooltip"
+                               data-placement="bottom" title="test" value="30">
+                    </div>
+                </div>
+                <div style="width: 400px; padding: 10px 10px 10px;">
+                    <div class="input-group">
+                        <span class="input-group-addon box"style="width: 130px">splitter</span>
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" id="kernel_btn">
+                            random
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+
+                            <li><a href="#">random</a></li>
 
                         </ul>
                     </div>
                 </div>
                 <div style="width: 400px; padding: 10px 10px 10px;">
                     <div class="input-group">
-                        <span class="input-group-addon box">C</span>
-                        <input id="C"  name="C" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="1.0">
-                    </div>
-                </div>
-                <div style="width: 400px; padding: 10px 10px 10px;">
-                    <div class="input-group">
-                        <span class="input-group-addon box">degree</span>
-                        <input id="degree" name="degree" type="text" class="form-control alg_param" data-toggle="tooltip"
+                        <span class="input-group-addon box"style="width: 130px">max_depth</span>
+                        <input id="max_depth" name="max_depth" type="text" class="form-control alg_param" data-toggle="tooltip"
                                data-placement="bottom" title="test" value="3">
                     </div>
                 </div>
                 <div style="width: 400px; padding: 10px 10px 10px;">
                     <div class="input-group">
-                        <span class="input-group-addon box">gamma</span>
-                        <input id="gamma" name="gamma" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="1.0">
+                        <span class="input-group-addon box"style="width: 130px">min_samples_split</span>
+                        <input id="min_samples_split" name="min_samples_split" type="text" class="form-control alg_param" data-toggle="tooltip"
+                               data-placement="bottom" title="test" value="5">
                     </div>
                 </div>
                 <div style="width: 400px; padding: 10px 10px 10px;">
                     <div class="input-group">
-                        <span class="input-group-addon box">coef0</span>
-                        <input id="coef0" name="coef0" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="0.0">
+                        <span class="input-group-addon box"style="width: 130px">min_samples_leaf</span>
+                        <input id="min_samples_leaf" name="min_samples_leaf" type="text" class="form-control alg_param" data-toggle="tooltip"
+                               data-placement="bottom" title="test" value="10">
                     </div>
                 </div>
                 <div style="width: 400px; padding: 10px 10px 10px;">
                     <div class="input-group">
-                        <span class="input-group-addon box">max_iter</span>
-                        <input id="max_iter" name="max_iter" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="-1">
+                        <span class="input-group-addon box"style="width: 150px">min_impurity_decrease</span>
+                        <input id="min_impurity_decrease" name="min_impurity_decrease" type="text" class="form-control alg_param" data-toggle="tooltip"
+                               data-placement="bottom" title="test" value="50">
                     </div>
                 </div>
 

@@ -32,7 +32,12 @@ import seaborn as sns; sns.set()
 from sklearn.datasets.samples_generator import make_circles
 from sklearn.svm import SVC
 from django.core import serializers
-
+from sklearn import tree
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+import pandas as pd
+import matplotlib.pyplot as plt
+import graphviz
 # def home(request):
 #     return render(request,'index.html')
 def rehome(request):
@@ -755,7 +760,43 @@ def svc(request):
         return render(request, "result.html")
     else:
         return render(request, "svc.html")
-def high_throughput_go(request):
+def dtc(request):
+    if request.method == 'POST':
+        min_impurity_decrease = int(request.POST.get('min_impurity_decrease'))
+        min_samples_leaf = int(request.POST.get('min_samples_leaf'))
+        min_samples_split = int(request.POST.get('min_samples_split'))
+        max_depth = int(request.POST.get('max_depth'))
+        random_state = int(request.POST.get('random_state'))
+        #机器学习代码开始
+        wine = load_wine()
+        wine1 = pd.concat([pd.DataFrame(wine.data), pd.DataFrame(wine.target)], axis=1)
+        Xtrain, Xtest, Ytrain, Ytest = train_test_split(wine.data, wine.target, test_size=0.3)  # 分训练集和测试集
+        clf = tree.DecisionTreeClassifier(criterion="entropy",
+                                          random_state=random_state,
+                                          splitter="random",
+                                          max_depth=max_depth,  # 建议从3开始
+                                          min_samples_split=min_samples_split,
+                                          min_samples_leaf=min_samples_leaf,#防止过拟合
+                                          min_impurity_decrease=min_impurity_decrease,  # 信息增益
+                                          )  # 实例化，目前这些端口就应该够了
+        clf = clf.fit(Xtrain, Ytrain)  # 用训练集数据训练模型
+        result = clf.score(Xtest, Ytest)
+        test = []
+        for i in range(10):
+            clf = tree.DecisionTreeClassifier(max_depth=i + 1, criterion="entropy", random_state=30, splitter="random")
+            clf = clf.fit(Xtrain, Ytrain)
+            score = clf.score(Xtest, Ytest)
+            test.append(score)
+        plt.plot(range(1, 11), test, color="red", label="max_depth")
+        plt.legend()
+        plt.savefig('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\static\\css\\picture\\comment1.png')
+        return render(request, "result1.html")
+    else:
+        return render(request, "dtc.html")
+
+def readytohigh_throughput(request):
+    username = request.session.get('USRNAME', False)
+    email = request.session.get('EMAIL', False)
     if request.method == 'POST':
         c = request.POST.get('vaspid')
         array=[]
@@ -763,13 +804,214 @@ def high_throughput_go(request):
         for i in c:
             if i==',':
                 num=num+1
-                print(num)
+    return render(request, "readytohigh_throughput.html",{'num':num,'username': username,'email':email,'c':c})
+def high_throughput_go(request):
+    if request.method == 'POST':
+        slid = request.GET.get('c')
+        array=[]
+        num=0
+        for i in slid:
+            if i==',':
+                num=num+1
         for i in range(0,num):
-            temp=c.split(',',1)[0]
+            temp=slid.split(',',1)[0]
             array.append(temp)
-            c=c.split(',',1)[1]
-        for i in range(0,num):
-            print(array[i])
+            slid=slid.split(',',1)[1]
+    try:
+        client = MongoClient('39.108.210.141', 27017)  #
+        mydb = client.BM_Project  # 连接所需数据库,db为数建立MongoDB数据库连接据库名
+        collection = mydb.material  # 连接所用集合，也就是我们通常所说的表，local为表名
+        def getstructure(a):
+            b = collection.find_one({"slid": a}, {'structure': 1})
+            b = b['structure']
+            structure = Structure.from_dict(b)
+            return structure
+        def getkpoints(structure):
+            k = Kpoints.automatic_density(structure, 1000)
+            print('kpoints')
+            return k
+        def getposcar(structure):
+            ps = Poscar(structure)
+            print('getposcar')
+            return ps
+        def getpotcar(poscar,potcarop):
+            Poscar.write_file(poscar, 'testposcar')  # 把poscar写成了一个文件
+            with open("testposcar") as file_object:
+                lines = file_object.readlines()  # 创建一个包含文件各行内容的列表
+                potcarline = lines[5]  # 得到了poscar的有关potcar的序列
+            num = potcarline.count(' ') + 1  # 获得空格数量，方便之后的分解
+            a0 = ''
+            a1 = ''
+            a2 = ''
+            a3 = ''
+            a4 = ''
+            a5 = ''
+            b = [a0, a1, a2, a3, a4, a5]
+            for i in range(0, num):
+                b[i] = potcarline.split(' ', 1)[0]
+                b[i] = b[i].replace("\n", "")  # 去掉末尾的换行符
+                num = num - 1
+                if num != 0:
+                    potcarline = potcarline.split(' ', 1)[1]
+            ofile = open('temp-test', 'w')
+            for i in range(0, 6):
+                if len(b[i]) != 0:
+                    print(b[i])
+                    if potcarop=='pwe':
+                        for txt in open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\potcar-first\\POTCAR-' + b[i], 'r'):
+                            ofile.write(txt)
+                    elif potcarop=='gga':
+                        for txt in open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\potcar-gga\\POTCAR-' + b[i], 'r'):
+                            ofile.write(txt)
+                    elif potcarop=='lda':
+                        for txt in open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\potcar-lda\\POTCAR-' + b[i], 'r'):
+                            ofile.write(txt)
+            ofile.close()  # 得到了合成之后的potcar文件
+            pt = Potcar.from_file('temp-test')
+            print('getpotcar')
+            return pt
+        def gotovasp(i, k, ps, pt,materialid,jobscript):
+            print('aaaaa')
+            z = VaspInput(i, k, ps, pt)
+            print('bbbbbb')
+            os.remove('temp-test')  # 删除刚才生成的poscar的临时文件
+            os.remove('testposcar')
+            username = request.session.get('USRNAME', False)
+            print('ccccc')
+            #获得编号
+            with open('./count.txt', 'r+') as f:
+                counttext = f.read()
+                count = int(counttext) + 1
+                f.seek(0)
+                f.truncate()  # 清空文件
+                f.write(str(count))  # 重新写入新的访问量
+                f.flush()
+                f.close()
+            print('ddddd')
+            print(count)
+            #编号结束
+            #获得文件名
+            print(materialid)
+
+            filename = 'task-' + str(count) + materialid
+            print(filename)
+            #文件名结束
+            #获得路径
+            address = './User/' + username + '/'+filename
+            #获得路径结束
+            print(address)
+            VaspInput.write_input(z, output_dir=address)
+            jobaddress = address + '/job'
+            with open(jobaddress, 'w') as destination:
+                destination.write(jobscript)
+                destination.close()
+            return count
+
+
+        if request.method == "POST":
+            potcarop = request.POST["Potcar"]
+            incar = request.POST["Level"]
+            jobscript=request.POST["Levell"]
+            materialid = request.POST['materialid']
+            incar1=request.POST['Incar1']
+            incar2 = request.POST['Incar2']
+            incar3 = request.POST['Incar3']
+            incar4 = request.POST['Incar4']
+            incar5 = request.POST['Incar5']
+            jobscript1=request.POST['jobscript1']
+            jobscript2 = request.POST['jobscript2']
+            jobscript3 = request.POST['jobscript3']
+            jobscript4 = request.POST['jobscript4']
+            if jobscript=='25':
+                jobscript=jobscript1
+            elif jobscript=='50':
+                jobscript=jobscript2
+            elif jobscript=='75':
+                jobscript=jobscript3
+            elif jobscript=='100':
+                jobscript=jobscript4
+            if incar == '1':
+                incar=incar1
+            elif incar == '2':
+                incar = incar2
+            elif incar == '3':
+                incar = incar3
+            elif incar == '4':
+                incar = incar4
+            elif incar == '5':
+                incar = incar5
+            for i in range(0,num):
+                print('开始')
+                print(num)
+                materialid=array[i]
+                if potcarop!=None and incar!=None and jobscript!=None and array[i]!=None:
+                    print('结束')
+                    structure = getstructure(array[i])
+                    poscar = getposcar(structure)
+                    kpoints = getkpoints(structure)
+                    potcar = getpotcar(poscar,potcarop)
+                    i=Incar.from_string(incar)
+                    count=gotovasp(i, kpoints, poscar, potcar,materialid,jobscript)
+
+                    username = request.session.get('USRNAME', False)
+                    servername = request.session.get('SERVERNAME', False)
+                    serverpassword = request.session.get('SERVERPASSWORD', False)
+
+                    ssh = paramiko.SSHClient()
+                    # # 创建默认的白名单
+                    policy = paramiko.AutoAddPolicy()
+                    # # 设置白名单
+                    ssh.set_missing_host_key_policy(policy)
+                    # # 链接服务器
+                    ssh.connect(
+                        hostname="172.26.18.243",  # 服务器的ip
+                        port=22,  # 服务器的端口
+                        username=servername,  # 服务器的用户名
+                        password=serverpassword  # 用户名对应的密码
+                    )
+                    filename = 'task-' + str(count) + materialid
+                    address = '/gpfs/home/gromacs/BM/User/' + username + '/' + filename
+                    cmd1 = 'cp /gpfs/home/gromacs/common/test2.py  ' + address
+                    cmd2 = 'cd ' + address + ';python test2.py'
+                    cmd3='cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/task-28sl-0;python test2.py'
+                    cmd4='cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/task-28sl-0;export PATH=$PATH:/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_SERVERDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/etc;LSF_LIBDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/lib;export LSF_VERSION=10.0;export LSF_BINDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_ENVDIR=/gpfs/lsf/conf;bsub<job'
+                    cmd5='cd '+address+';export PATH=$PATH:/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_SERVERDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/etc;LSF_LIBDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/lib;export LSF_VERSION=10.0;export LSF_BINDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_ENVDIR=/gpfs/lsf/conf;bsub<job'
+
+                    ssh.exec_command(cmd5)
+
+                    #服务器操作
+                    # ssh = paramiko.SSHClient()
+                    # # 创建默认的白名单
+                    # policy = paramiko.AutoAddPolicy()
+                    # # 设置白名单
+                    # ssh.set_missing_host_key_policy(policy)
+                    # # 链接服务器
+                    # ssh.connect(
+                    #     hostname="172.26.18.243",  # 服务器的ip
+                    #     port=22,  # 服务器的端口
+                    #     username="gromacs",  # 服务器的用户名
+                    #     password="gromacs"  # 用户名对应的密码
+                    # )
+                    # cmd = 'cd /gpfs/home/gromacs/123/ABCd ;dos2unix /gpfs/home/gromacs/123/ABCd/job ; bsub<job'
+                    # ssh.exec_command(cmd)
+
+                else:
+                    print('失败')
+            return redirect("home")
+    except BaseException as e:
+        with open('testlog', 'wb') as destination:
+            e = str(e)
+            e = e.encode()
+            destination.write(e)
+    destination.close()
+def tutorials(request):
+    is_login = request.session.get('IS_LOGIN', False)
+    if is_login:
+        username = request.session.get('USRNAME', False)
+        email = request.session.get('EMAIL', False)
+        return render(request, 'maps.html',{'username': username,'email':email})
+    else:
+        return redirect("/door/")
 
 
 
