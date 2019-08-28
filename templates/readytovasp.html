@@ -40,38 +40,12 @@ label{
     <!-- Core stylesheets -->
     <link rel="stylesheet" href="{% static "css/ui-elements/card.css"%}">
     <link rel="stylesheet" href="{% static "css/style.css"%}">
-    <script type="text/javascript">
-function show_confirm()
-{
-var r=confirm("是否准备提交?");
-if (r==true)
-  {
-    alert("提交成功");
-    var r=confirm("是否返回主页面");
-        if (r==true)
-         {
-            alert("即将返回主页面");
-            window.location.href='';
-         }
-        else
-         {
-         alert("即将返回my task");
-           window.location.href='';
-         }
-  }
-else
-  {
-  alert("提交失败");
-  window.location.href='';
-  }
 
-
-}
-</script>
 
 </head>
 
 <body>
+
 
 <!--====================================================
                          MAIN NAVBAR
@@ -320,17 +294,17 @@ else
                           <label for="name">Please select the type of POTCAR:</label>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="Potcar" id="optionsRadios1" value="pwe" checked> PWE
+                                    <input type="radio" name="Potcar"  value="pwe" checked> PWE
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="Potcar" id="optionsRadios2" value="gga">GGA
+                                    <input type="radio" name="Potcar"  value="gga">GGA
                                 </label>
                             </div>
                              <div class="radio">
                                 <label>
-                                    <input type="radio" name="Potcar" id="optionsRadios2" value="lda">LDA
+                                    <input type="radio" name="Potcar"  value="lda">LDA
                                 </label>
                             </div>
                           <!--INCAR选取-->
@@ -386,12 +360,12 @@ else
                                               <TABLE cellPadding=2>
                                               <TR align=left>
                                               <TD vAlign=top align=left>
-                                              <INPUT onclick="showIt( 'off');return true" type=radio value=1 name=Level checked>
+                                              <INPUT onclick="showIt( 'off');return true" type=radio value=1 name=Level  checked>
                                               INCAR_bader</TD>
                                               <TD align=left width=20> </TD>
                                               <TD vAlign=top align=left><INPUT
                                               onclick="showIt( 'low');return true" type=radio value=2
-                                               name=Level>
+                                               name=Level >
                                               INCAR_dos</TD>
                                               <TD align=left width=20> </TD>
                                               <TD vAlign=top align=left>
@@ -417,7 +391,7 @@ else
                                               <div id=off style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                               <table cellspacing=5 cellpadding=2 width="560" border="0">
                                               <tr>
-                                            <textarea name="Incar1" type="radio" spellcheck="false" cols="40"   rows="4"   style="width:562px; height:240px">
+                                            <textarea name="Incar1" id="Incar1" type="radio" spellcheck="false" cols="40"   rows="4"   style="width:562px; height:240px">
 SYSTEM = FeF3 - static
 PREC = Accurate
 ENCUT = 600
@@ -484,7 +458,7 @@ lmaxmix = 4
                                               style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 2; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                               <table cellspacing=5 cellpadding=2 width="560">
                                               <tr >
-                                              <textarea name="Incar2" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
+                                              <textarea name="Incar2" id="Incar2" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
 SYSTEM = FeF3 - dos
 PREC = Accurate
 ENCUT = 600
@@ -545,7 +519,7 @@ LORBIT = 11
                                               style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                               <table cellspacing=5 cellpadding=2 width="560">
                                               <tr>
-                                              <textarea name="Incar3" type="radio" spellcheck="false"  cols="40"   rows="4" style="width:562px; height:240px"  >
+                                              <textarea name="Incar3" id="Incar3" type="radio" spellcheck="false"  cols="40"   rows="4" style="width:562px; height:240px"  >
 SYSTEM = FeF3 - static
 PREC = Accurate
 ENCUT = 600
@@ -610,7 +584,7 @@ LNBO=.TRUE.
                                               style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                               <table cellspacing=5 cellpadding=2 width="560">
                                               <tr>
-                                              <textarea name="Incar4" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
+                                              <textarea name="Incar4" id="Incar4" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
 SYSTEM = Cu3SbSe3 - relaxation
 
 ENCUT = 600
@@ -668,7 +642,7 @@ ALGO=Fast
                                               style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                               <table cellspacing=5 cellpadding=2 width="560">
                                               <tr>
-                                               <textarea name="Incar5" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
+                                               <textarea name="Incar5" id="Incar5" type="radio" spellcheck="false" cols="40"   rows="4" style="width:562px; height:240px"  >
 SYSTEM = FeF3 - static
 PREC = Accurate
 ENCUT = 600
@@ -792,22 +766,22 @@ lmaxmix = 4
                                       <TD vAlign=top align=left>
                                       <INPUT
                                       onclick="showItjob( 'plan1');return true" type=radio value=25
-                                      name=Levell checked>
+                                      name=Levell  checked>
                                       VASP without opreation</TD>
                                       <TD align=left width=20> </TD>
                                       <TD vAlign=top align=left><INPUT
                                       onclick="showItjob( 'plan2');return true" type=radio value=50
-                                       name=Levell>
+                                       name=Levell >
                                       Relax after VASP</TD>
                                       <TD align=left width=20> </TD>
                                       <TD vAlign=top align=left>
                                       <INPUT
-                                      onclick="showItjob( 'plan3');return true" type=radio value=75 name=Levell>
+                                      onclick="showItjob( 'plan3');return true" type=radio value=75 name=Levell >
                                       Bader after VASP</TD>
                                       <TD align=left width=20> </TD>
                                       <TD vAlign=top align=left><INPUT
                                       onclick="showItjob( 'plan4');return true" type=radio
-                                      value=100 name=Levell>
+                                      value=100 name=Levell >
                                       Static Dos after VASP</TD>
 
                                       </TR></TABLE></TD></TR></TABLE></div>
@@ -817,7 +791,7 @@ lmaxmix = 4
                                       <div id=plan1 style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                       <table cellspacing=5 cellpadding=2 width="560" border="0">
                                       <tr>
-                                    <textarea name="jobscript1" spellcheck="false"  cols="40"   rows="4"   style="width:700px; height:400px">
+                                    <textarea name="jobscript1" id="jobscript1" spellcheck="false"  cols="40"   rows="4"   style="width:700px; height:400px">
 #!/bin/bash
 #BSUB -J WJQIU
 #BSUB -e %J.err
@@ -840,7 +814,7 @@ mpirun -bootstrap lsf /gpfs/software/vasp/vasp.5.3-20181107 >result.log
                                       style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 2; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                       <table cellspacing=5 cellpadding=2 width="560">
                                       <tr >
-                                      <textarea name="jobscript2" spellcheck="false"  cols="40"   rows="4" style="width:700px; height:400px"  >
+                                      <textarea name="jobscript2" id="jobscript2" spellcheck="false"  cols="40"   rows="4" style="width:700px; height:400px"  >
 #!/bin/bash
 #BSUB -q newibm-256
 #BSUB -o out%J.txt
@@ -891,7 +865,7 @@ rm CONTCAR OSZICAR OUTCAR_*                 #
                                       style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                       <table cellspacing=5 cellpadding=2 width="560">
                                       <tr>
-                                      <textarea name="jobscript3" spellcheck="false"  cols="40"   rows="4" style="width:700px; height:400px"  >
+                                      <textarea name="jobscript3" id="jobscript3" spellcheck="false"  cols="40"   rows="4" style="width:700px; height:400px"  >
 #!/bin/bash
 #BSUB -q newibm-256
 #BSUB -o out%J.txt
@@ -937,7 +911,7 @@ cd ..                                           #
                                       style="WIDTH: 560px;POSITION: absolute; HEIGHT: 230; z-index: 1; visibility: hidden; background-color: F2F2F2; layer-background-color: F2F2F2; border: 1px none #000000">
                                       <table cellspacing=5 cellpadding=2 width="560">
                                       <tr>
-                                      <textarea name="jobscript4"  spellcheck="false" cols="40"   rows="4" style="width:700px; height:400px"  >
+                                      <textarea name="jobscript4" id="jobscript4"  spellcheck="false" cols="40"   rows="4" style="width:700px; height:400px"  >
 #!/bin/bash
 #BSUB -q newibm-256
 #BSUB -o out%J.txt
@@ -1057,12 +1031,14 @@ done
                                      </TD></TR></TABLE>
 
 
-                                          <input type="text" value="{{ slid }}" name="materialid" readonly>
+                                          <input type="text" value="{{ slid }}" name="materialid"  readonly>
+                                            <button  type="button" id="xiaoxiaobotest" >sub!</button>
                                             <input type="submit" onclick="show_confirm()" value="submit" >
 
                       </div>
 
                     </form>
+
 
 
 
@@ -1146,5 +1122,61 @@ done
     <!--Core Javascript -->
     <script src="{% static "js/mychart.js"%}"></script>
 </body>
+<script type="text/javascript">
+        $("#xiaoxiaobotest").click(function(){
+            console.log('success')
+            var r = confirm("是否准备提交?");
+            if (r == true) {
+                console.log('bbbbb')
+                console.log($("[name='Potcar']").val())
+
+                $.ajax({
+
+                    url: "/automatic/",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        "Potcar": $("[name='Potcar']").val(),
+                        "Level": $("[name='Level']").val(),
+                        "Levell": $("[name='Levell']").val(),
+                        "materialid": $("[name='materialid']").val(),
+                        "Incar1": $("[name='Incar1']").val(),
+                        "Incar2": $("[name='Incar2']").val(),
+                        "Incar3": $("[name='Incar3']").val(),
+                        "Incar4": $("[name='Incar4']").val(),
+                        "Incar5": $("[name='Incar5']").val(),
+                        "jobscript1": $("[name='jobscript1']").val(),
+                        "jobscript2": $("[name='jobscript2']").val(),
+                        "jobscript3": $("[name='jobscript3']").val(),
+                        "jobscript4": $("[name='jobscript4']").val(),
+
+                    },
+                    success: function (data) {
+                        console.log('aaaaa')
+                        console.log(data)
+
+                    },
+                });
+                alert("提交成功");
+                var r = confirm("是否返回主页面");
+                if (r == true) {
+                    alert("即将返回主页面");
+                    location.href = "/rehome/"
+                }
+                else {
+                    alert("即将返回my task");
+                    //window.location.href='../taskmanage/';
+                    location.href = "/taskmanage/"
+                }
+            }
+
+
+            else
+                {
+                    alert("提交失败");
+                }
+})
+
+</script>
 
 </html>

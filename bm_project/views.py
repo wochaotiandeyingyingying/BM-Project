@@ -373,11 +373,12 @@ def readytovasp(request):
     username = request.session.get('USRNAME', False)
     email = request.session.get('EMAIL', False)
     slid = request.GET.get('slid')
-    return render(request, "readytovasp.html",{'slid':slid,'username': username,'email':email})
+    return render(request, "readytovaspnew.html",{'slid':slid,'username': username,'email':email})
 @csrf_exempt
 def automatic(request):
     try:
     #获得了前台传过来的id
+        print('进来了啊？')
         client = MongoClient('39.108.210.141', 27017)  #
         mydb = client.BM_Project  # 连接所需数据库,db为数建立MongoDB数据库连接据库名
         collection = mydb.material  # 连接所用集合，也就是我们通常所说的表，local为表名
@@ -465,20 +466,31 @@ def automatic(request):
             return count
 
 
-        if request.method == "POST":
-            potcarop = request.POST["Potcar"]
-            incar = request.POST["Level"]
-            jobscript=request.POST["Levell"]
-            materialid = request.POST['materialid']
-            incar1=request.POST['Incar1']
-            incar2 = request.POST['Incar2']
-            incar3 = request.POST['Incar3']
-            incar4 = request.POST['Incar4']
-            incar5 = request.POST['Incar5']
-            jobscript1=request.POST['jobscript1']
-            jobscript2 = request.POST['jobscript2']
-            jobscript3 = request.POST['jobscript3']
-            jobscript4 = request.POST['jobscript4']
+        if request.is_ajax :
+            print('看看好了没')
+            try:
+                potcarop = request.POST.get("Potcar")
+            except BaseException as e:
+                with open('testlog1', 'wb') as destination:
+                    e = str(e)
+                    e = e.encode()
+                    destination.write(e)
+                destination.close()
+            incar = request.POST.get("Level")
+            jobscript=request.POST.get("Levell")
+            materialid = request.POST.get('materialid')
+            incar1=request.POST.get('Incar1')
+            incar2 = request.POST.get('Incar2')
+            incar3 = request.POST.get('Incar3')
+            incar4 = request.POST.get('Incar4')
+            incar5 = request.POST.get('Incar5')
+            jobscript1=request.POST.get('jobscript1')
+            jobscript2 = request.POST.get('jobscript2')
+            jobscript3 = request.POST.get('jobscript3')
+            jobscript4 = request.POST.get('jobscript4')
+            print('进来了吗')
+            print(jobscript1)
+            print(jobscript)
             if jobscript=='25':
                 jobscript=jobscript1
             elif jobscript=='50':
@@ -497,6 +509,15 @@ def automatic(request):
                 incar = incar4
             elif incar == '5':
                 incar = incar5
+            print('是否到前面了')
+            print('开始potcar')
+            print(potcarop)
+            print('开始incar')
+            print(incar)
+            print('开始jobscript')
+            print(jobscript)
+            print('开始materialid')
+            print(materialid)
 
             if potcarop!=None and incar!=None and jobscript!=None and materialid!=None:
                 structure = getstructure(materialid)
@@ -544,7 +565,10 @@ def automatic(request):
                 # )
                 # cmd = 'cd /gpfs/home/gromacs/123/ABCd ;dos2unix /gpfs/home/gromacs/123/ABCd/job ; bsub<job'
                 # ssh.exec_command(cmd)
-                return redirect("home")
+                print('真的成功了吗')
+                #return render(request, 'go_home.html')
+                data='1'
+                return JsonResponse(data, safe=False)
             else:
                 print('失败')
     except BaseException as e:
@@ -552,7 +576,7 @@ def automatic(request):
             e = str(e)
             e = e.encode()
             destination.write(e)
-    destination.close()
+        destination.close()
 
 
 
@@ -640,7 +664,7 @@ def manual(request):
             # )
             # cmd = 'cd /gpfs/home/gromacs/123/ABCd ; dos2unix /gpfs/home/gromacs/123/ABCd/job ;bsub<job'
             # ssh.exec_command(cmd)
-            return redirect("home")
+            #return redirect("home")
     except BaseException as e:
         with open('testlog', 'wb') as destination:
             e = str(e)
