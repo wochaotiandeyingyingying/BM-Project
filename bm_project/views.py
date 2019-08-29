@@ -33,10 +33,12 @@ from sklearn.datasets.samples_generator import make_circles
 from sklearn.svm import SVC
 from django.core import serializers
 from sklearn import tree
-from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
-import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.datasets import load_wine
+from sklearn.decomposition import PCA
+import pandas as pd
+import numpy as np
 import graphviz
 # def home(request):
 #     return render(request,'index.html')
@@ -817,6 +819,54 @@ def dtc(request):
         return render(request, "result1.html")
     else:
         return render(request, "dtc.html")
+def pca(request):
+    if request.method == 'POST':
+        #机器学习代码开始
+        wine = load_wine()
+        X = wine.data
+        y = wine.target
+        # print(y.shape)
+        # print(pd.DataFrame(y))
+        pca = PCA(
+            n_components='mle'  # 最大似然估计，自动选择降维后的特征个数
+            , copy=True
+            , whiten=False
+            , )  # 默认为原特征数量
+        X_dr = pca.fit_transform(X)
+        # print(X_dr)
+        # X_dr[y == 0, 0]
+        # plt.figure()
+        # plt.scatter(X_dr[y==0, 0], X_dr[y==0, 1], c="red", label=wine.target_names[0])
+        # plt.scatter(X_dr[y==1, 0], X_dr[y==1, 1], c="black", label=wine.target_names[1])
+        # plt.scatter(X_dr[y==2, 0], X_dr[y==2, 1], c="orange", label=wine.target_names[2])
+        # plt.legend()
+        # plt.title('PCA of wine dataset')
+        # plt.show()
+        colors = ['red', 'black', 'orange']
+        plt.figure()
+        for i in [0, 1, 2]:
+            plt.scatter(X_dr[y == i, 0]
+                        , X_dr[y == i, 1]
+                        , alpha=.7
+                        , c=colors[i]
+                        , label=wine.target_names[i]
+                        )
+        plt.legend()
+        plt.title('PCA of wine dataset')
+        print(pca.explained_variance_)  # 降维后每个特征所带的信息量
+        print(pca.explained_variance_ratio_)  # 降维后每个特征的信息量占总信息量的百分比（方差贡献率）
+        print(pca.explained_variance_ratio_.sum())  # 降维后所有特征信息量占总信息量的百分比
+        # 累积可解释方差贡献率曲线
+        # 累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献
+        # 率为纵坐标的曲线，能够帮助我们决定n_components最好的取值。
+        plt.plot([1, 2, 3, 4, 5, 6], np.cumsum(pca.explained_variance_ratio_))
+        plt.xticks([1, 2, 3, 4, 5, 6])  # 这是为了限制坐标轴显示为整数
+        plt.xlabel("number of components after dimension reduction")
+        plt.ylabel("cumulative explained variance")
+        plt.savefig('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\static\\css\\picture\\comment2.png')
+        return render(request, "result2.html")
+    else:
+        return render(request, "pca.html")
 
 def readytohigh_throughput(request):
     username = request.session.get('USRNAME', False)

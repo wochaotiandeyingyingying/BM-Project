@@ -48,6 +48,7 @@ urlpatterns = [
     path('high_throughput/', views.high_throughput),
     path('svc/', views.svc),
     path('dtc/', views.dtc),
+    path('pca/', views.pca),
     path('high_throughput_go/', views.high_throughput_go),
     path('serverinput/', views.serverinput),
     path('readytohigh_throughput/', views.readytohigh_throughput),
