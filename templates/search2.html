@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{% static "font-awesome-4.7.0/css/font-awesome.min.css"%}">
     <link rel="stylesheet" href="{% static "css/font-icon-style.css"%}">
     <link rel="stylesheet" href="{% static "css/style.default.css"%}" id="{% static "theme-stylesheet"%}">
-   <style type="text/css" media="screen">
+  <style type="text/css" media="screen">
         .btnn {
     width: 5vmin;
     height: 5vmin;
@@ -50,8 +50,8 @@
     background-color:white;
 }
 .btn3 {
-    width: 5vmin;
-    height: 5vmin;
+    width: 7vmin;
+    height: 7vmin;
     border-radius: 1vmin;
     border: 0.25vmin solid rgb(, 0, 0);
     border-color: lightgoldenrodyellow;
@@ -80,8 +80,8 @@
     background-color:white;
 }
 .btn6 {
-    width: 5vmin;
-    height: 5vmin;
+    width: 7vmin;
+    height: 7vmin;
     border-radius: 1vmin;
     border: 0.25vmin solid rgb(, 0, 0);
     border-color: #607D8B;
@@ -104,21 +104,21 @@
 }
 .btn3:hover {
     color: black;
-    background: rgb(127,200,100);
+    background: #009688;
     opacity: 0.5;
-    width: 5.5vmin;
-    height: 5.5vmin;
+    width: 7.5vmin;
+    height: 7.5vmin;
     border-radius: 1vmin;
 }
 .btnn:hover {
     color: black;
-    background: #009688;
+    background: g;
     opacity: 0.5;
 }
 
-.btn3:focus {
+.btn7:focus {
 　　color: black;
-    background: lightpink;
+
     opacity: 0.6;
     width: 5vmin;
     height: 5vmin;
@@ -809,7 +809,11 @@
 <script type="text/javascript" >
 		function add(obj)
 		{
-			document.getElementById("txtShow").value+=obj.value;
+			document.getElementById("txtShow").value+=obj.value+'-';
+             $(obj).css("background","#EEE685");
+             $(obj).css("color","black");
+
+
 		}
 		function search() {
 			var val = $("#txtshow").value

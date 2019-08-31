@@ -50,8 +50,8 @@
     background-color:white;
 }
 .btn3 {
-    width: 5vmin;
-    height: 5vmin;
+    width: 7vmin;
+    height: 7vmin;
     border-radius: 1vmin;
     border: 0.25vmin solid rgb(, 0, 0);
     border-color: lightgoldenrodyellow;
@@ -80,8 +80,8 @@
     background-color:white;
 }
 .btn6 {
-    width: 5vmin;
-    height: 5vmin;
+    width: 7vmin;
+    height: 7vmin;
     border-radius: 1vmin;
     border: 0.25vmin solid rgb(, 0, 0);
     border-color: #607D8B;
@@ -106,8 +106,8 @@
     color: black;
     background: #009688;
     opacity: 0.5;
-    width: 5.5vmin;
-    height: 5.5vmin;
+    width: 7.5vmin;
+    height: 7.5vmin;
     border-radius: 1vmin;
 }
 .btnn:hover {
@@ -116,9 +116,9 @@
     opacity: 0.5;
 }
 
-.btn3:focus {
+.btn7:focus {
 　　color: black;
-    background: lightpink;
+
     opacity: 0.6;
     width: 5vmin;
     height: 5vmin;
@@ -816,6 +816,10 @@
 		function add(obj)
 		{
 			document.getElementById("txtShow").value+=obj.value+'-';
+             $(obj).css("background","#EEE685");
+             $(obj).css("color","black");
+
+
 		}
 		function search() {
 			var val = $("#txtshow").value
