@@ -56,7 +56,7 @@
     border: 0.25vmin solid rgb(, 0, 0);
     border-color: lightgoldenrodyellow;
     color:ghostwhite;
-    background-color:rgb(255,105,114);
+    background-color:rgb(125,215,214);
     opacity: 1 ;
     transition: opacity 3s;
     -webkit-transition: opacity 3s;
@@ -106,10 +106,21 @@
 .btn3:hover {
     color: black;
     background: rgb(255,193,193);
-    opacity: 0.5;
+    opacity: 0.8;
     width: 7vmin;
     height: 7vmin;
     border-radius: 1vmin;
+    transform: scale(1.5,1.5);
+}
+a:active {
+	color: white;
+}
+
+#navigation a:hover,
+h2 a:hover,
+a {
+	text-decoration: none;
+	color: #ff8215;
 }
 .btnn:hover {
     color: black;
@@ -389,15 +400,17 @@
 
                 <table style="border: solid 0 white;">
 
-                            <tr >
+                              <tr >
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="H" class="btn3"></td>
+                                    onclick="add(this)" id="Button1" value="H" class="btn3">
+                                </td>
                                 <td colspan="16"></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="He" class="btn3"
                                      /></td>
                             </tr>
                             <tr>
+
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Li" class="btn3" /></td>
                                 <td style="padding: 0%;"><input type="button"
@@ -825,7 +838,10 @@
 			$("#myDiv").html(htmlobj.responseText);
 		}
 
-</script>
+
+
+
+    </script>
 
 
 	<script type="text/javascript" src="{% static "js/jquery-3.3.1.js"%}"></script>
