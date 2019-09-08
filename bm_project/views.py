@@ -15,6 +15,7 @@ from pymatgen.core.structure import Structure
 import os
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+import re
 # Create your views here.
 import json
 from bson import json_util
@@ -350,7 +351,6 @@ def high_throughput(request):
             for i in range(0, 8):
                 print(b[i])
             client = MongoClient('39.108.210.141', 27017)
-
             db_name = 'BM_Project'
             db = client[db_name]
             contact_list = db.material.find(
@@ -361,6 +361,8 @@ def high_throughput(request):
                           {"elements": {'$regex': b[6]}}, {"elements": {'$regex': b[7]}}]})
 
             array = list(contact_list)
+            print(array)
+
             #data = json.dumps(array, ensure_ascii=False)
             data=json_util.dumps(array)
 
@@ -451,8 +453,11 @@ def automatic(request):
             #编号结束
             #获得文件名
             print(materialid)
-
-            filename = 'task-' + str(count) + materialid
+            client = MongoClient('39.108.210.141', 27017)
+            mydb = client.BM_Project  # 连接所需数据库,db为数建立MongoDB数据库连接据库名
+            collection = mydb.material
+            contact_list = collection.find_one({"slid":materialid}, {'prettyformula': 1})
+            filename = 'task-' + str(count) + '-'+materialid+ '-'+contact_list['prettyformula']
             print(filename)
             #文件名结束
             #获得路径
@@ -543,14 +548,27 @@ def automatic(request):
                     username=servername,  # 服务器的用户名
                     password=serverpassword  # 用户名对应的密码
                 )
-                filename = 'task-' + str(count) + materialid
+                client = MongoClient('39.108.210.141', 27017)
+                mydb = client.BM_Project  # 连接所需数据库,db为数建立MongoDB数据库连接据库名
+                collection = mydb.material
+                contact_list = collection.find_one({"slid": materialid}, {'prettyformula': 1})
+                filename = 'task-' + str(count) + '-' + materialid + '-' + contact_list['prettyformula']
                 address = '/gpfs/home/gromacs/BM/User/' + username + '/' + filename
                 cmd1 = 'cp /gpfs/home/gromacs/common/test2.py  ' + address
                 cmd2 = 'cd ' + address + ';python test2.py'
                 cmd3='cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/task-28sl-0;python test2.py'
                 cmd4='cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/task-28sl-0;export PATH=$PATH:/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_SERVERDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/etc;LSF_LIBDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/lib;export LSF_VERSION=10.0;export LSF_BINDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_ENVDIR=/gpfs/lsf/conf;bsub<job'
                 #ssh.exec_command(cmd1)
-                ssh.exec_command(cmd4)
+                stdin, stdout, stderr = ssh.exec_command(cmd4)
+                temp = stdout.read()
+                temp=temp.decode()
+                first=temp.find('<')+1
+                last=temp.find('>')
+                num=temp[first:last]
+                filenamenew=filename+'-'+num
+                cmd5='cd /gpfs/home/gromacs/BM/User/xiaoxiaobo;mv '+filename+' '+filenamenew
+                ssh.exec_command(cmd5)
+
 
                 #服务器操作
                 # ssh = paramiko.SSHClient()
@@ -673,14 +691,189 @@ def manual(request):
             e = e.encode()
             destination.write(e)
         destination.close()
-
+@csrf_exempt
 def taskmanage(request):
+    print('进入到了运行界面'
+          )
     is_login = request.session.get('IS_LOGIN', False)
     if is_login:
         username = request.session.get('USRNAME', False)
         email = request.session.get('EMAIL', False)
+        if request.is_ajax():
+            #与服务器建立连接
+            ssh = paramiko.SSHClient()
+            policy = paramiko.AutoAddPolicy()
+            ssh.set_missing_host_key_policy(policy)
+            ssh.connect(
+                hostname="172.26.18.243",  # 服务器的ip
+                port=22,  # 服务器的端口
+                username="gromacs",  # 服务器的用户名
+                password="gromacs"  # 用户名对应的密码
+            )
+            #linux命令，分别获得bjobs的结果，用户所有的文件名
+            b = 'export PATH=$PATH:/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_SERVERDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/etc;LSF_LIBDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/lib;export LSF_VERSION=10.0;export LSF_BINDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_ENVDIR=/gpfs/lsf/conf;bjobs'
+            c = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/;ls'
+            # 查询bjobs的结果
+            stdin,stdout,stderr = ssh.exec_command(b)
+            temp1=stdout.read()
+            temp1 = temp1.decode()
+            #now_job_num是正在运行的作业号的list
+            now_job_num=re.findall('[0-9][0-9]{5}',temp1)
+            print('now_job_num')
+            print(temp1)
+            print(now_job_num)
+            # 查询用户文件夹的结果
+            stdin, stdout, stderr = ssh.exec_command(c)
+            temp2= stdout.read()
+            temp2 = temp2.decode()
+            print('aaaaa'+temp2)
+            print('文件名如下')
+            print(b)
+            result = temp2
+            num = temp2.count('\n')
+            print('wodewoeddddd',num)
+            #userfile是用户文件夹下所有文件的集合
+            userfile = []
+            for i in range(0, num):
+                temp = temp2.split('\n', 1)[0]
+                userfile.append(temp)
+                temp2 = temp2.split('\n', 1)[1]
+            print('bbbbbbb' , userfile)
+            #list2是用户文件夹下的所有的作业号
+            all_job_num = re.findall('[0-9][0-9]{5}', result)
+            print('cccccc' , all_job_num)
+            #用于存放每个文件的大小
+            size = []
+            #用于存放正在运行的作业在所有作业中的编号
+            array1 = []
+            #result用于存放处理好的数据
+            result = []
+            for i in range(0, len(now_job_num)):
+                if (all_job_num.index(now_job_num[i]) != -1):
+                    array1.append(all_job_num.index(now_job_num[i]))
 
-        return render(request, 'taskmanage.html',{'username':username,'email':email})
+            #获得这些作业的大小，并放到size中
+            for i in range(0, len(array1)):
+                temp = userfile[array1[i]]
+                d = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/' + temp + ';ls -l |grep "^-"|wc -l'
+                stdin, stdout, stderr = ssh.exec_command(d)
+                d = stdout.read()
+                d = d.decode()
+                d = d.split('\n', 1)[0]
+                d = d + 'K'
+                print('每个多大')
+                print(d)
+                size.append(d)
+            print('sunbo')
+            print(size)
+            for i in range(0, len(array1)):
+                temp = userfile[array1[i]]
+                task_id = temp.split('-s', 1)[0]
+                temp = temp.split('-', 2)[2]
+                materialid1 = temp.split('-', 1)[0]
+                materialid2 = temp.split('-', 2)[1]
+                materialid = materialid1 + '-' + materialid2
+                prettyformula = temp.split('-', 3)[2]
+                thissize = size[i]
+                string = {'taskid': task_id, 'slid': materialid, 'prettyformula': prettyformula, 'size': thissize}
+                result.append(string)
+            #final_result是传递给前台的数据
+            final_result = list(result)
+            print('数据如下')
+            print(final_result)
+            data = json_util.dumps(final_result)
+            print('最后一步了大哥')
+            return JsonResponse(data, safe=False)
+        else:
+            return render(request, 'taskmanage.html',{'username':username,'email':email})
+    else:
+        return redirect("/door/")
+@csrf_exempt
+def taskmanage_completed(request):
+    print('进入到了完成界面'
+          )
+    is_login = request.session.get('IS_LOGIN', False)
+    if is_login:
+        username = request.session.get('USRNAME', False)
+        email = request.session.get('EMAIL', False)
+        if request.is_ajax():
+            #与服务器建立连接
+            ssh = paramiko.SSHClient()
+            policy = paramiko.AutoAddPolicy()
+            ssh.set_missing_host_key_policy(policy)
+            ssh.connect(
+                hostname="172.26.18.243",  # 服务器的ip
+                port=22,  # 服务器的端口
+                username="gromacs",  # 服务器的用户名
+                password="gromacs"  # 用户名对应的密码
+            )
+            #linux命令，分别获得bjobs的结果，用户所有的文件名
+            c = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/;ls'
+            # 查询bjobs的结果
+            stdin, stdout, stderr = ssh.exec_command(c)
+            a = stdout.read()
+            b = a.decode()
+            result = b
+            num = b.count('\n')
+            array = []
+            transform_result=[]
+            resultarray = []
+            for i in range(0, num):
+                temp = b.split('\n', 1)[0]
+                array.append(temp)
+                b = b.split('\n', 1)[1]
+            for i in range(0, num):
+                temp = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/' + array[i] + ';ls'
+                stdin, stdout, stderr = ssh.exec_command(temp)
+                temp = stdout.read()
+                temp = temp.decode()
+                tempnum = temp.count('\n')
+                temparray = []
+                for m in range(0, tempnum):
+                    other = temp.split('\n', 1)[0]
+                    temparray.append(other)
+                    temp = temp.split('\n', 1)[1]
+                mnt = 0
+                for n in range(0, tempnum):
+                    error = temparray[n].find('err')
+                    out = temparray[n].find('out')
+                    if (error != -1 or out != -1):
+                        mnt = mnt + 1
+
+                if (mnt == 2):
+                    resultarray.append(array[i])
+            size = []
+            for i in range(0, len(resultarray)):
+                temp = resultarray[i]
+                d = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/' + temp + ';ls -l |grep "^-"|wc -l'
+                stdin, stdout, stderr = ssh.exec_command(d)
+                d = stdout.read()
+                d = d.decode()
+                d = d.split('\n', 1)[0]
+                d = d + 'K'
+                size.append(d)
+            for i in range(0, len(resultarray)):
+                temp = resultarray[i]
+
+                task_id = temp.split('-s', 1)[0]
+
+                temp = temp.split('-', 2)[2]
+                materialid1 = temp.split('-', 1)[0]
+                materialid2 = temp.split('-', 2)[1]
+                materialid = materialid1 + '-' + materialid2
+                prettyformula = temp.split('-', 3)[2]
+                thissize = size[i]
+                string = {'taskid': task_id, 'slid': materialid, 'prettyformula': prettyformula, 'size': thissize}
+                transform_result.append(string)
+            #final_result是传递给前台的数据
+            final_result = list(transform_result)
+            print('数据如下')
+            print(final_result)
+            data = json_util.dumps(final_result)
+            print('最后一步了大哥')
+            return JsonResponse(data, safe=False)
+        else:
+            return render(request, 'taskmanage.html',{'username':username,'email':email})
     else:
         return redirect("/door/")
 def logout(request):

@@ -348,7 +348,6 @@
                         <button class="btn btn-info"  type="button" id="xiaoxiaobonew" >Go!</button>
                     </span>
                 </div>
-
             </form>
             <form action="/readytohigh_throughput/" method="post">
                 {% csrf_token %}
@@ -807,6 +806,7 @@
         var tr = $('<tr></tr>');
         tr.append('<td >aaa'  +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.elements + '</td>' + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>');
         tbody.append(tr);})
+             console.log(tbody)
              $('#jieguo tbody').html(tbody)
         },
      });

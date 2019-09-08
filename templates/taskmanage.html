@@ -340,49 +340,32 @@
 
             <!--***** CONTENT *****-->
         <center>
-            <form  action="/taskmanage/" method="post">
+            <form   method="post">
                 {% csrf_token %}
-
-
-
-
-
-
                 <div class="input-group mb-4">
-<button class="btn btn-info" type="submit">completed!</button>
+<button class="btn btn-info"  id="completed" type="button">completed!</button>
 </div>
-
                 <div class="input-group mb-4">
-                    <button class="btn btn-info" type="submit">&nbsp; &nbsp;running!&nbsp;&nbsp;&nbsp; </button>
+
+                <button class="btn btn-info"  type="button" id="running" >Go!</button>
                 </div>
             </form>
         </center>
 
             <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover" id="jieguo">
                   <thead>
                     <tr class="bg-info text-white">
-                      <th>#</th>
                         <th>task-id</th>
                       <th>sl-id</th>
                       <th>prettyformula</th>
-                      <th>elements</th>
+                        <th>size</th>
+                        <th>start</th>
+                        <th>end</th>
                         <th>Operating status</th>
                     </tr>
                   </thead>
-                <tbody>
-                    {% for contact in contacts %}
-                        <tr>
-                          <th scope="row">{{ contact.id }}</th>
-                          <td>{{ contact.slid }}</td>
-                          <td>{{ contact.prettyformula }}</td>
-                          <td>{{ contact.elements }}</td>
-                          <td><input  value="VASP"  type="submit" onclick="window.location='gotovasp?slid={{contact.slid }}';"></td>
-
-
-                        </tr>
-                    {% endfor %}
-                </tbody>
+                <tbody></tbody>
             </table>
 
     </div>
@@ -466,6 +449,64 @@
 			htmlobj=$.ajax({url:"http://localhost:8080/search/searchid="+val,async:false});
 			$("#myDiv").html(htmlobj.responseText);
 		}
+		$(document).ready(function(){
+		    $("#running").click(function(){
+     $.ajax({
+         url:"/taskmanage/",
+         type: "POST",
+         dataType: "json",
+         async:true,
+         data:{
+         },
+         success:function(data){
+             console.log('成功了')
+             console.log(data)
+             var obj=eval(data.list);
+            var tbody=$('<tbody ></tbody>');
+             $.each($.parseJSON(data),function(n,value){
+        var tr = $('<tr></tr>');
+        console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>')
+        tr.append('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">download</td>');
+
+
+                 tbody.append(tr);})
+             console.log(tbody)
+             $('#jieguo tbody').html(tbody)
+             console.log('感觉加进去了')
+
+        },
+     });
+     });
+	$("#completed").click(function(){
+     $.ajax({
+         url:"/taskmanage_completed/",
+         type: "POST",
+         dataType: "json",
+         async:true,
+         data:{
+         },
+         success:function(data){
+             console.log('成功了')
+             console.log(data)
+             var obj=eval(data.list);
+            var tbody=$('<tbody ></tbody>');
+             $.each($.parseJSON(data),function(n,value){
+        var tr = $('<tr></tr>');
+        console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>')
+        tr.append('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">download</td>');
+
+
+                 tbody.append(tr);})
+             console.log(tbody)
+             $('#jieguo tbody').html(tbody)
+             console.log('感觉加进去了')
+
+        },
+     });
+     });
+
+    });
+
 
 </script>
 	<script type="text/javascript" src="{% static "js/jquery-3.3.1.js"%}"></script>
