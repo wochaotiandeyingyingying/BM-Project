@@ -1,6 +1,6 @@
 {% load  staticfiles %}
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -11,7 +11,7 @@
     <meta name="robots" content="all,follow">
 
     <title>Data-Driven Material Platform </title>
-    <link rel="shortcut icon" href="{% static "img/smalltest1.png"%}">
+    <link rel="shortcut icon" href="{% static "img/favicon.ico"%}">
 
     <!-- global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
@@ -20,9 +20,48 @@
     <link rel="stylesheet" href="{% static "css/font-icon-style.css"%}">
     <link rel="stylesheet" href="{% static "css/style.default.css"%}" id="{% static "theme-stylesheet"%}">
 
-    <!-- Core stylesheets -->
-    <link rel="stylesheet" href="{% static "css/ui-elements/card.css"%}">
-    <link rel="stylesheet" href="{% static "css/style.css"%}">
+    <style type="text/css">
+
+    .textstyle1{
+
+    height:1200px;
+    width:500px;
+    border-style:solid;
+    border-color:lightgrey;
+    border-width:1px;
+    background-color:white;
+    position:relative;
+    top:40px;
+    left:40px;
+
+}
+    .textstyle2{
+
+    height:1200px;
+    width:650px;
+    border-style:solid;
+    border-color:lightgrey;
+    border-width:1px;
+    background-color:white;
+    position:relative;
+    top:40px;
+    left:100px;
+
+}
+     .textstyle3{
+
+    height:500px;
+    width:500px;
+    border-style:solid;
+    border-color:lightblue;
+    border-width:3px;
+    background-color:whitesmoke;
+    position:relative;
+    top:640px;
+    right:40;
+
+}
+    </style>
 </head>
 
 <body>
@@ -41,8 +80,8 @@
             <div class="container-fluid ">
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <div class="navbar-header">
-                        <a href="../home" class="navbar-brand">
-                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="{% static "Logo"%}" class="img-fluid"></div>
+                        <a href="index.html" class="navbar-brand">
+                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="Logo" class="img-fluid"></div>
                             <div class="brand-text brand-small"><img src="{% static "img/smalltest123.png"%}" alt="Logo" class="img-fluid"></div>
                         </a>
 
@@ -185,7 +224,7 @@
                                         <p class="category">Last Campaign Performance</p>
                                     </div>
                                     <div class="content">
-                                        <canvas class="ct-chart" id="myChart4" height="250"></canvas>
+                                        <canvas class="ct-chart" id="myChart-nav" height="250"></canvas>
                                         <div class="footer">
                                             <div class="legend">
                                                 <i class="fa fa-circle text-info"></i> Open
@@ -206,7 +245,7 @@
                 </ul>
             </div>
         </nav>
-    </header>    <!-------标题头-----!>
+    </header>
 
 <!--====================================================
                         PAGE CONTENT
@@ -222,26 +261,24 @@
             <hr>
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
-                <li class="active"> <a href=""><i class="icon-home"></i>Home</a></li>
+                <li class="active"> <a href="/rehome"><i class="icon-home"></i>Home</a></li>
                 <li > <a href="../vasp"><i class="fa fa-globe"></i>VASP</a></li>
-                <li > <a href="../high_throughput"><i class="fa fa-globe"></i>High-Throughput</a></li>
+
                 <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Search </a>
                     <ul id="apps" class="collapse list-unstyled">
-                        <li><a href="../searchall_elements">by Elements</a></li>
-                        <li><a href="../searchall_formula">by Formula</a></li>
-                        <li><a href="../searchall_ids">by IDs</a></li>
+                        <li><a href="/searchall_elements">by Elements</a></li>
+                        <li><a href="/searchall_formula">by Formula</a></li>
+                        <li><a href="/searchall_ids">by IDs</a></li>
                     </ul>
                 </li>
-                <li> <a href= "../chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
-                <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Machine learning </a>
+                <li> <a href= "/chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
+                <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Data Analysis </a>
                     <ul id="forms" class="collapse list-unstyled">
                         <li><a href="basic-form.html">Basic Analysis</a></li>
-                        <li><a href="../her_data">HER</a></li>
-                        <li><a href="../svc">Support Vector Classify</a></li>
-                        <li><a href="../dtc">Decision Trees Classify</a></li>
+                        <li><a href="form-layouts.html">Experiment Analysis</a></li>
                     </ul>
                 </li>
-                <li> <a href="../tutorials"> <i class="fa fa-map-o"></i>Tutorials </a></li>
+                <li> <a href="maps.html"> <i class="fa fa-map-o"></i>Tutorials </a></li>
                 <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file-o"></i>Documentation </a>
                     <ul id="pages" class="collapse list-unstyled">
                         <li><a href="faq.html">FAQ</a></li>
@@ -251,117 +288,44 @@
                         <li><a href="register.html">Register</a></li>
                         <li><a href="search-result.html">Search Result</a></li>
                         <li><a href="404.html">404</a></li>
-                        <li><a href="../introduction">introduction</a></li>
+                    </ul>
                 </li>
             </ul>
             <ul class="list-unstyled">
-                <li> <a href="#"> <i class="icon-picture"></i>Back Top </a></li>
+                <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
             </ul>
         </nav>
-
-        <div class="content-inner">
-
-            <!--***** REPORT-1 *****-->
-            <div class="row" id="report1">
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  text-align:center; padding-top:50px;">
-
-                            <img src="{% static "img/composition and structure.jpg"%}"   >
-
-                            <p><small>composition and structure</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  margin-top:0px;margin-left:28px; padding-top:50px;">
-                            <img src="{% static "img/thermodynamic stability.jpg"%}">
-                            <p style="margin-left:17px;"><small>thermodynamic stability</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  margin-left:32px; padding-top:50px;">
-                            <img src="{% static "img/electronic structure.jpg"%}">
-                            <p style="margin-left:27px;"><small>electronic structure</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="card-block" style="  margin-left:28px;  margin-bottom:14px;padding-top:53px;">
-                                <img src="{% static "img/macroscopic property.png"%}">
-
-
-                            </div>
-                            <p style="margin-left:50px;margin-top:0px;"><small>macroscopic property</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--***** REPORT-2 *****-->
-            <div class="row" id="report2">
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Artificial Neural Network.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Artificial Neural Network</h4>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Linear Regression.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Linear Regression</h4>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Support Vector Machine.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Support Vector Machine</h4>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
-
-            <!--***** REPORT-3 *****-->
-            </br><
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-
+    <div class="textstyle1">
+        <p>PCA（Principal Component Analysis），也称为主成分分析。降维可以解决三类问题：</p>
+        <p>•缓解维度灾难</p>
+        <p>•在压缩数据的同时让信息损失最小化</p>
+        <p>•维度少的数据通过可视化更容易理解</p>
+        <p>从数学的角度来看，PCA的目标是什么呢？它的目标是通过某种线性投影，将高维的数据映射到低维的空间中，即把原先的n个特征用数目更少的m个特征取代，并且，我们希望在所投影的维度上数据的方差最大，尽量使新的m个特征互不相关。</p>
+        <p>那么，PCA降维过程的一般步骤是什么呢？一般可分为四个步骤：</p>
+        <p>•对样本进行中心化操作，方便方差的计算</p>
+        <p>•计算样本的协方差矩阵</p>
+        <p>•对协方差矩阵做特征值分解</p>
+        <p>•取最大的m个特征值对应的特征向量，构造投影矩阵W</p>
+        <p>以上为工作原理具体调参方法如下：</p>
+        <p>n_components:  </p>
+        <p>意义：PCA算法中所要保留的主成分个数n，也即保留下来的特征个数n</p>
+        <p>类型：int 或者 string，缺省时默认为None，所有成分被保留。</p>
+        <p></tr></tr>赋值为int，比如n_components=1，将把原始数据降到一个维度</p>
+        <p></tr></tr> 赋值为string，比如n_components='mle'，将自动选取特征个数n，使得满足所要求的方差百分比。</p>
+        <p>copy:</p>
+        <p>类型：bool，True或者False，缺省时默认为True。</p>
+        <p>意义：表示是否在运行算法时，将原始训练数据复制一份。若为True，则运行PCA算法后，原始训练数据的值不会有任何改变，因为是在原始数据的副本上进行运算；若为False，则运行PCA算法后，原始训练数据的值会改，因为是在原始数据上进行降维计算。</p>
+        <p>whiten:</p>
+        <p>类型：bool，缺省时默认为False</p>
+        <p>意义：白化，目的是使每个特征具有相同的方差（一般情况下不常用）</p>
+    </div>
+        <div class="textstyle2">
+            <img src="{% static "img/PCA1.png"%}">
+            <P>该图像为进行将为操作后样本点分布情况，但是只有在数据特征为2或者3时才能进行此操作，高维时不能进行可视化。</P>
+        <br>
+        <br>
+        <br>
+             <img src="{% static "img/PCA2.png"%}">
+            <p>累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献率为纵坐标的曲线，能够帮助我们决定n_components最好的取值。（选择n_components是最适合为曲线的斜率突变点，或则在该点之后近乎水平的点）</p>
         </div>
     </div>
-
-    <!--Global Javascript -->
-    <script src="{% static "js/jquery.min.js"%}"></script>
-    <script src="{% static "js/popper/popper.min.js"%}"></script>
-    <script src="{% static "js/tether.min.js"%}"></script>
-    <script src="{% static "js/bootstrap.min.js"%}"></script>
-    <script src="{% static "js/jquery.cookie.js"%}"></script>
-    <script src="{% static "js/jquery.validate.min.js"%}"></script>
-    <script src="{% static "js/chart.min.js"%}"></script>
-    <script src="{% static "js/front.js"%}"></script>
-
-    <!--Core Javascript -->
-    <script src="{% static "js/mychart.js"%}"></script>
-</body>
-
-</html>

@@ -352,6 +352,7 @@ a {
                         <li><a href="/searchall_elements">by Elements</a></li>
                         <li><a href="/searchall_formula">by Formula</a></li>
                         <li><a href="/searchall_ids">by IDs</a></li>
+
                     </ul>
                 </li>
                 <li> <a href= "/chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
@@ -371,6 +372,7 @@ a {
                         <li><a href="register.html">Register</a></li>
                         <li><a href="search-result.html">Search Result</a></li>
                         <li><a href="404.html">404</a></li>
+
                     </ul>
                 </li>
             </ul>
@@ -388,7 +390,8 @@ a {
                 {% csrf_token %}
 
                 <div class="input-group mb-4">
-                    <input type="text"name="elements" class="form-control" id="txtShow" placeholder="CrLi" >
+                    <input type="text"name="elements" class="form-control" id="txtShow" placeholder="CrLi"
+                         onkeydown="document.getElementById('xxx').style.backgroundColor ='green';" >
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="submit">Go!</button>
                     </span>
@@ -401,25 +404,25 @@ a {
                 <table style="border: solid 0 white;">
 
                               <tr >
-                                <td style="padding: 0%;"><input type="button"title="We ask for your age <br>only for statistical purposes."
+                                <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="H" class="btn3">
 
                                 </td>
                                 <td colspan="16"></td>
-                                <td style="padding: 0%;"><input type="button"title="We ask for your age <br>only f555555555atistical purposes."
+                                <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="He" class="btn3"
                                      /></td>
                             </tr>
                             <tr>
 
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Li" class="btn3" /></td>
+                                    onclick="add(this)" id="Button1" value="Li" class="btn3"onkeydown="myKeyDown(this)"/></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Be" class="btn3"
+                                    onclick="add(this)" id="Button1" value="Be" class="btn3"onkeydown="myKeyDown(this)"
                                     /></td>
                                 <td colspan="10" rowspan="2"></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="B" class="btn3"
+                                    onclick="add(this)" id="Button1" value="B" class="btn3"onkeydown="myKeyDown(this)"
                                     /></td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="C" class="btn3"
@@ -824,10 +827,9 @@ a {
 </body>
 <script type="text/javascript" >
 		function add(obj)
-		{
-			document.getElementById("txtShow").value+=obj.value+'-';
-             $(obj).css("background","#EEE685");
-             $(obj).css("color","black");
+		{document.getElementById("txtShow").value+=obj.value+'-';
+		$(obj).css("background","#EEE685");
+		$(obj).css("color","black");
 
 
 		}
@@ -839,9 +841,10 @@ a {
 			$("#myDiv").html(htmlobj.responseText);
 		}
 
-
-
-
+        function myKeyDown(dow) {
+          $(dow).css("background","red");
+             $(dow).css("color","white");
+        }
     </script>
 
 

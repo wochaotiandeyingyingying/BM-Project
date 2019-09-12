@@ -87,8 +87,15 @@ def chart(request):
     else:
         return redirect("/door/")
 
-
-
+def introduction(request):
+    is_login = request.session.get('IS_LOGIN', False)
+    print(is_login)
+    if is_login:
+        username = request.session.get('USRNAME', False)
+        email = request.session.get('EMAIL', False)
+        return render(request, 'introduction.html',{'username': username,'email':email})
+    else:
+        return redirect("/door/")
 
 
 

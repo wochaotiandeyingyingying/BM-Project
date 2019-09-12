@@ -52,7 +52,7 @@ urlpatterns = [
     path('serverinput/', views.serverinput),
     path('readytohigh_throughput/', views.readytohigh_throughput),
     path('tutorials/', views.tutorials),
-
+    path('introduction/', views.introduction),
 
 
 
