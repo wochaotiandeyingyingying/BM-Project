@@ -115,8 +115,14 @@
          width:490px;
          height:210px;
      }
-    .textsize1{ font-size:24px}
-    .textsize2{ font-size:20px}
+    .textsize1{
+        font-size:24px;
+        font-weight: 700;
+    }
+    .textsize2{
+        font-size:20px;
+        font-weight:700;
+    }
     </style>
 </head>
 
@@ -352,10 +358,10 @@
             </ul>
         </nav>
         <div  class="textstyle3">
-            <p  class="textsize1">Principal Component Analysis(PCA)技术简介。</p>
+            <p  class="textsize1">Principal Component Analysis(PCA)技术简介</p>
         </div>
     <div class="textstyle1">
-        <p  class="textsize2">Principal Component Analysis(PCA)概念及原理。</p>
+        <i  class="textsize2">Principal Component Analysis(PCA)概念及原理:</i>
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从数学的角度来看，PCA的目标是什么呢？它的目标是通过某种线性投影，将高维的数据映射到低维的空间中，即把原先的n个特征用数目更少的m个特征取代，并且，我们希望在所投影的维度上数据的方差最大，尽量使新的m个特征互不相关。</p>
         <p>PCA利用降维的思想，旨在将多指标转化为少数几个综合指标。</p>
         <p>通常用以解决三类问题：</p>
@@ -367,7 +373,7 @@
         <img src="{% static "img/PCA3.png"%}" class="imgstyle2">
     </div>
     <div class="textstyle2">
-        <p class="textsize2">PCA降维步骤：</p>
+        <i class="textsize2">PCA降维步骤：</i>
         <p>•对样本进行中心化操作，方便方差的计算</p>
         <p>•计算样本的协方差矩阵</p>
         <p>•对协方差矩阵做特征值分解</p>
@@ -376,7 +382,7 @@
             <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该图像为进行降维操作后样本点分布情况，但是只有在数据特征为2或者3时才能进行此操作，高维时不能进行可视化。</P>
         </div>
         <div class="textstyle4">
-            <p class="textsize2">具体调参方法如下：</p>
+            <i class="textsize2">具体调参方法如下：</i>
             <p>n_components:  </p>
             <p>意义：PCA算法中所要保留的主成分个数n，也即保留下来的特征个数n</p>
             <p>类型：int 或者 string，缺省时默认为None，所有成分被保留。</p>
@@ -390,11 +396,11 @@
             <p>意义：白化，目的是使每个特征具有相同的方差（ 一般情况下不常用）</p>
         </div>
         <div class="textstyle6">
-            <p class="textsize2">特征个数n选择</p>
+            <i class="textsize2">特征个数n选择:</i>
             <img src="{% static "img/PCA2.png"%}"class="imgstyle1">
             <p>累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献率为纵坐标的曲线，能够帮助我们决定n_components最好的取值。（选择n_components是最适合为曲线的斜率突变点，或则在该点之后近乎水平的点）</p>
         </div>
-         <!--底部限位 -->
+         <!--此div没有内容,勿删-->
         <div class="textstyle5"></div>
     </div>
     <!--Javascript -->
