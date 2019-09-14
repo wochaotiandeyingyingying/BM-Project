@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/html">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -24,43 +23,100 @@
 
     .textstyle1{
 
-    height:1200px;
-    width:500px;
+    height:700px;
+    width:550px;
     border-style:solid;
     border-color:lightgrey;
     border-width:1px;
     background-color:white;
-    position:relative;
-    top:40px;
-    left:40px;
+    position:absolute;
+    top:180px;
+    left:290px;
 
 }
     .textstyle2{
 
-    height:1200px;
-    width:650px;
+    height:700px;
+    width:550px;
     border-style:solid;
     border-color:lightgrey;
     border-width:1px;
     background-color:white;
-    position:relative;
-    top:40px;
-    left:100px;
+    position:absolute;
+    top:180px;
+    left:880px;
 
 }
      .textstyle3{
 
-    height:500px;
-    width:500px;
+    height:50px;
+    width:1200px;
     border-style:solid;
-    border-color:lightblue;
+    border-color:white;
     border-width:3px;
-    background-color:whitesmoke;
-    position:relative;
-    top:640px;
-    right:40;
+    background-color:white;
+    position:absolute;
+    top:120px;
+    left:290px;
 
 }
+    .textstyle4{
+
+    height:700px;
+    width:550px;
+    border-style:solid;
+    border-color:lightgrey;
+    border-width:1px;
+    background-color:white;
+    position:absolute;
+    top:930px;
+    left:290px;
+
+}
+      .textstyle5{
+
+    height:50px;
+    width:1200px;
+    border-style:solid;
+    border-color:white;
+    border-width:3px;
+    background-color:white;
+    position:absolute;
+    top:1900px;
+    left:290px;
+
+}
+       .textstyle6{
+
+    height:700px;
+    width:550px;
+    border-style:solid;
+    border-color:lightgrey;
+    border-width:1px;
+    background-color:white;
+    position:absolute;
+    top:930px;
+    left:880px;
+
+}
+     .imgstyle1{
+         width:440px;
+         height:330px;
+     }
+      .imgstyle12:hover {
+         width:480px;
+         height:360px;
+     }
+       .imgstyle2{
+         width:444px;
+         height:187px;
+     }
+      .imgstyle21:hover {
+         width:490px;
+         height:210px;
+     }
+    .textsize1{ font-size:24px}
+    .textsize2{ font-size:20px}
     </style>
 </head>
 
@@ -295,37 +351,64 @@
                 <li> <a href="#"> <i class="icon-picture"></i>Demo </a></li>
             </ul>
         </nav>
+        <div  class="textstyle3">
+            <p  class="textsize1">Principal Component Analysis(PCA)技术简介。</p>
+        </div>
     <div class="textstyle1">
-        <p>PCA（Principal Component Analysis），也称为主成分分析。降维可以解决三类问题：</p>
+        <p  class="textsize2">Principal Component Analysis(PCA)概念及原理。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从数学的角度来看，PCA的目标是什么呢？它的目标是通过某种线性投影，将高维的数据映射到低维的空间中，即把原先的n个特征用数目更少的m个特征取代，并且，我们希望在所投影的维度上数据的方差最大，尽量使新的m个特征互不相关。</p>
+        <p>PCA利用降维的思想，旨在将多指标转化为少数几个综合指标。</p>
+        <p>通常用以解决三类问题：</p>
         <p>•缓解维度灾难</p>
         <p>•在压缩数据的同时让信息损失最小化</p>
         <p>•维度少的数据通过可视化更容易理解</p>
-        <p>从数学的角度来看，PCA的目标是什么呢？它的目标是通过某种线性投影，将高维的数据映射到低维的空间中，即把原先的n个特征用数目更少的m个特征取代，并且，我们希望在所投影的维度上数据的方差最大，尽量使新的m个特征互不相关。</p>
-        <p>那么，PCA降维过程的一般步骤是什么呢？一般可分为四个步骤：</p>
+        <br>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;PCA过程的可视化表示</p>
+        <img src="{% static "img/PCA3.png"%}" class="imgstyle2">
+    </div>
+    <div class="textstyle2">
+        <p class="textsize2">PCA降维步骤：</p>
         <p>•对样本进行中心化操作，方便方差的计算</p>
         <p>•计算样本的协方差矩阵</p>
         <p>•对协方差矩阵做特征值分解</p>
         <p>•取最大的m个特征值对应的特征向量，构造投影矩阵W</p>
-        <p>以上为工作原理具体调参方法如下：</p>
-        <p>n_components:  </p>
-        <p>意义：PCA算法中所要保留的主成分个数n，也即保留下来的特征个数n</p>
-        <p>类型：int 或者 string，缺省时默认为None，所有成分被保留。</p>
-        <p></tr></tr>赋值为int，比如n_components=1，将把原始数据降到一个维度</p>
-        <p></tr></tr> 赋值为string，比如n_components='mle'，将自动选取特征个数n，使得满足所要求的方差百分比。</p>
-        <p>copy:</p>
-        <p>类型：bool，True或者False，缺省时默认为True。</p>
-        <p>意义：表示是否在运行算法时，将原始训练数据复制一份。若为True，则运行PCA算法后，原始训练数据的值不会有任何改变，因为是在原始数据的副本上进行运算；若为False，则运行PCA算法后，原始训练数据的值会改，因为是在原始数据上进行降维计算。</p>
-        <p>whiten:</p>
-        <p>类型：bool，缺省时默认为False</p>
-        <p>意义：白化，目的是使每个特征具有相同的方差（一般情况下不常用）</p>
-    </div>
-        <div class="textstyle2">
-            <img src="{% static "img/PCA1.png"%}">
-            <P>该图像为进行将为操作后样本点分布情况，但是只有在数据特征为2或者3时才能进行此操作，高维时不能进行可视化。</P>
-        <br>
-        <br>
-        <br>
-             <img src="{% static "img/PCA2.png"%}">
+        <img src="{% static "img/PCA1.png"%}" class="imgstyle1">
+            <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该图像为进行降维操作后样本点分布情况，但是只有在数据特征为2或者3时才能进行此操作，高维时不能进行可视化。</P>
+        </div>
+        <div class="textstyle4">
+            <p class="textsize2">具体调参方法如下：</p>
+            <p>n_components:  </p>
+            <p>意义：PCA算法中所要保留的主成分个数n，也即保留下来的特征个数n</p>
+            <p>类型：int 或者 string，缺省时默认为None，所有成分被保留。</p>
+            <p></tr></tr>赋值为int，比如n_components=1，将把原始数据降到一个维度</p>
+            <p></tr></tr> 赋值为string，比如n_components='mle'，将自动选取特征个数n，使得满足所要求的方差百分比。</p>
+            <p>copy:</p>
+            <p>类型：bool，True或者False，缺省时默认为True。</p>
+            <p>意义：表示是否在运行算法时，将原始训练数据复制一份。若为True，则运行PCA算法后，原始训练数据的值不会有任何改变，因为是在原始数据的副本上进行运算；若为False，则运行PCA算法后，原始训练数据的值会改，因为是在原始数据上进行降维计算。</p>
+            <p>whiten:</p>
+            <p>类型：bool，缺省时默认为False</p>
+            <p>意义：白化，目的是使每个特征具有相同的方差（一般情况下不常用）</p>
+        </div>
+        <div class="textstyle6">
+            <p class="textsize2">特征个数n选择</p>
+            <img src="{% static "img/PCA2.png"%}"class="imgstyle1">
             <p>累积可解释方差贡献率曲线是一条以降维后保留的特征个数为横坐标，降维后新特征矩阵捕捉到的可解释方差贡献率为纵坐标的曲线，能够帮助我们决定n_components最好的取值。（选择n_components是最适合为曲线的斜率突变点，或则在该点之后近乎水平的点）</p>
         </div>
+         <!--底部限位 -->
+        <div class="textstyle5"></div>
     </div>
+    <!--Javascript -->
+    <script src="{% static "js/jquery.min.js"%}"></script>
+    <script src="{% static "js/popper/popper.min.js"%}"></script>
+    <script src="{% static "js/tether.min.js"%}"></script>
+    <script src="{% static "js/bootstrap.min.js"%}"></script>
+    <script src="{% static "js/jquery.cookie.js"%}"></script>
+    <script src="{% static "js/jquery.validate.min.js"%}"></script>
+    <script src="{% static "js/chart.min.js"%}"></script>
+    <script src="{% static "js/front.js"%}"></script>
+
+    <!--Core Javascript -->
+    <script src="{% static "js/mychart.js"%}"></script>
+</body>
+
+</html>
