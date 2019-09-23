@@ -64,6 +64,16 @@
              z-index: 1002;
              overflow: auto;
         }
+
+        .btnn1 {
+            width: 3vmin;
+            height: 3vmin;
+            border-radius: 1vmin;
+            border: 0.25vmin solid rgb(224, 255, 255);
+            border-color: rgb(224, 255, 255);
+            color: rgb(224, 255, 255);
+            background-color: white;
+               }
     </style>
 </head>
 
@@ -415,7 +425,7 @@
         <!--<input id="fileupload" type="file" name="files[]" data-url="/upload" multiple>-->
         <input id="fileupload" type="file" name="files[]" multiple="">
     </span>
-            <div>  <input id="Button1" type="button" value="?" onclick="ShowDiv('MyDiv','fade')" />
+            <div>  <input id="Button1" type="button" value="点击了解详情" onclick="ShowDiv('MyDiv','fade')">
     <!--弹出层时背景层DIV-->
         <div id="fade" class="black_overlay">
              </div>
@@ -446,7 +456,7 @@
 <script src="{% static "js/jquery.validate.min.js" %}"></script>
 <script src="{% static "js/chart.min.js" %}"></script>
 <script src="{% static "js/front.js" %}"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
 //弹出隐藏层
 function ShowDiv(show_div,bg_div){
  document.getElementById(show_div).style.display='block';
