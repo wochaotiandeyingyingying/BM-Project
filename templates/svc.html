@@ -345,7 +345,7 @@
 
     <div class="content-inner">
         <h2 class="page-header-new">SVC</h2>
-        <form  action="/svc/" method="post">
+        <form  action="/svc/" method="post" id="domeform" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
         <div style="width: 400px;padding: 10px 10px 10px;">
             <div class="input-group">
@@ -423,7 +423,7 @@
             <i class="glyphicon glyphicon-plus"></i>
         <!-- The file input field used as target for the file upload widget -->
         <!--<input id="fileupload" type="file" name="files[]" data-url="/upload" multiple>-->
-        <input id="fileupload" type="file" name="files[]" multiple="">
+        <input id="fileupload"  type="file" name="files">
     </span>
             <div>
                <img src="{% static "img/7456.jpg"%}" onclick="ShowDiv('MyDiv','fade')" width="36px" height="36px"/>
@@ -439,7 +439,7 @@
             </div>
         <br/>
         <div class="submit-button">
-            <input type="submit" value="Submit" id="submit_btn">
+            <input type="submit" value="Submit" id="submit_btn" >
         </div>
 
         </form>

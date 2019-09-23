@@ -40,6 +40,7 @@ from sklearn.datasets import load_wine
 from sklearn.decomposition import PCA
 import pandas as pd
 import numpy as np
+import csv
 import graphviz
 # def home(request):
 #     return render(request,'index.html')
@@ -950,13 +951,87 @@ def her_data(request):
         return redirect("/door/")
 def svc(request):
     if request.method == 'POST':
+        csv_file = request.FILES.get("files")
+        print(csv_file)
         c = float(request.POST.get('C'))
         degree = float(request.POST.get('degree'))
         gamma = float(request.POST.get('gamma'))
         coef0 = float(request.POST.get('coef0'))
         max_itera = float(request.POST.get('max_iter'))
-        print(c)
-        print(type(c))
+        middle=pd.read_csv(csv_file)
+        middle.to_csv('middle.csv',index=False,encoding="UTF8")
+#代码融合开始
+        with open("middle.csv", "r", encoding="utf-8") as vsvfile:
+            reader = csv.reader(vsvfile)
+            rows = [row for row in reader]
+        # array1是元素的列名，array2是元素所在的列号,rows表示有多少行（算上了表头）一个元素会增加59个额外特征
+        array1 = []
+        array2 = []
+        print(len(rows))
+        for i in range(0, len(rows[0])):
+            if rows[0][i].startswith('element'):
+                array1.append(rows[0][i])
+                array2.append(i)
+        num_feature_original = (len(rows[0]) - len(array1) - 3)
+        num_feature_change = num_feature_original + 59 * len(array1)
+        print(num_feature_original, num_feature_change)
+        # --------------------------------------------获得基本数据结束----------------------------------
+        # 读取数据表
+        aFile = open('middle.csv', 'r')
+        aInfo = csv.reader(aFile)
+        bfile = open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\elements.csv', 'r')
+        bInfo = csv.reader(bfile)
+        # 构造结果csv文件
+        cfile = open('result.csv', 'w', newline="")
+        abcsv = csv.writer(cfile, dialect='excel')
+        a = list()
+        # c做一个备份
+        c = a
+        b = list()
+        for info in aInfo:
+            a.append(info)
+        for info in bInfo:
+            b.append(info)
+        # 将elements表格去掉前两列
+        b = list(map(lambda x: x[2:], b))
+        for index in range(len(a)):
+            for i in range(len(array1)):
+                if index == 0:
+                    c[index].extend(b[index])
+                else:
+                    c[index].extend(b[int(a[index][array2[i]])])
+            abcsv.writerow(c[index])
+        # ---------------------------------------------拼接完成-------------------------------------
+        # --------------------------------对拼接完的表格进行完善------------------------------------
+        resultnum = list()
+        aFile = open('result.csv', 'r')
+        aInfo = csv.reader(aFile)
+        for info in aInfo:
+            resultnum.append(info)
+        print('aaaaa')
+        cfile = open('resultnew.csv', 'w', newline="")
+        colname1 = []
+        colname2 = []
+        for i in range(num_feature_original, num_feature_change):
+            colname1.append('a' + str(i + 1))
+        for i in range(num_feature_original):
+            colname2.append('a' + str(i + 1))
+        colname = ['NO', 'Class', 'Target'] + colname2 + colname1
+        print(colname)
+        abcsv = csv.writer(cfile, dialect='excel')
+        for index in range(0, len(resultnum)):
+            print(index)
+            if index == 0:
+                resultnum[index] = (colname)
+            else:
+                num = array2[1] - 1
+                for i in array2:
+                    del resultnum[index][num]
+                    # resultnum[index]=resultnum[index].remove(resultnum[index][num])
+            abcsv.writerow(resultnum[index])
+        cfile.close()
+        #代码融合结束
+
         #机器学习代码开始
         x, y = make_circles(200, factor=.1, noise=.2)
         # model = SVC(kernel='linear')#线性可分
