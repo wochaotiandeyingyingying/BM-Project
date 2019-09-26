@@ -10,9 +10,7 @@ from pymatgen.io.vasp.inputs import Incar
 from pymatgen.io.vasp.inputs import Poscar
 from pymatgen.io.vasp.inputs import Potcar
 from pymatgen.io.vasp.inputs import VaspInput
-from pymongo import  MongoClient
 from pymatgen.core.structure import Structure
-import os
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import re
@@ -25,6 +23,16 @@ import paramiko
 import pymongo
 import re
 from pymongo import MongoClient
+
+import socket
+import os
+from django.http import FileResponse
+from django.shortcuts import HttpResponse
+import os, tempfile, zipfile
+from django.http import HttpResponse
+from django.http import StreamingHttpResponse
+import mimetypes
+
 import os
 #机器学习模块
 import numpy as np
@@ -41,6 +49,7 @@ from sklearn.decomposition import PCA
 import pandas as pd
 import numpy as np
 import csv
+
 import graphviz
 # def home(request):
 #     return render(request,'index.html')
@@ -1068,7 +1077,7 @@ def dtc(request):
         min_samples_split = int(request.POST.get('min_samples_split'))
         max_depth = int(request.POST.get('max_depth'))
         random_state = int(request.POST.get('random_state'))
-        #机器学习代码开始
+        # 机器学习代码开始
         wine = load_wine()
         wine1 = pd.concat([pd.DataFrame(wine.data), pd.DataFrame(wine.target)], axis=1)
         Xtrain, Xtest, Ytrain, Ytest = train_test_split(wine.data, wine.target, test_size=0.3)  # 分训练集和测试集
@@ -1359,6 +1368,24 @@ def tutorials(request):
         username = request.session.get('USRNAME', False)
         email = request.session.get('EMAIL', False)
         return render(request, 'maps.html',{'username': username,'email':email})
+    else:
+        return redirect("/door/")
+def downloads(request):
+    is_login = request.session.get('IS_LOGIN', False)
+    fileneme = 'bm_project/static/test.xlsx'
+    print(os.path.exists(fileneme))
+    if is_login:
+        socket.setdefaulttimeout(2000)
+        username = request.session.get('USRNAME', False)
+        email = request.session.get('EMAIL', False)
+        taskid = request.GET.get('taskid')
+        file = open(fileneme, 'rb')
+        response = FileResponse(open(fileneme, 'rb'))
+        response['Content-Type'] = 'application/octet-stream'
+        response['Content-Disposition'] = 'attachment;filename="test.xlsx"'
+        print(response.items())
+        return response
+        response.close()
     else:
         return redirect("/door/")
 

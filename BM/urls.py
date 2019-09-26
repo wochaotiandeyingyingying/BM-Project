@@ -55,6 +55,8 @@ urlpatterns = [
     path('tutorials/', views.tutorials),
     path('introduction/', views.introduction),
     path('taskmanage_completed/',views.taskmanage_completed),
+    path('taskmanage/downloads/', views.downloads),
+
 
 
 
