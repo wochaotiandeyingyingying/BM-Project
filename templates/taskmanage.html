@@ -479,28 +479,29 @@
      });
 	$("#completed").click(function(){
      $.ajax({
-         url:"/taskmanage_completed/",
-         type: "POST",
-         dataType: "json",
-         async:true,
-         data:{
-         },
-         success:function(data){
-             console.log('成功了')
-             console.log(data)
-             var obj=eval(data.list);
-            var tbody=$('<tbody ></tbody>');
-             $.each($.parseJSON(data),function(n,value){
-        var tr = $('<tr></tr>');
-        console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>')
-        var a='downloads?taskid= '+value.taskid+';'
-        tr.append('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  ><input  value="Downloads"  type="submit" onclick="window.location=\'downloads?taskid='+value.taskid+'\';"></td>');
+    url:"/taskmanage_completed/",
+    type: "POST",
+    dataType: "json",
+    async:true,
+    data:{
+    },
+    success:function(data){
+        console.log('成功了')
+        console.log(data)
+        var obj=eval(data.list);
+       var tbody=$('<tbody ></tbody>');
+       var tr;
+
+        $.each($.parseJSON(data),function(n,value){
+  console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>')
+   var a='downloads?taskid= '+value.taskid+';'
+   tr='<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  ><input  value="Downloads"  type="submit" onclick="window.location=\'downloads?taskid='+value.taskid+'\';"></td>';
 
 
-                 tbody.append(tr);})
-             console.log(tbody)
-             $('#jieguo tbody').html(tbody)
-             console.log('感觉加进去了')
+            tbody.append(tr);})
+        console.log(tbody)
+        $('#jieguo ').append(tbody);
+        console.log('感觉加进去了')
 
         },
      });
