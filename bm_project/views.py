@@ -27,12 +27,7 @@ from pymongo import MongoClient
 import socket
 import os
 from django.http import FileResponse
-from django.shortcuts import HttpResponse
-import os, tempfile, zipfile
-from django.http import HttpResponse
-from django.http import StreamingHttpResponse
-import mimetypes
-
+import time
 import os
 #机器学习模块
 import numpy as np
@@ -826,7 +821,6 @@ def taskmanage_completed(request):
             )
             #linux命令，分别获得bjobs的结果，用户所有的文件名
             c = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/;ls'
-            # 查询bjobs的结果
             stdin, stdout, stderr = ssh.exec_command(c)
             a = stdout.read()
             b = a.decode()
@@ -1372,18 +1366,46 @@ def tutorials(request):
         return redirect("/door/")
 def downloads(request):
     is_login = request.session.get('IS_LOGIN', False)
-    fileneme = 'bm_project/static/test.xlsx'
-    print(os.path.exists(fileneme))
     if is_login:
-        socket.setdefaulttimeout(2000)
+        #文件处理部分
+        taskid = request.GET.get('taskid')
+        ssh = paramiko.SSHClient()
+        policy = paramiko.AutoAddPolicy()
+        ssh.set_missing_host_key_policy(policy)
+        ssh.connect(
+            hostname="172.26.18.243",  # 服务器的ip
+            port=22,  # 服务器的端口
+            username="gromacs",  # 服务器的用户名
+            password="gromacs"  # 用户名对应的密码
+        )
+        c = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/;ls'
+        # 查询bjobs的结果
+        stdin, stdout, stderr = ssh.exec_command(c)
+        a = stdout.read()
+        b = a.decode()
+        num = b.count('\n')
+        array = []
+        for i in range(0, num):
+            temp = b.split('\n', 1)[0]
+            array.append(temp)
+            b = b.split('\n', 1)[1]
+        for i in range(0,num):
+            if array[i].startswith(taskid):
+                filename=array[i]
+        tarfilename=taskid+'.tar.gz'
+        d = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/;'+'tar -cvzf   '+tarfilename+' '+filename
+        stdin, stdout, stderr = ssh.exec_command(d)
+        #file=刚才压缩的文件名
+        socket.setdefaulttimeout(20)
         username = request.session.get('USRNAME', False)
         email = request.session.get('EMAIL', False)
         taskid = request.GET.get('taskid')
-        file = open(fileneme, 'rb')
-        response = FileResponse(open(fileneme, 'rb'))
+        file = open('/bm_project/static/test.xlsx', 'rb')
+        response = FileResponse(open('/bm_project/static/test.xlsx', 'rb'))
         response['Content-Type'] = 'application/octet-stream'
         response['Content-Disposition'] = 'attachment;filename="test.xlsx"'
         print(response.items())
+        time.sleep(1)
         return response
         response.close()
     else:
