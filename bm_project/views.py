@@ -598,7 +598,6 @@ def automatic(request):
                 # cmd = 'cd /gpfs/home/gromacs/123/ABCd ;dos2unix /gpfs/home/gromacs/123/ABCd/job ; bsub<job'
                 # ssh.exec_command(cmd)
                 print('真的成功了吗')
-                #return render(request, 'go_home.html')
                 data='1'
                 return JsonResponse(data, safe=False)
             else:
