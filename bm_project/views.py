@@ -46,13 +46,12 @@ import numpy as np
 import csv
 
 import graphviz
-# def home(request):
-#     return render(request,'index.html')
+#用于返回主界面的方式
 def rehome(request):
     username = request.session.get('USRNAME', False)
     email = request.session.get('EMAIL', False)
     return redirect("home")
-
+#返回搜索元素的界面
 def searchall_elements(request):
     is_login = request.session.get('IS_LOGIN', False)
     print(is_login)
@@ -62,7 +61,7 @@ def searchall_elements(request):
         return render(request, 'search.html',{'username': username,'email':email})
     else:
         return redirect("/door/")
-
+#返回搜索化学式的界面
 def searchall_formula(request):
     is_login = request.session.get('IS_LOGIN', False)
     print(is_login)
@@ -73,7 +72,7 @@ def searchall_formula(request):
     else:
         return redirect("/door/")
 
-
+#返回搜索材料id的界面
 def searchall_ids(request):
     is_login = request.session.get('IS_LOGIN', False)
     print(is_login)
@@ -84,7 +83,7 @@ def searchall_ids(request):
     else:
         return redirect("/door/")
 
-
+#返回图表界面
 def chart(request):
     is_login = request.session.get('IS_LOGIN', False)
     print(is_login)
@@ -94,7 +93,7 @@ def chart(request):
         return render(request, 'chart.html',{'username': username,'email':email})
     else:
         return redirect("/door/")
-
+#返回
 def introduction(request):
     is_login = request.session.get('IS_LOGIN', False)
     print(is_login)
@@ -107,7 +106,7 @@ def introduction(request):
 
 
 
-
+#用户注册界面
 @csrf_exempt
 def signup(request):
     path=request.get_full_path()
@@ -132,7 +131,7 @@ def signup(request):
     else:
         form = SignupForm(auto_id="%s")
     return render(request, 'signup.html', locals())
-
+#用户登录界面
 @csrf_exempt
 def login(request):
     if request.method == 'POST':
@@ -158,8 +157,10 @@ def login(request):
         context={}
         context['form1']=form1
         return render(request, 'login1.html', context)
+#门户界面
 def door(request):
     return render(request,'door.html')
+#主界面
 def home(request):
      username = request.session.get('USRNAME', False)
      is_login = request.session.get('IS_LOGIN',False)
@@ -171,36 +172,11 @@ def home(request):
          return redirect("/door/")
 
 
-# def searchid(request):
-#     if request.method == 'POST':
-#         form2=SearchForm(request.POST)
-#         if form2.is_valid():
-#             materialid=form2.cleaned_data['materialid']
-#             print(materialid)
-#             contact_list = Material.matobj.filter(materialid=materialid)
-#             # contact_list=Material.matobj.filter(type_name_icontains='')模糊查询
-#             paginator = Paginator(contact_list, 2)
-#             page = request.GET.get('page')
-#             contacts = paginator.get_page(page)
-#             context={}
-#             context['form2']=form2
-#             context['contacts']=contacts
-#             return render(request,"search.html",context)
-#         else:
-#             form2 = SearchForm()
-#             context = {}
-#             context['form2'] = form2
-#             return render(request, "search.html", context)
-#     else:
-#         form2 = SearchForm()
-#         context = {}
-#         context['form2'] = form2
-#         return render(request, "search.html", context)
 
+#通过材料编号进行搜索
 def search_id(request):
     is_login = request.session.get('IS_LOGIN', False)
     email = request.session.get('EMAIL', False)
-    print(is_login)
     if is_login:
         username = request.session.get('USRNAME', False)
         materialid = request.POST.get('materialid')
@@ -211,8 +187,8 @@ def search_id(request):
         return render(request, "search3.html", {'contacts': contacts,'username': username,'email':email})
     else:
         return redirect("/door/")
-
-
+#通过材料元素进行搜索
+#由于特殊性，这个代码用pymongo写的，并没有使用django自带的包
 def search_elements(request):
     username = request.session.get('USRNAME', False)
     email = request.session.get('EMAIL', False)
@@ -264,7 +240,7 @@ def search_elements(request):
     else:
         return redirect("/door/")
 
-
+#通过化学式进行搜索
 def search_formula(request):
     is_login = request.session.get('IS_LOGIN', False)
     username = request.session.get('USRNAME', False)
@@ -281,11 +257,13 @@ def search_formula(request):
         return render(request, "search2.html", {'contacts': contacts,'username': username,'email':email})
     else:
         return redirect("/door/")
+#点击VASP跳转的界面
 @csrf_exempt
 def vasp(request):
     username = request.session.get('USRNAME', False)
     email = request.session.get('EMAIL', False)
     slid=request.POST.get('slid')
+    #这里需要判定用户有没有输入服务器的用户名和密码
     servername=request.session.get('SERVERNAME',False)
     serverpassword=request.session.get('SERVERPASSWORD',False)
     if(servername==False or serverpassword==False):
@@ -298,6 +276,7 @@ def vasp(request):
     contacts = paginator.get_page(page)
     return render(request, "search3.html", {'contacts': contacts, 'username': username, 'email':email})
 @csrf_exempt
+#用户输入服务器的用户名和密码的界面
 def serverinput(request):
     if request.method == 'POST':
         form1 = LoginForm(request.POST)
@@ -329,7 +308,7 @@ def serverinput(request):
         context['form1'] = form1
         return render(request, 'serverinput.html', context)
 
-
+#高通量的选择物质界面，因为这块也是元素组成搜索，所以也是用pymongo写的
 @csrf_exempt
 def high_throughput(request):
     is_login = request.session.get('IS_LOGIN', False)
@@ -385,12 +364,14 @@ def high_throughput(request):
             return render(request, "high_throughput.html", {'username': username, 'email': email})
     else:
         return redirect("/door/")
+#用户选择完物质之后进入到4个输入文件编辑的跳转函数
 def readytovasp(request):
     username = request.session.get('USRNAME', False)
     email = request.session.get('EMAIL', False)
     slid = request.GET.get('slid')
     return render(request, "readytovaspnew.html",{'slid':slid,'username': username,'email':email})
 @csrf_exempt
+#VASP自动方式提交作业的代码
 def automatic(request):
     try:
     #获得了前台传过来的id
@@ -617,6 +598,7 @@ def automatic(request):
         #n=Poscar.from_file(t4)
         #print(n)
         #可以返回选项值了
+#用户手动提交4个输入文件进行VASP运算的代码，这个和自动的方式有还有地方没有同意，自动是完善的
 @csrf_exempt
 def manual(request):
     try:
@@ -702,10 +684,10 @@ def manual(request):
             e = e.encode()
             destination.write(e)
         destination.close()
+#任务运行界面，也是默认的界面
 @csrf_exempt
 def taskmanage(request):
-    print('进入到了运行界面'
-          )
+    print('进入到了运行界面')
     is_login = request.session.get('IS_LOGIN', False)
     if is_login:
         username = request.session.get('USRNAME', False)
@@ -799,6 +781,7 @@ def taskmanage(request):
             return render(request, 'taskmanage.html',{'username':username,'email':email})
     else:
         return redirect("/door/")
+#完成任务的界面
 @csrf_exempt
 def taskmanage_completed(request):
     print('进入到了完成界面'
@@ -886,6 +869,7 @@ def taskmanage_completed(request):
             return render(request, 'taskmanage.html',{'username':username,'email':email})
     else:
         return redirect("/door/")
+#用户退出登录的功能
 def logout(request):
     is_login = request.session.get('IS_LOGIN', False)
     if is_login:
@@ -913,6 +897,7 @@ def getFilename(materialid):
     count=getCount()
     filename='task-'+count+materialid
     return filename
+#材料具体信息
 def materialdetail(request):
     slid = request.GET.get('slid')
     print(slid)
@@ -922,6 +907,7 @@ def materialdetail(request):
     print('begin')
     print(contacts)
     return render(request, "structure.html", {'contacts': contacts})
+#her体系，目前还没有实际用处
 def her_data(request):
     is_login = request.session.get('IS_LOGIN', False)
     slid = request.GET.get('slid')
@@ -951,6 +937,7 @@ def her_data(request):
         return render(request, 'her_data.html', {'contacts': contacts,'username': username, 'email': email,'hidden':hidden,'id':id})
     else:
         return redirect("/door/")
+#机器学习SVC方法
 def svc(request):
     if request.method == 'POST':
         csv_file = request.FILES.get("files")
@@ -1063,6 +1050,7 @@ def svc(request):
         return render(request, "result.html")
     else:
         return render(request, "svc.html")
+#机器学习DTC方法
 def dtc(request):
     if request.method == 'POST':
         min_impurity_decrease = int(request.POST.get('min_impurity_decrease'))
@@ -1096,6 +1084,7 @@ def dtc(request):
         return render(request, "result1.html")
     else:
         return render(request, "dtc.html")
+#机器学习PCA方法
 def pca(request):
     if request.method == 'POST':
         #机器学习代码开始
@@ -1144,7 +1133,7 @@ def pca(request):
         return render(request, "result2.html")
     else:
         return render(request, "pca.html")
-
+#高通量选择物质之后的跳转模块
 def readytohigh_throughput(request):
     username = request.session.get('USRNAME', False)
     email = request.session.get('EMAIL', False)
@@ -1156,6 +1145,7 @@ def readytohigh_throughput(request):
             if i==',':
                 num=num+1
     return render(request, "readytohigh_throughput.html",{'num':num,'username': username,'email':email,'c':c})
+#高通量模块
 def high_throughput_go(request):
     if request.method == 'POST':
         slid = request.GET.get('c')
@@ -1355,6 +1345,7 @@ def high_throughput_go(request):
             e = e.encode()
             destination.write(e)
     destination.close()
+#网站教程模块
 def tutorials(request):
     is_login = request.session.get('IS_LOGIN', False)
     if is_login:
@@ -1363,6 +1354,7 @@ def tutorials(request):
         return render(request, 'maps.html',{'username': username,'email':email})
     else:
         return redirect("/door/")
+#提供VASP任务下载模块
 def downloads(request):
     is_login = request.session.get('IS_LOGIN', False)
     if is_login:
