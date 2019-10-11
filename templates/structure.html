@@ -310,104 +310,15 @@
             <div style="display: inline-block;width: 800px;">
 
                 <!--***** REPORT-1 *****-->
-                <table class="table">
-
-                    <thead>
-                    <tr>
-                        <th>material</th>
-                        <th>{{ contact.prettyformula }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>slid</td>
-                        <td>{{ contact.slid }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div style=" margin-top: 20px ;background: whitesmoke; padding-left: 100px;font-size: 13px;padding-left: 680px">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Material Details</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ contact.prettyformula }}</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Magnetic Ordering</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>FM</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Formation Energy</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>0.384</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Energy Above Hull</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>0.384</td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-                    {#                    <table class="table">#}
-                    {#                        <thead>#}
-                    {#                            <tr>#}
-                    {#                                <th>Density</th>#}
-                    {##}
-                    {#                            </tr>#}
-                    {#                        </thead>#}
-                    {#                        <tbody>#}
-                    {#                            <tr>#}
-                    {#                                <td>1.66</td>#}
-                    {##}
-                    {#                            </tr>#}
-                    {#                        </tbody>#}
-                    {#                    </table>#}
-
-
-                </div>
-            </div>
-
-            <div style="display: inline-block;width: 360px;margin-left: 50px;">
+                
+                <div style=" margin-top: 20px ; padding-left: 200px;font-size: 13px;padding-left: 580px">
+                       <div style="display: inline-block;width: 360px;margin-left: 50px;">
                 {#                <p>Lattice Parameters</p>#}
                 <table class="table">
 
                     <thead>
                     <tr>
-                        <th style="text-align: center">Lattice Parameters</th>
+                        <th style="text-align: center;font-size: 20px">Lattice Parameters</th>
 
                     </tr>
                     </thead>
@@ -463,19 +374,62 @@
                         </tbody>
                     </table>
 
-
-                </div>
-
-                </br>
-                </br>
-                <div style="background: whitesmoke">
-                    <table>
-                        <thead>
-                        <th style="font-size: 20px">volume</th>
-                        </thead>
+                    <table class="table">
+                        <div style="background: #b3d7ff">
+                          <th style="text-align: center;font-size: 20px">Volume</th>
+                        </div>
+                         <table class="table">
                         <td>{{ contact.structure.lattice.volume }}</td>
+                         </table>
                     </table>
                 </div>
+
+            </div>
+                    {#                    <table class="table">#}
+                    {#                        <thead>#}
+                    {#                            <tr>#}
+                    {#                                <th>Density</th>#}
+                    {##}
+                    {#                            </tr>#}
+                    {#                        </thead>#}
+                    {#                        <tbody>#}
+                    {#                            <tr>#}
+                    {#                                <td>1.66</td>#}
+                    {##}
+                    {#                            </tr>#}
+                    {#                        </tbody>#}
+                    {#                    </table>#}
+
+
+                </div>
+            </div>
+
+
+                {#                <p>Lattice Parameters</p>#}
+                <table class="table">
+
+                    <tr>
+                        <th style="background: #b3d7ff">Material Details</th>
+                        <th style="background: #b3d7ff">slid</th>
+                        <th style="background: #b3d7ff">Magnetic Ordering</th>
+                        <th style="background: #b3d7ff">Formation Energy</th>
+                        <th style="background: #b3d7ff">Energy about Hell</th>
+
+                        </tr>
+                            <tr><td>{{ contact.prettyformula }}</td>
+                            <td>{{ contact.slid }}</td>
+                            <td>FM</td>
+                            <td>0.384</td>
+                            <td>0.384</td></tr>
+
+                </table>
+
+
+
+
+                </div>
+
+
 
             </div>
             {#            <div class="test">#}
@@ -501,14 +455,7 @@
     <div class="tlinks">Collect from <a href="http://www.cssmoban.com/">企业网站模板</a></div>
 
     <!--***** REPORT-3 *****-->
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
+
 
 </div>
 </div>
