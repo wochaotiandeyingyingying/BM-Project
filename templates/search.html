@@ -36,8 +36,8 @@
     height: 5vmin;
     border-radius: 0.5vmin;
     border: 0.25vmin solid rgb(, 0, 0);
-    border-color:rgb(127, 215, 215);
-    color:rgb(127, 215, 215);
+    border-color:white;
+    color:white;
     background-color:white;
 }
 .btn2 {
@@ -390,7 +390,7 @@ a {
                 {% csrf_token %}
 
                 <div class="input-group mb-4">
-                    <input type="text"name="elements" class="form-control" id="txtShow" placeholder="CrLi"
+                    <input type="text"name="elements" class="form-control" id="txtShow" placeholder="CrLi" onkeyup="myKeyUp()"
                          onkeydown="document.getElementById('xxx').style.backgroundColor ='green';" >
                     <span class="input-group-btn">
                         <button class="btn btn-info" type="submit">Go!</button>
@@ -405,20 +405,20 @@ a {
 
                               <tr >
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="H" class="btn3">
+                                    onclick="add(this)" id="Button" value="H" class="btn3">
 
                                 </td>
                                 <td colspan="16"></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="He" class="btn3"
+                                    onclick="add(this)" id="Button" value="He" class="btn3"
                                      /></td>
                             </tr>
                             <tr>
 
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Li" class="btn3"onkeydown="myKeyDown(this)"/></td>
+                                    onclick="add(this)" id="Button" value="Li" class="btn3" onkeyup="myKeyUp(this)"/></td>
                                 <td style="padding: 0%;"><input type="button"
-                                    onclick="add(this)" id="Button1" value="Be" class="btn3"onkeydown="myKeyDown(this)"
+                                    onclick="add(this)" id="Button1" value="Be" class="btn3"
                                     /></td>
                                 <td colspan="10" rowspan="2"></td>
                                 <td style="padding: 0%;"><input type="button"
@@ -585,7 +585,7 @@ a {
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Ba" class="btn3"
                                      /></td>
-                                <td class="btn6"></td>
+                                <td class="btn6" style="text-align: center;">镧系</td>
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Hf" class="btn3"
                                     /></td>
@@ -639,7 +639,7 @@ a {
                                 <td style="padding: 0%;"><input type="button"
                                     onclick="add(this)" id="Button1" value="Ra" class="btn3"
                                      /></td>
-                                <td class="btn6"></td>
+                                <td class="btn6" style="text-align: center;">锕系</td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
                                     value="Rf" class="btn3" /></td>
                                 <td><input type="button" onclick="add(this)" id="Button1"
@@ -842,9 +842,14 @@ a {
 		}
 
         function myKeyDown(dow) {
-          $(dow).css("background","red");
-             $(dow).css("color","white");
+            document.getElementById("Button1").value+=dow.value+'-';
+
         }
+          function myKeyUp(arr){
+		    $(arr).background,"#95a5a6";
+		    $(arr).css("color","black");
+
+          }
     </script>
 
 
