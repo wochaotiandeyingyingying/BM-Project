@@ -873,13 +873,14 @@ def taskmanage_completed(request):
 def logout(request):
     is_login = request.session.get('IS_LOGIN', False)
     if is_login:
-
+        servername = request.session.get('SERVERNAME', False)
+        serverpassword = request.session.get('SERVERPASSWORD', False)
         del request.session['USRNAME']
-
         del request.session['EMAIL']
         del request.session['IS_LOGIN']
-        del request.session['SERVERNAME']
-        del request.session['SERVERPASSWORD']
+        if(servername!=False and serverpassword!=False):
+            del request.session['SERVERNAME']
+            del request.session['SERVERPASSWORD']
         return redirect("/login/")
     else:
         return redirect("/door/")
