@@ -1205,7 +1205,7 @@ def pearson(request):
             cfile.close()
         #代码融合结束
         #机器学习代码开始
-        df = pd.read_csv('resultnew.csv', header=[0,1],)
+        df = pd.read_csv('resultnew.csv', header=[0,1])
         df.corr()  # 计算pearson相关系数
         dfData = df.corr()
         plt.subplots(figsize=(26, 26))  # 设置画面大小
