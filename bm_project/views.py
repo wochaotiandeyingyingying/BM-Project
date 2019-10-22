@@ -45,6 +45,7 @@ import pandas as pd
 import numpy as np
 import csv
 
+
 import graphviz
 #用于返回主界面的方式
 def rehome(request):
@@ -663,21 +664,6 @@ def manual(request):
             incar = Incar.from_file('./testincar')
             materialid = request.POST['materialid']
             gotovasp(incar, kpoints, poscar, potcar,materialid,t5)
-            # ssh = paramiko.SSHClient()
-            # # 创建默认的白名单
-            # policy = paramiko.AutoAddPolicy()
-            # # 设置白名单
-            # ssh.set_missing_host_key_policy(policy)
-            # # 链接服务器
-            # ssh.connect(
-            #     hostname="172.26.18.243",  # 服务器的ip
-            #     port=22,  # 服务器的端口
-            #     username="gromacs",  # 服务器的用户名
-            #     password="gromacs"  # 用户名对应的密码
-            # )
-            # cmd = 'cd /gpfs/home/gromacs/123/ABCd ; dos2unix /gpfs/home/gromacs/123/ABCd/job ;bsub<job'
-            # ssh.exec_command(cmd)
-            #return redirect("home")
     except BaseException as e:
         with open('testlog', 'wb') as destination:
             e = str(e)
@@ -1041,10 +1027,8 @@ def svc(request):
             if plot_support:
                 ax.scatter(model.support_vectors_[:, 0], model.support_vectors_[:, 1], s=300, linewidths=1,
                            facecolors='none')
-
             ax.set_xlim(xlim)
             ax.set_ylim(ylim)
-
         plt.scatter(x[:, 0], x[:, 1], c=y, s=50, cmap='autumn')
         plot_svc(model)
         plt.savefig('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\static\\css\\picture\\comment.png')
@@ -1134,6 +1118,102 @@ def pca(request):
         return render(request, "result2.html")
     else:
         return render(request, "pca.html")
+
+def pearson(request):
+    if request.method == 'POST':
+        csv_file = request.FILES.get("files")
+        print(csv_file)
+        middle=pd.read_csv(csv_file)
+        middle.to_csv('middle.csv',index=False,encoding="UTF8")
+#代码融合开始
+        with open("middle.csv", "r", encoding="utf-8") as vsvfile:
+            reader = csv.reader(vsvfile)
+            rows = [row for row in reader]
+        # array1是元素的列名，array2是元素所在的列号,rows表示有多少行（算上了表头）一个元素会增加59个额外特征
+        array1 = []
+        array2 = []
+        print(len(rows))
+        for i in range(0, len(rows[0])):
+            if rows[0][i].startswith('element'):
+                array1.append(rows[0][i])
+                array2.append(i)
+        if len(array2) == 0:
+            middle = pd.read_csv(csv_file)
+            middle.to_csv('resultnew.csv', index=False, encoding="UTF8")
+        else:
+            num_feature_original = (len(rows[0]) - len(array1) - 3)
+            num_feature_change = num_feature_original + 59 * len(array1)
+            print(num_feature_original, num_feature_change)
+            # --------------------------------------------获得基本数据结束----------------------------------
+            # 读取数据表
+            aFile = open('middle.csv', 'r')
+            aInfo = csv.reader(aFile)
+            bfile = open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\elements.csv', 'r')
+            bInfo = csv.reader(bfile)
+            # 构造结果csv文件
+            cfile = open('result.csv', 'w', newline="")
+            abcsv = csv.writer(cfile, dialect='excel')
+            a = list()
+            # c做一个备份
+            c = a
+            b = list()
+            for info in aInfo:
+                a.append(info)
+            for info in bInfo:
+                b.append(info)
+            # 将elements表格去掉前两列
+            b = list(map(lambda x: x[2:], b))
+            for index in range(len(a)):
+                for i in range(len(array1)):
+                    if index == 0:
+                        c[index].extend(b[index])
+                    else:
+                        c[index].extend(b[int(a[index][array2[i]])])
+                abcsv.writerow(c[index])
+            # ---------------------------------------------拼接完成-------------------------------------
+            # --------------------------------对拼接完的表格进行完善------------------------------------
+            resultnum = list()
+            aFile = open('result.csv', 'r')
+            aInfo = csv.reader(aFile)
+            for info in aInfo:
+                resultnum.append(info)
+            print('aaaaa')
+            cfile = open('resultnew.csv', 'w', newline="")
+            colname1 = []
+            colname2 = []
+            print('lalalalala')
+            print(num_feature_original,num_feature_change)
+            for i in range(num_feature_original, num_feature_change):
+                colname1.append('a' + str(i + 1))
+            for i in range(num_feature_original):
+                colname2.append('a' + str(i + 1))
+            print(colname1)
+            print(colname2)
+            colname = ['NO', 'Class', 'Target'] + colname2 + colname1
+            print(colname)
+            abcsv = csv.writer(cfile, dialect='excel')
+            for index in range(0, len(resultnum)):
+                print(index)
+                if index == 0:
+                    resultnum[index] = (colname)
+                else:
+                    num = array2[1] - 1
+                    for i in array2:
+                        del resultnum[index][num]
+                        # resultnum[index]=resultnum[index].remove(resultnum[index][num])
+                abcsv.writerow(resultnum[index])
+            cfile.close()
+        #代码融合结束
+        #机器学习代码开始
+        df = pd.read_csv('resultnew.csv')
+        df.corr()  # 计算pearson相关系数
+        dfData = df.corr()
+        plt.subplots(figsize=(26, 26))  # 设置画面大小
+        sns.heatmap(dfData, annot=True, vmax=1, square=True, cmap="Blues")
+        plt.savefig('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\static\\css\\picture\\comment3.png')
+        return render(request, "result3.html")
+    else:
+        return render(request, "pearson.html")
 #高通量选择物质之后的跳转模块
 def readytohigh_throughput(request):
     username = request.session.get('USRNAME', False)
@@ -1248,8 +1328,6 @@ def high_throughput_go(request):
                 destination.write(jobscript)
                 destination.close()
             return count
-
-
         if request.method == "POST":
             potcarop = request.POST["Potcar"]
             incar = request.POST["Level"]
@@ -1318,9 +1396,7 @@ def high_throughput_go(request):
                     cmd3='cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/task-28sl-0;python test2.py'
                     cmd4='cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/task-28sl-0;export PATH=$PATH:/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_SERVERDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/etc;LSF_LIBDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/lib;export LSF_VERSION=10.0;export LSF_BINDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_ENVDIR=/gpfs/lsf/conf;bsub<job'
                     cmd5='cd '+address+';export PATH=$PATH:/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_SERVERDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/etc;LSF_LIBDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/lib;export LSF_VERSION=10.0;export LSF_BINDIR=/gpfs/lsf/10.1/linux3.10-glibc2.17-x86_64/bin;export LSF_ENVDIR=/gpfs/lsf/conf;bsub<job'
-
                     ssh.exec_command(cmd5)
-
                     #服务器操作
                     # ssh = paramiko.SSHClient()
                     # # 创建默认的白名单
@@ -1336,7 +1412,6 @@ def high_throughput_go(request):
                     # )
                     # cmd = 'cd /gpfs/home/gromacs/123/ABCd ;dos2unix /gpfs/home/gromacs/123/ABCd/job ; bsub<job'
                     # ssh.exec_command(cmd)
-
                 else:
                     print('失败')
             return redirect("home")
