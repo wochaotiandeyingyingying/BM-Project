@@ -833,8 +833,10 @@ a {
 		{
 		    console.log('aaaaaaa')
 			document.getElementById("VaspShow").value+=obj+',';
+		    document.getElementById("select").setAttribute("disabled", true);
 		}
-		   $(document).ready(function(){
+
+		$(document).ready(function(){
      $("#xiaoxiaobonew").click(function(){
      $.ajax({
          url:"/high_throughput/",
@@ -859,7 +861,7 @@ a {
 //var tr;
                  console.log('wochaotiandeyingyingying')
                  console.log("add2('+'\''+value.slid+'\''+')")
-        tr ='<tr><td >aaa'  +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.elements + '</td>' + '<td  onclick="add2(\''+value.slid+'\')">select</td>';
+        tr ='<tr><td >aaa'  +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.elements + '</td>' + '<td><input  value="Seclect"  type="submit" id="select" mouseup="dd"  onclick="add2(\''+value.slid+'\')"></td>';
             tbody.append(tr);})
              $('#jieguo').append(tbody);
         },
@@ -878,6 +880,25 @@ a {
 		   function myKeyDown(dow) {
           $(dow).css("background","red");
              $(dow).css("color","white");
+        }
+
+        function dd(){
+//提交操作
+        var select = document.getElementById("#select")
+        select.disabled=true
+        c(60)
+        }
+        function c(i){
+        var select = document.getElementById("#select")
+        i--;
+        if(i==0){
+        select.value = "Select"
+        select.disabled=false
+        }
+        else{
+        select.value = "等待("+i+")秒后可以重新操作"
+        setTimeout("c("+i+")",1000000000000000000000000000)
+        }
         }
 </script>
 	<script type="text/javascript" src="{% static "js/jquery-3.3.1.js"%}"></script>

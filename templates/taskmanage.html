@@ -465,13 +465,13 @@
             var tbody=$('<tbody ></tbody>');
              $.each($.parseJSON(data),function(n,value){
         var tr = $('<tr></tr>');
-        console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>')
-        tr.append('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td onclick="window.location=\'gotovasp?taskid=value.taskid\';" onclick="add2('+'\''+value.slid+'\''+')">download</td>');
-
-
-                 tbody.append(tr);})
-             console.log(tbody)
-             $('#jieguo tbody').html(tbody)
+        var it;
+        //console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>')
+        it='<tr><td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td onclick="window.location=\'gotovasp?taskid=value.taskid\';" onclick="add2('+'\''+value.slid+'\''+')">download</td><br></tr>';
+                 tbody.append(it);
+                 })
+             console.log(tbody+"\n")
+             $('#jieguo tbody').append('<tr>'+it+'</tr>')
              console.log('感觉加进去了')
 
         },
@@ -493,11 +493,9 @@
        var tr;
 
         $.each($.parseJSON(data),function(n,value){
-  console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>')
+  console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>'+"\n")
    var a='downloads?taskid= '+value.taskid+';'
    tr='<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  ><input  value="Downloads"  type="submit" onclick="window.location=\'downloads?taskid='+value.taskid+'\';"></td>';
-
-
             tbody.append(tr);})
         console.log(tbody)
         $('#jieguo ').append(tbody);
