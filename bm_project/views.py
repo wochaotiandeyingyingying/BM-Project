@@ -44,8 +44,6 @@ from sklearn.decomposition import PCA
 import pandas as pd
 import numpy as np
 import csv
-
-
 import graphviz
 #用于返回主界面的方式
 def rehome(request):
@@ -269,7 +267,6 @@ def vasp(request):
     serverpassword=request.session.get('SERVERPASSWORD',False)
     if(servername==False or serverpassword==False):
         return redirect("/serverinput/")
-
     contact_list = Material.matobj.filter(slid=slid)
     print(contact_list)
     paginator = Paginator(contact_list, 10)
@@ -399,6 +396,8 @@ def automatic(request):
                 lines = file_object.readlines()  # 创建一个包含文件各行内容的列表
                 potcarline = lines[5]  # 得到了poscar的有关potcar的序列
             num = potcarline.count(' ') + 1  # 获得空格数量，方便之后的分解
+            print('检查potcar的内容开始')
+            print(num)
             a0 = ''
             a1 = ''
             a2 = ''
@@ -412,9 +411,13 @@ def automatic(request):
                 num = num - 1
                 if num != 0:
                     potcarline = potcarline.split(' ', 1)[1]
+            print('a的值')
+            print(a0,a1,a2,a3,a4,a5)
+            print(b[0],b[1],b[2],b[3],b[4],b[5])
             ofile = open('temp-test', 'w')
             for i in range(0, 6):
                 if len(b[i]) != 0:
+                    print('B[i]的值')
                     print(b[i])
                     if potcarop=='pwe':
                         for txt in open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\potcar-first\\POTCAR-' + b[i], 'r'):
@@ -452,6 +455,7 @@ def automatic(request):
             collection = mydb.material
             contact_list = collection.find_one({"slid":materialid}, {'prettyformula': 1})
             filename = 'task-' + str(count) + '-'+materialid+ '-'+contact_list['prettyformula']
+            print('文件名如下')
             print(filename)
             #文件名结束
             #获得路径
@@ -590,12 +594,6 @@ def automatic(request):
             e = e.encode()
             destination.write(e)
         destination.close()
-
-
-
-
-
-
         #n=Poscar.from_file(t4)
         #print(n)
         #可以返回选项值了
@@ -621,13 +619,11 @@ def manual(request):
             #编号结束
             #获得文件名
             print(materialid)
-
             filename = 'task-' + str(count) + materialid
             print(filename)
             #文件名结束
             #获得路径
             username = request.session.get('USRNAME', False)
-
             address = './User/' + username + '/'+filename
             #获得路径结束
             print(address)
@@ -1205,7 +1201,7 @@ def pearson(request):
             cfile.close()
         #代码融合结束
         #机器学习代码开始
-        df = pd.read_csv('resultnew.csv', header=[0,1])
+        df = pd.read_csv('resultnew.csv', header=[0,1,2])
         df.corr()  # 计算pearson相关系数
         dfData = df.corr()
         plt.subplots(figsize=(26, 26))  # 设置画面大小
@@ -1227,6 +1223,7 @@ def readytohigh_throughput(request):
                 num=num+1
     return render(request, "readytohigh_throughput.html",{'num':num,'username': username,'email':email,'c':c})
 #高通量模块
+@csrf_exempt
 def high_throughput_go(request):
     if request.method == 'POST':
         slid = request.GET.get('c')
@@ -1412,6 +1409,7 @@ def high_throughput_go(request):
                     # )
                     # cmd = 'cd /gpfs/home/gromacs/123/ABCd ;dos2unix /gpfs/home/gromacs/123/ABCd/job ; bsub<job'
                     # ssh.exec_command(cmd)
+                    print('陈国了')
                 else:
                     print('失败')
             return redirect("home")
@@ -1461,6 +1459,7 @@ def downloads(request):
                 filename=array[i]
         tarfilename=taskid+'.tar.gz'
         d = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/;'+'tar -cvzf   '+tarfilename+' '+filename
+
         stdin, stdout, stderr = ssh.exec_command(d)
         #file=刚才压缩的文件名
         socket.setdefaulttimeout(20)

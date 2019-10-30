@@ -495,7 +495,7 @@
         $.each($.parseJSON(data),function(n,value){
   console.log('<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  onclick="add2('+'\''+value.slid+'\''+')">select</td>'+"\n")
    var a='downloads?taskid= '+value.taskid+';'
-   tr='<td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  ><input  value="Downloads"  type="submit" onclick="window.location=\'downloads?taskid='+value.taskid+'\';"></td>';
+   tr='<tr><td >'+ value.taskid +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.size + '</td>'+'<td >-'  +'</td>'+'<td >-'  +'</td>'   + '<td  ><input  value="Downloads"  type="submit" onclick="window.location=\'downloads?taskid='+value.taskid+'\';"></td></tr>';
             tbody.append(tr);})
         console.log(tbody)
         $('#jieguo ').append(tbody);

@@ -828,12 +828,12 @@ a {
         }
 
 
-		function add2(obj)
+		function add2(obj1,obj2)
 
 		{
 		    console.log('aaaaaaa')
-			document.getElementById("VaspShow").value+=obj+',';
-		    document.getElementById("select").setAttribute("disabled", true);
+			document.getElementById("VaspShow").value+=obj1+',';
+		    document.getElementById(obj2).setAttribute("disabled", true);
 		}
 
 		$(document).ready(function(){
@@ -846,6 +846,7 @@ a {
 
          },
         success:function(data){
+              $("#jieguo tbody").html("");
              console.log('aaaaa')
              console.log(data)
              var obj=eval(data.list);
@@ -854,14 +855,17 @@ a {
             var tbody=$('<tbody ></tbody>'); 
             //$(data).each(function (index)
            var tr;
+           var i =1
              $.each($.parseJSON(data),function(n,value){
+                 i=i+1
+                 var temp = i.toString();
             //var val = data[index];
             console.log('cccc')
              console.log(value)
 //var tr;
                  console.log('wochaotiandeyingyingying')
                  console.log("add2('+'\''+value.slid+'\''+')")
-        tr ='<tr><td >aaa'  +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.elements + '</td>' + '<td><input  value="Seclect"  type="submit" id="select" mouseup="dd"  onclick="add2(\''+value.slid+'\')"></td>';
+        tr ='<tr><td >aaa'  +'</td>' + '<td >' + value.slid + '</td>' + '<td >' + value.prettyformula + '</td>' + '<td >' + value.elements + '</td>' + '<td><input  value="Seclect"  type="submit" id="select'+temp+'\"'+' mouseup="dd"  onclick="add2(\''+value.slid+'\''+',\'select'+temp+'\''+')"></td>';
             tbody.append(tr);})
              $('#jieguo').append(tbody);
         },
