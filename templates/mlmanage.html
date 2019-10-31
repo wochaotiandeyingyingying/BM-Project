@@ -1,4 +1,5 @@
 {% load  staticfiles %}
+
 <!DOCTYPE html>
 <html>
 
@@ -13,16 +14,137 @@
     <title>Data-Driven Material Platform </title>
     <link rel="shortcut icon" href="{% static "img/smalltest1.png"%}">
 
+
     <!-- global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
     <link rel="stylesheet" href="{% static "font-awesome-4.7.0/css/font-awesome.min.css"%}">
     <link rel="stylesheet" href="{% static "css/font-icon-style.css"%}">
     <link rel="stylesheet" href="{% static "css/style.default.css"%}" id="{% static "theme-stylesheet"%}">
+      <style type="text/css" media="screen">
+        .btnn {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color:rgb(127, 215, 215);
+    color:rgb(127, 215, 215);
+    background-color:white;
+}
+.btn1 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 0.5vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color:white;
+    color:white;
+    background-color:white;
+}
+.btn2 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 0.5vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color:rgb(127, 215,175);
+    color:rgb(127, 215, 215);
+    background-color:white;
+}
+.btn3 {
+    width: 7vmin;
+    height: 7vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color: lightgoldenrodyellow;
+    color:ghostwhite;
+    background-color:rgb(125,215,214);
+    opacity: 1 ;
+    transition: opacity 3s;
+    -webkit-transition: opacity 3s;
+    font-size: 22px;
+}
+.btn4 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color: rgb(127, 215, 215);
+    color: rgb(127, 215, 215);
+    background-color:white;
+}
+.btn5 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color: #009688;
+    color: #009688;
+    background-color:white;
+}
+.btn6 {
+    width: 7vmin;
+    height: 7vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color: #607D8B;
+    color: #607D8B;
+    background-color: white;
+}
+.btn7 {
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    border: 0.25vmin solid rgb(, 0, 0);
+    border-color: rgb(127, 215, 215);
+    color: rgb(127, 215, 215);
+    background-color: white;
+}
+.btn2:hover {
+    color: black;
+    background: yellow;
+    opacity: 0.5;
+}
+.btn3:hover {
+    color: black;
+    background: rgb(255,193,193);
+    opacity: 0.8;
+    width: 7vmin;
+    height: 7vmin;
+    border-radius: 1vmin;
+    transform: scale(1.5,1.5);
+}
+a:active {
+	color: white;
+}
 
-    <!-- Core stylesheets -->
-    <link rel="stylesheet" href="{% static "css/ui-elements/card.css"%}">
-    <link rel="stylesheet" href="{% static "css/style.css"%}">
+#navigation a:hover,
+h2 a:hover,
+a {
+	text-decoration: none;
+	color: #ff8215;
+}
+.btnn:hover {
+    color: black;
+    background: g;
+    opacity: 0.5;
+}
+
+.btn7:focus {
+　　color: black;
+
+    opacity: 0.6;
+    width: 5vmin;
+    height: 5vmin;
+    border-radius: 1vmin;
+    }
+
+
+        .btn-secondary {
+    color: #fff;
+    background-color: #009688;
+    border-color: #009688;
+}
+
+    </style>
 </head>
 
 <body>
@@ -41,16 +163,16 @@
             <div class="container-fluid ">
                 <div class="navbar-holder d-flex align-items-center justify-content-between">
                     <div class="navbar-header">
-                        <a href="../home" class="navbar-brand">
-                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="{% static "Logo"%}" class="img-fluid"></div>
-                            <div class="brand-text brand-small"><img src="{% static "img/smalltest123.png"%}" alt="Logo" class="img-fluid"></div>
+                        <a href="index.html" class="navbar-brand">
+                            <div class="brand-text brand-big hidden-lg-down"><img src="{% static "img/logotest41.png"%}" alt="Logo" class="img-fluid"></div>
+                            <div class="brand-text brand-small"><img src="{% static "img/smalltest123"%}" alt="Logo" class="img-fluid"></div>
                         </a>
 
                     </div>
                 </div>
                 <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                     <!-- Expand-->
-                    <li class="nav-item d-flex align-items-center full_scr_exp"><a class="nav-link" href="#"><img src="{% static "img/expand.png"%}" onclick="toggleFullScreen(document.body)" class="img-fluid" alt=""></a></li>
+                    <li class="nav-item d-flex align-items-center full_scr_exp"><a class="nav-link" href="#"><img src="{% static "img/expand.png"%}"  onclick="toggleFullScreen(document.body)" class="img-fluid" alt=""></a></li>
                     <!-- Search-->
                     <li class="nav-item d-flex align-items-center"><a id="search" class="nav-link" href="#"><i class="icon-search"></i></a></li>
                     <!-- Notifications-->
@@ -76,14 +198,7 @@
                             <li>
                                 <a rel="nofollow" href="/taskmanage/" class="dropdown-item">
                                     <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-user "></i>VASP Task</div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a rel="nofollow" href="/mlmanage/" class="dropdown-item">
-                                    <div class="notification">
-                                        <div class="notification-content"><i class="fa fa-envelope-o"></i>Machine-Learning Task</div>
+                                        <div class="notification-content"><i class="fa fa-user "></i>My Task</div>
                                     </div>
                                 </a>
                             </li>
@@ -157,7 +272,7 @@
                                         </li>
                                         <li class="border border-primary">
                                             <a rel="nofollow" href="#" class=" d-flex">
-                                                <div class="news-f-img"> <img src="{% static "img/person.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
+                                                <div class="news-f-img"> <img src="{% static "img/avatar-1.jpg"%}" alt="..." class="img-fluid rounded-circle"></div>
                                                 <div class="msg-body">
                                                     <h6 class="h5 msg-nav-h6">Low cost Modern printer</h6>
                                                     <small>A dot matrix printer modified at...</small>
@@ -213,7 +328,7 @@
                 </ul>
             </div>
         </nav>
-    </header>    <!-------标题头-----!>
+    </header>
 
 <!--====================================================
                         PAGE CONTENT
@@ -229,28 +344,25 @@
             <hr>
             <!-- Sidebar Navidation Menus-->
             <ul class="list-unstyled">
-                <li class="active"> <a href=""><i class="icon-home"></i>Home</a></li>
+                <li class="active"> <a href="/rehome"><i class="icon-home"></i>Home</a></li>
                 <li > <a href="../vasp"><i class="fa fa-globe"></i>VASP</a></li>
-                <li > <a href="../high_throughput"><i class="fa fa-globe"></i>High-Throughput</a></li>
+
                 <li><a href="#apps" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Search </a>
                     <ul id="apps" class="collapse list-unstyled">
-                        <li><a href="../searchall_elements">by Elements</a></li>
-                        <li><a href="../searchall_formula">by Formula</a></li>
-                        <li><a href="../searchall_ids">by IDs</a></li>
+                        <li><a href="/searchall_elements">by Elements</a></li>
+                        <li><a href="/searchall_formula">by Formula</a></li>
+                        <li><a href="/searchall_ids">by IDs</a></li>
+
                     </ul>
                 </li>
-                <li> <a href= "../chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
-                <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Machine learning </a>
+                <li> <a href= "/chart"> <i class="fa fa-bar-chart"></i>Chart </a></li>
+                <li><a href="#forms" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-building-o"></i>Data Analysis </a>
                     <ul id="forms" class="collapse list-unstyled">
                         <li><a href="basic-form.html">Basic Analysis</a></li>
-                        <li><a href="../her_data">HER</a></li>
-                        <li><a href="../svc">Support Vector Classify</a></li>
-                        <li><a href="../dtc">Decision Trees Classify</a></li>
-                        <li><a href="../pca">Principal Component Analysis</a></li>
-                        <li><a href="../pearson">Pearson correlation</a></li>
+                        <li><a href="form-layouts.html">Experiment Analysis</a></li>
                     </ul>
                 </li>
-                <li> <a href="../tutorials"> <i class="fa fa-map-o"></i>Tutorials </a></li>
+                <li> <a href="maps.html"> <i class="fa fa-map-o"></i>Tutorials </a></li>
                 <li><a href="#pages" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file-o"></i>Documentation </a>
                     <ul id="pages" class="collapse list-unstyled">
                         <li><a href="faq.html">FAQ</a></li>
@@ -260,7 +372,8 @@
                         <li><a href="register.html">Register</a></li>
                         <li><a href="search-result.html">Search Result</a></li>
                         <li><a href="404.html">404</a></li>
-                        <li><a href="../introduction">introduction</a></li>
+
+                    </ul>
                 </li>
             </ul>
             <ul class="list-unstyled">
@@ -268,85 +381,56 @@
             </ul>
         </nav>
 
-        <div class="content-inner">
 
-            <!--***** REPORT-1 *****-->
-            <div class="row" id="report1">
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  text-align:center; padding-top:50px;">
+        <div class="content-inner chart-cont">
 
-                            <img src="{% static "img/composition and structure.jpg"%}"   >
-
-                            <p><small>composition and structure</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  margin-top:0px;margin-left:28px; padding-top:50px;">
-                            <img src="{% static "img/thermodynamic stability.jpg"%}">
-                            <p style="margin-left:17px;"><small>thermodynamic stability</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block" style="  margin-left:32px; padding-top:50px;">
-                            <img src="{% static "img/electronic structure.jpg"%}">
-                            <p style="margin-left:27px;"><small>electronic structure</small></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="card">
-                        <div class="card-block">
-                            <div class="card-block" style="  margin-left:28px;  margin-bottom:14px;padding-top:53px;">
-                                <img src="{% static "img/macroscopic property.png"%}">
+            <!--***** CONTENT *****-->
 
 
-                            </div>
-                            <p style="margin-left:50px;margin-top:0px;"><small>macroscopic property</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="table-responsive">
+            <table class="table table-hover">
+                  <thead>
+                    <tr class="bg-info text-white">
+                      <th>#</th>
+                      <th>Start-Time</th>
+                      <th>End-Time</th>
+                      <th>Task-Name</th>
+                        <th>Detail</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                          <th scope="row">{{ contact.num }}</th>
+                          <td >{{ contact.starttime }}</td>
+                          <td>{{ contact.endtime }}</td>
+                          <td>{{ contact.task_name }}</td>
+                          <td><input  value="detail"  type="submit" onclick="window.location='ready_topredict?task_name={{contact.task_name }}';"></td>                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-            <!--***** REPORT-2 *****-->
-            <div class="row" id="report2">
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Artificial Neural Network.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Artificial Neural Network</h4>
+    </div>
+        <div>
+    <ul class="pager">
+        {% if contacts.has_previous %}
+            {{ elements }}
 
-                        </div>
+            <li><a href="?page=1&elements={{ elements }}">&laquo; first</a></li>
+            <li><a href="?page={{ contacts.previous_page_number }}&elements={{ elements }}">previous</a></li>
+        {% endif %}
 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Linear Regression.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Linear Regression</h4>
+        <span class="current">
+            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+        </span>
 
-                        </div>
+        {% if contacts.has_next %}
 
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card card-c1">
-                        <img src="{% static "img/Support Vector Machine.jpg"%}">
-                        <div class="card-content">
-                            <h4 class="title">Support Vector Machine</h4>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
-
-            <!--***** REPORT-3 *****-->
+             <li><a href="?page={{ contacts.next_page_number }}&elements={{ elements }}">next</a></li>
+             <li><a href="?page={{ contacts.paginator.num_pages }}&elements={{ elements }}">last &raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
             </br><
             </br>
             </br>
@@ -370,7 +454,62 @@
     <script src="{% static "js/front.js"%}"></script>
 
     <!--Core Javascript -->
-    <script src="{% static "js/mychart.js"%}"></script>
+    <script>
+        new Chart(document.getElementById("myChart4").getContext('2d'), {
+          type: 'doughnut',
+          data: {
+            labels: ["M", "T", "W", "T", "F", "S", "S"],
+            datasets: [{
+              backgroundColor: [
+                "#95a5a6",
+                "#95a5a6",
+                "#95a5a6",
+                "#95a5a6",
+                "#95a5a6",
+                "#95a5a6",
+                "#95a5a6"
+              ],
+              data: [12, 19, 3, 17, 28, 24, 7]
+            }]
+          },
+          options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: ''
+               }
+            }
+        });
+    </script>
 </body>
+<script type="text/javascript" >
+		function add(obj)
+		{document.getElementById("txtShow").value+=obj.value+'-';
+		$(obj).css("background","#EEE685");
+		$(obj).css("color","black");
+
+
+		}
+		function search() {
+			var val = $("#txtshow").value
+			var type = $("#slList").value
+			var url = "http://localhost:8080/search/searchid="+val + "/type="+type
+			htmlobj=$.ajax({url:"http://localhost:8080/search/searchid="+val,async:false});
+			$("#myDiv").html(htmlobj.responseText);
+		}
+
+        function myKeyDown(dow) {
+            document.getElementById("Button1").value+=dow.value+'-';
+
+        }
+          function myKeyUp(arr){
+		    $(arr).background,"#95a5a6";
+		    $(arr).css("color","black");
+
+          }
+    </script>
+
+
+	<script type="text/javascript" src="{% static "js/jquery-3.3.1.js"%}"></script>
 
 </html>

@@ -57,6 +57,10 @@ urlpatterns = [
     path('introduction/', views.introduction),
     path('taskmanage_completed/',views.taskmanage_completed),
     path('taskmanage/downloads/', views.downloads),
+    path('mlmanage/', views.mlmanage),
+    path('mlmanage/ready_topredict', views.ready_topredict),
+    path('mlmanage/predict', views.predict),
+    path('predict/', views.predict),
 
 
 

@@ -44,7 +44,9 @@ from sklearn.decomposition import PCA
 import pandas as pd
 import numpy as np
 import csv
-import graphviz
+import joblib
+import datetime
+from pandas import DataFrame
 #用于返回主界面的方式
 def rehome(request):
     username = request.session.get('USRNAME', False)
@@ -123,8 +125,10 @@ def signup(request):
             request.session['IS_LOGIN'] = True
             request.session['USRNAME'] = username
             request.session['EMAIL'] = email
-            address='./User/'+username
-            os.mkdir(address)
+            address1='./User/'+username
+            address2 = './User/' + username+'-ml'
+            os.mkdir(address1)
+            os.mkdir(address2)
             print('创建成功')
             return redirect("home")
     else:
@@ -921,10 +925,14 @@ def her_data(request):
     else:
         return redirect("/door/")
 #机器学习SVC方法
+@csrf_exempt
 def svc(request):
     if request.method == 'POST':
-        csv_file = request.FILES.get("files")
-        print(csv_file)
+        time1 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+        username = request.session.get('USRNAME', False)
+        csv_file = request.FILES.get("file")
+        task_name=request.POST.get('task_name')
+        print(task_name)
         c = float(request.POST.get('C'))
         degree = float(request.POST.get('degree'))
         gamma = float(request.POST.get('gamma'))
@@ -932,6 +940,7 @@ def svc(request):
         max_itera = float(request.POST.get('max_iter'))
         middle=pd.read_csv(csv_file)
         middle.to_csv('middle.csv',index=False,encoding="UTF8")
+        print('成功了吗')
 #代码融合开始
         with open("middle.csv", "r", encoding="utf-8") as vsvfile:
             reader = csv.reader(vsvfile)
@@ -944,91 +953,106 @@ def svc(request):
             if rows[0][i].startswith('element'):
                 array1.append(rows[0][i])
                 array2.append(i)
-        num_feature_original = (len(rows[0]) - len(array1) - 3)
-        num_feature_change = num_feature_original + 59 * len(array1)
-        print(num_feature_original, num_feature_change)
-        # --------------------------------------------获得基本数据结束----------------------------------
-        # 读取数据表
-        aFile = open('middle.csv', 'r')
-        aInfo = csv.reader(aFile)
-        bfile = open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\elements.csv', 'r')
-        bInfo = csv.reader(bfile)
-        # 构造结果csv文件
-        cfile = open('result.csv', 'w', newline="")
-        abcsv = csv.writer(cfile, dialect='excel')
-        a = list()
-        # c做一个备份
-        c = a
-        b = list()
-        for info in aInfo:
-            a.append(info)
-        for info in bInfo:
-            b.append(info)
-        # 将elements表格去掉前两列
-        b = list(map(lambda x: x[2:], b))
-        for index in range(len(a)):
-            for i in range(len(array1)):
+        if len(array2) == 0:
+            middle.to_csv('resultnew.csv', index=False, encoding="UTF8")
+        else:
+            num_feature_original = (len(rows[0]) - len(array1) - 3)
+            num_feature_change = num_feature_original + 59 * len(array1)
+            print(num_feature_original, num_feature_change)
+            # --------------------------------------------获得基本数据结束----------------------------------
+            # 读取数据表
+            aFile = open('middle.csv', 'r')
+            aInfo = csv.reader(aFile)
+            bfile = open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\elements.csv', 'r')
+            bInfo = csv.reader(bfile)
+            # 构造结果csv文件
+            cfile = open('result.csv', 'w', newline="")
+            abcsv = csv.writer(cfile, dialect='excel')
+            a = list()
+            # c做一个备份
+            c = a
+            b = list()
+            for info in aInfo:
+                a.append(info)
+            for info in bInfo:
+                b.append(info)
+            # 将elements表格去掉前两列
+            b = list(map(lambda x: x[2:], b))
+            for index in range(len(a)):
+                for i in range(len(array1)):
+                    if index == 0:
+                        c[index].extend(b[index])
+                    else:
+                        c[index].extend(b[int(a[index][array2[i]])])
+                abcsv.writerow(c[index])
+            # ---------------------------------------------拼接完成-------------------------------------
+            # --------------------------------对拼接完的表格进行完善------------------------------------
+            resultnum = list()
+            aFile = open('result.csv', 'r')
+            aInfo = csv.reader(aFile)
+            for info in aInfo:
+                resultnum.append(info)
+            print('aaaaa')
+            cfile = open('resultnew.csv', 'w', newline="")
+            colname1 = []
+            colname2 = []
+            for i in range(num_feature_original, num_feature_change):
+                colname1.append('a' + str(i + 1))
+            for i in range(num_feature_original):
+                colname2.append('a' + str(i + 1))
+            colname = ['NO', 'Class', 'Target'] + colname2 + colname1
+            print(colname)
+            abcsv = csv.writer(cfile, dialect='excel')
+            for index in range(0, len(resultnum)):
+                print(index)
                 if index == 0:
-                    c[index].extend(b[index])
+                    resultnum[index] = (colname)
                 else:
-                    c[index].extend(b[int(a[index][array2[i]])])
-            abcsv.writerow(c[index])
-        # ---------------------------------------------拼接完成-------------------------------------
-        # --------------------------------对拼接完的表格进行完善------------------------------------
-        resultnum = list()
-        aFile = open('result.csv', 'r')
-        aInfo = csv.reader(aFile)
-        for info in aInfo:
-            resultnum.append(info)
-        print('aaaaa')
-        cfile = open('resultnew.csv', 'w', newline="")
-        colname1 = []
-        colname2 = []
-        for i in range(num_feature_original, num_feature_change):
-            colname1.append('a' + str(i + 1))
-        for i in range(num_feature_original):
-            colname2.append('a' + str(i + 1))
-        colname = ['NO', 'Class', 'Target'] + colname2 + colname1
-        print(colname)
-        abcsv = csv.writer(cfile, dialect='excel')
-        for index in range(0, len(resultnum)):
-            print(index)
-            if index == 0:
-                resultnum[index] = (colname)
-            else:
-                num = array2[1] - 1
-                for i in array2:
-                    del resultnum[index][num]
-                    # resultnum[index]=resultnum[index].remove(resultnum[index][num])
-            abcsv.writerow(resultnum[index])
-        cfile.close()
+                    num = array2[1] - 1
+                    for i in array2:
+                        del resultnum[index][num]
+                        # resultnum[index]=resultnum[index].remove(resultnum[index][num])
+                abcsv.writerow(resultnum[index])
+            cfile.close()
         #代码融合结束
 
         #机器学习代码开始
-        x, y = make_circles(200, factor=.1, noise=.2)
+        df = pd.read_csv(r'resultnew.csv', index_col=0)
+        columns = df.columns.values.tolist()
+        col_target = []
+        col_Class = []
+        col_feature = []
+        for i in columns:
+            if i == 'Class':
+                col_Class.append(i)
+            else:
+                if i == 'Target':
+                    col_target.append(i)
+                else:
+                    col_feature.append(i)
+        df_target = df[col_target]
+        df_feature = df[col_feature]
         # model = SVC(kernel='linear')#线性可分
         model = SVC(kernel='rbf', C=c, gamma=gamma, degree=degree, coef0=coef0, max_iter=max_itera)
-        model.fit(x, y)
-        def plot_svc(model, ax=None, plot_support=True):
-            if ax is None:
-                ax = plt.gca()
-            xlim = ax.get_xlim()
-            ylim = ax.get_ylim()
-            x = np.linspace(xlim[0], xlim[1], 30)
-            y = np.linspace(ylim[0], ylim[1], 30)
-            Y, X = np.meshgrid(y, x)
-            xy = np.vstack([X.ravel(), Y.ravel()]).T
-            p = model.decision_function(xy).reshape(X.shape)
-            ax.contour(X, Y, p, colors='k', levels=[-1, 0, 1], alpha=0.5, linestyles=['--', '-', '--'])
-            if plot_support:
-                ax.scatter(model.support_vectors_[:, 0], model.support_vectors_[:, 1], s=300, linewidths=1,
-                           facecolors='none')
-            ax.set_xlim(xlim)
-            ax.set_ylim(ylim)
-        plt.scatter(x[:, 0], x[:, 1], c=y, s=50, cmap='autumn')
-        plot_svc(model)
-        plt.savefig('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\static\\css\\picture\\comment.png')
-        return render(request, "result.html")
+        model.fit(df_feature.astype(int), df_target.astype(int))
+        address = './User/'+username+'-ml/'+task_name
+        os.mkdir(address)
+        modelname='./User/'+username+'-ml/'+task_name+'/'+task_name+'.model'
+        starttime='./User/'+username+'-ml/'+task_name+'/starttime.txt'
+        endtime = './User/' + username + '-ml/' + task_name + '/endtime.txt'
+        print(modelname)
+        joblib.dump(filename=modelname, value=model)
+        time2 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+        with open(starttime, 'wb') as destination:
+            time1=time1.encode()
+            destination.write(time1)
+        destination.close()
+        with open(endtime, 'wb') as destination:
+            time2=time2.encode()
+            destination.write(time2)
+        destination.close()
+        data = '1'
+        return JsonResponse(data, safe=False)
     else:
         return render(request, "svc.html")
 #机器学习DTC方法
@@ -1476,6 +1500,198 @@ def downloads(request):
         response.close()
     else:
         return redirect("/door/")
+
+def mlmanage(request):
+    username = request.session.get('USRNAME', False)
+    email = request.session.get('EMAIL', False)
+    dir='./User/'+username+'-ml'
+    list = os.listdir(dir)
+    filenum=len(list)
+    print(filenum)
+    #子目录名字
+    child_filename_array=[]
+    for i in range(0,filenum):
+        child_filename_array.append('./User/'+username+'-ml'+'/'+list[i])
+    starttime_array=[]
+    endtime_array=[]
+    for i in range(0,filenum):
+        temp_starttime_file=child_filename_array[i]+'/starttime.txt'
+        temp_endtime_file=child_filename_array[i]+'/endtime.txt'
+        with open(temp_starttime_file,'r') as f:
+            starttime_array.append(f.read())
+        with open(temp_endtime_file,'r') as f:
+            endtime_array.append(f.read())
+    resultarray=[]
+    for i in range(0,filenum):
+        temp_result={'num':i,'starttime':starttime_array[i],'endtime':endtime_array[i],'task_name':list[i]}
+        resultarray.append(temp_result)
+    print(type(resultarray))
+    paginator = Paginator(resultarray, 10)
+    page = request.GET.get('page')
+    contacts = paginator.get_page(page)
+    return render(request, "mlmanage.html", {'contacts': contacts,'username': username, 'email': email})
+
+def ready_topredict(request):
+    username = request.session.get('USRNAME', False)
+    email = request.session.get('EMAIL', False)
+    task_name = request.GET.get('task_name')
+    dir = './User/' + username + '-ml'+'/'+task_name
+    list = os.listdir(dir)
+    filenum = len(list)
+    marker=0
+    for i in range(0,filenum):
+        name='model'
+        if(name in list[i]):
+            marker=1
+    #如果没有保存的模型，那么就是预测的任务，marker=0,；如果是训练的模型，那么marker=1
+    if(marker==1):
+        #实例写几个评价指标，目前是用开始与结束时间作为两个评价指标
+        starttime_address=dir+'/starttime.txt'
+        endtime_address = dir + '/endtime.txt'
+        with open(starttime_address,'r') as f:
+            starttime=f.read()
+        with open(endtime_address,'r') as f:
+            endtime=f.read()
+        resultarray = {'starttime':starttime,'endtime':endtime,'marker':marker,'task_name':task_name}
+        return render(request, "readytopredict.html", {'contacts': resultarray,'username': username, 'email': email})
+    else:
+        starttime_address = dir + '/starttime.txt'
+        endtime_address = dir + '/endtime.txt'
+        with open(starttime_address,'r') as f:
+            starttime=f.read()
+        with open(endtime_address,'r') as f:
+            endtime=f.read()
+        return render(request, "predictresult.html", { 'username': username, 'email': email})
+def predict(request):
+
+    if request.method == 'POST':
+        time1 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+        username = request.session.get('USRNAME', False)
+        csv_file = request.FILES.get("file")
+        task_name = request.POST.get('task_name')
+        task_name_old = request.POST.get('task_name_old')
+        middle = pd.read_csv(csv_file)
+        middle.to_csv('middle.csv', index=False, encoding="UTF8")
+        print('成功了吗')
+        # 代码融合开始
+        with open("middle.csv", "r", encoding="utf-8") as vsvfile:
+            reader = csv.reader(vsvfile)
+            rows = [row for row in reader]
+        # array1是元素的列名，array2是元素所在的列号,rows表示有多少行（算上了表头）一个元素会增加59个额外特征
+        array1 = []
+        array2 = []
+        print(len(rows))
+        for i in range(0, len(rows[0])):
+            if rows[0][i].startswith('element'):
+                array1.append(rows[0][i])
+                array2.append(i)
+        if len(array2) == 0:
+            middle.to_csv('resultnew.csv', index=False, encoding="UTF8")
+        else:
+            num_feature_original = (len(rows[0]) - len(array1) - 3)
+            num_feature_change = num_feature_original + 59 * len(array1)
+            print(num_feature_original, num_feature_change)
+            # --------------------------------------------获得基本数据结束----------------------------------
+            # 读取数据表
+            aFile = open('middle.csv', 'r')
+            aInfo = csv.reader(aFile)
+            bfile = open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\elements.csv', 'r')
+            bInfo = csv.reader(bfile)
+            # 构造结果csv文件
+            cfile = open('result.csv', 'w', newline="")
+            abcsv = csv.writer(cfile, dialect='excel')
+            a = list()
+            # c做一个备份
+            c = a
+            b = list()
+            for info in aInfo:
+                a.append(info)
+            for info in bInfo:
+                b.append(info)
+            # 将elements表格去掉前两列
+            b = list(map(lambda x: x[2:], b))
+            for index in range(len(a)):
+                for i in range(len(array1)):
+                    if index == 0:
+                        c[index].extend(b[index])
+                    else:
+                        c[index].extend(b[int(a[index][array2[i]])])
+                abcsv.writerow(c[index])
+            # ---------------------------------------------拼接完成-------------------------------------
+            # --------------------------------对拼接完的表格进行完善------------------------------------
+            resultnum = list()
+            aFile = open('result.csv', 'r')
+            aInfo = csv.reader(aFile)
+            for info in aInfo:
+                resultnum.append(info)
+            print('aaaaa')
+            cfile = open('resultnew.csv', 'w', newline="")
+            colname1 = []
+            colname2 = []
+            for i in range(num_feature_original, num_feature_change):
+                colname1.append('a' + str(i + 1))
+            for i in range(num_feature_original):
+                colname2.append('a' + str(i + 1))
+            colname = ['NO', 'Class', 'Target'] + colname2 + colname1
+            print(colname)
+            abcsv = csv.writer(cfile, dialect='excel')
+            for index in range(0, len(resultnum)):
+                print(index)
+                if index == 0:
+                    resultnum[index] = (colname)
+                else:
+                    num = array2[1] - 1
+                    for i in array2:
+                        del resultnum[index][num]
+                        # resultnum[index]=resultnum[index].remove(resultnum[index][num])
+                abcsv.writerow(resultnum[index])
+            cfile.close()
+        # 代码融合结束
+
+        # 机器学习代码开始
+        model_address=dir = './User/' + username + '-ml'+'/'+task_name_old+'/'+task_name_old+'.model'
+        model1 = joblib.load(filename=model_address)
+        #获得特征
+        df = pd.read_csv(r'resultnew.csv', index_col=0)
+        columns = df.columns.values.tolist()
+        col_target = []
+        col_Class = []
+        col_feature = []
+        for i in columns:
+            if i == 'Class':
+                col_Class.append(i)
+            else:
+                if i == 'Target':
+                    col_target.append(i)
+                else:
+                    col_feature.append(i)
+        df_target = df[col_target]
+        df_feature = df[col_feature]
+        predict_result=model1.predict(df_feature)
+        df = DataFrame(predict_result, columns=['Target'])
+        result = pd.concat([df_feature, df], axis=1)
+        result_address = './User/' + username + '-ml/' + task_name + '/result.csv'
+        address = './User/' + username + '-ml/' + task_name
+        os.mkdir(address)
+        starttime = './User/' + username + '-ml/' + task_name + '/starttime.txt'
+        endtime = './User/' + username + '-ml/' + task_name + '/endtime.txt'
+        time2 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+        with open(starttime, 'wb') as destination:
+            time1 = time1.encode()
+            destination.write(time1)
+        destination.close()
+        with open(endtime, 'wb') as destination:
+            time2 = time2.encode()
+            destination.write(time2)
+        destination.close()
+        result.to_csv(result_address)
+        data = '1'
+        return JsonResponse(data, safe=False)
+    else:
+        task_name_old = request.GET.get('task_name_old')
+        result = {'task_name_old': task_name_old}
+        return render(request, "predict.html",{ 'contacts': result})
+
 
 
 

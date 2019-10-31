@@ -344,8 +344,8 @@
     </nav>
 
     <div class="content-inner">
-        <h2 class="page-header-new">SVC</h2>
-        <form  action="/svc/" method="post" id="domeform" method="post" enctype="multipart/form-data">
+        <h2 class="page-header-new">Predicet</h2>
+        <form  action="/mlmanage/predict/" method="post" id="domeform" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
         <div style="width: 400px;padding: 10px 10px 10px;">
             <div class="input-group">
@@ -358,67 +358,6 @@
 
             </div>
         </div>
-        <span class="sub-header">Detail of Task Settings</span>
-        <details>
-            <summary> Show Details</summary>
-            <div>
-                <h3> Algorithm Settings</h3>
-                <div style="width: 400px; padding: 10px 10px 10px;">
-                    <div class="input-group">
-                        <span class="input-group-addon box">kernel</span>
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" id="kernel_btn">
-                            rbf
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-
-
-                            <li><a href="#">rbf</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div style="width: 400px; padding: 10px 10px 10px;">
-                    <div class="input-group">
-                        <span class="input-group-addon box">C</span>
-                        <input id="C"  name="C" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="1.0">
-                    </div>
-                </div>
-                <div style="width: 400px; padding: 10px 10px 10px;">
-                    <div class="input-group">
-                        <span class="input-group-addon box">degree</span>
-                        <input id="degree" name="degree" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="3">
-                    </div>
-                </div>
-                <div style="width: 400px; padding: 10px 10px 10px;">
-                    <div class="input-group">
-                        <span class="input-group-addon box">gamma</span>
-                        <input id="gamma" name="gamma" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="1.0">
-                    </div>
-                </div>
-                <div style="width: 400px; padding: 10px 10px 10px;">
-                    <div class="input-group">
-                        <span class="input-group-addon box">coef0</span>
-                        <input id="coef0" name="coef0" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="0.0">
-                    </div>
-                </div>
-                <div style="width: 400px; padding: 10px 10px 10px;">
-                    <div class="input-group">
-                        <span class="input-group-addon box">max_iter</span>
-                        <input id="max_iter" name="max_iter" type="text" class="form-control alg_param" data-toggle="tooltip"
-                               data-placement="bottom" title="test" value="-1">
-                    </div>
-                </div>
-
-            </div>
-
-
-        </details>
         <span style="float: left;" class="btn btn-success-new fileinput-button">
             <i class="glyphicon glyphicon-plus"></i>
         <!-- The file input field used as target for the file upload widget -->
@@ -438,6 +377,7 @@
     </div>
             </div>
         <br/>
+             <input type="text" value="{{ contacts.task_name_old }}" id="task_name_old" readonly>
         <div class="submit-button">
              <button class="btn btn-info"  type="button" id="xiaoxiaobonew" >Submit!</button>
         </div>
@@ -481,22 +421,15 @@ $(document).ready(function(){
         var file_obj = new FormData();
         file_obj.append('file', $("input[type='file']")[0].files[0]);
         file_obj.append('task_name', $("#task_name").val());
-        file_obj.append('kernel_btn', $("#kernel_btn").val());
-        file_obj.append('C', $("#C").val());
-        file_obj.append('degree', $("#degree").val());
-        file_obj.append('gamma', $("#gamma").val());
-        file_obj.append('coef0', $("#coef0").val());
-        file_obj.append('max_iter', $("#max_iter").val());
+        file_obj.append('task_name_old', $("#task_name_old").val());
         file_obj.append('csrfmiddlewaretoken', $('[name=csrfmiddlewaretoken]').val());
      $.ajax({
-         url:"/svc/",
+         url:"/predict/",
          type: "POST",
          dataType: "json",
          data:file_obj,
          processData: false ,
          contentType: false,
-
-
         success:function(data){
              console.log('aaaaa')
              console.log(data)
@@ -518,8 +451,6 @@ $(document).ready(function(){
                     location.href = "/taskmanage/"
                 }
             }
-
-
             else
                 {
                     alert("提交失败");
