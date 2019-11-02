@@ -61,6 +61,7 @@ urlpatterns = [
     path('mlmanage/ready_topredict', views.ready_topredict),
     path('mlmanage/predict', views.predict),
     path('predict/', views.predict),
+    path('mlmanage/data_download/', views.data_download),
 
 
 

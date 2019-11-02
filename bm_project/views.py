@@ -941,6 +941,9 @@ def svc(request):
         middle=pd.read_csv(csv_file)
         middle.to_csv('middle.csv',index=False,encoding="UTF8")
         print('成功了吗')
+        address = './User/' + username + '-ml/' + task_name
+        csvadress = './User/' + username + '-ml/' + task_name + '/resultnew.csv'
+        os.mkdir(address)
 #代码融合开始
         with open("middle.csv", "r", encoding="utf-8") as vsvfile:
             reader = csv.reader(vsvfile)
@@ -954,7 +957,7 @@ def svc(request):
                 array1.append(rows[0][i])
                 array2.append(i)
         if len(array2) == 0:
-            middle.to_csv('resultnew.csv', index=False, encoding="UTF8")
+            middle.to_csv(csvadress, index=False, encoding="UTF8")
         else:
             num_feature_original = (len(rows[0]) - len(array1) - 3)
             num_feature_change = num_feature_original + 59 * len(array1)
@@ -992,8 +995,10 @@ def svc(request):
             aInfo = csv.reader(aFile)
             for info in aInfo:
                 resultnum.append(info)
-            print('aaaaa')
-            cfile = open('resultnew.csv', 'w', newline="")
+
+            print('lalalala')
+            print(csvadress)
+            cfile = open(csvadress, 'w', newline="")
             colname1 = []
             colname2 = []
             for i in range(num_feature_original, num_feature_change):
@@ -1017,7 +1022,7 @@ def svc(request):
         #代码融合结束
 
         #机器学习代码开始
-        df = pd.read_csv(r'resultnew.csv', index_col=0)
+        df = pd.read_csv(r'./User/'+username+'-ml/'+task_name+'/resultnew.csv', index_col=0)
         columns = df.columns.values.tolist()
         col_target = []
         col_Class = []
@@ -1032,11 +1037,11 @@ def svc(request):
                     col_feature.append(i)
         df_target = df[col_target]
         df_feature = df[col_feature]
+        df_class = df[col_Class]
         # model = SVC(kernel='linear')#线性可分
         model = SVC(kernel='rbf', C=c, gamma=gamma, degree=degree, coef0=coef0, max_iter=max_itera)
-        model.fit(df_feature.astype(int), df_target.astype(int))
-        address = './User/'+username+'-ml/'+task_name
-        os.mkdir(address)
+        model.fit(df_feature, df_class)
+
         modelname='./User/'+username+'-ml/'+task_name+'/'+task_name+'.model'
         starttime='./User/'+username+'-ml/'+task_name+'/starttime.txt'
         endtime = './User/' + username + '-ml/' + task_name + '/endtime.txt'
@@ -1433,7 +1438,7 @@ def high_throughput_go(request):
                     # )
                     # cmd = 'cd /gpfs/home/gromacs/123/ABCd ;dos2unix /gpfs/home/gromacs/123/ABCd/job ; bsub<job'
                     # ssh.exec_command(cmd)
-                    print('陈国了')
+
                 else:
                     print('失败')
             return redirect("home")
@@ -1483,7 +1488,6 @@ def downloads(request):
                 filename=array[i]
         tarfilename=taskid+'.tar.gz'
         d = 'cd /gpfs/home/gromacs/BM/User/xiaoxiaobo/;'+'tar -cvzf   '+tarfilename+' '+filename
-
         stdin, stdout, stderr = ssh.exec_command(d)
         #file=刚才压缩的文件名
         socket.setdefaulttimeout(20)
@@ -1544,6 +1548,8 @@ def ready_topredict(request):
         if(name in list[i]):
             marker=1
     #如果没有保存的模型，那么就是预测的任务，marker=0,；如果是训练的模型，那么marker=1
+    print('lalalal')
+    print(marker)
     if(marker==1):
         #实例写几个评价指标，目前是用开始与结束时间作为两个评价指标
         starttime_address=dir+'/starttime.txt'
@@ -1561,9 +1567,9 @@ def ready_topredict(request):
             starttime=f.read()
         with open(endtime_address,'r') as f:
             endtime=f.read()
-        return render(request, "predictresult.html", { 'username': username, 'email': email})
+        resultarray = {'starttime': starttime, 'endtime': endtime, 'marker': marker, 'task_name': task_name}
+        return render(request, "predictresult.html", { 'contacts': resultarray,'username': username, 'email': email})
 def predict(request):
-
     if request.method == 'POST':
         time1 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
         username = request.session.get('USRNAME', False)
@@ -1670,7 +1676,7 @@ def predict(request):
         predict_result=model1.predict(df_feature)
         df = DataFrame(predict_result, columns=['Target'])
         result = pd.concat([df_feature, df], axis=1)
-        result_address = './User/' + username + '-ml/' + task_name + '/result.csv'
+        result_address = './User/' + username + '-ml/' + task_name + '/resultnew.csv'
         address = './User/' + username + '-ml/' + task_name
         os.mkdir(address)
         starttime = './User/' + username + '-ml/' + task_name + '/starttime.txt'
@@ -1692,7 +1698,15 @@ def predict(request):
         result = {'task_name_old': task_name_old}
         return render(request, "predict.html",{ 'contacts': result})
 
-
+def data_download(request):
+    username = request.session.get('USRNAME', False)
+    task_name_old=request.GET.get('task_name_old')
+    print(task_name_old)
+    data_adress='./User/' + username + '-ml/' + task_name_old + '/resultnew.csv'
+    response = FileResponse(open(data_adress, 'rb'))
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="resultnew.csv"'
+    return response
 
 
 
