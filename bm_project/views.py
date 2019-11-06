@@ -47,6 +47,8 @@ import csv
 import joblib
 import datetime
 from pandas import DataFrame
+from playml.linearR import linearR
+from sklearn.linear_model import LinearRegression
 #用于返回主界面的方式
 def rehome(request):
     username = request.session.get('USRNAME', False)
@@ -110,30 +112,38 @@ def introduction(request):
 #用户注册界面
 @csrf_exempt
 def signup(request):
-    path=request.get_full_path()
-    if request.method=='POST':
-        form=SignupForm(data=request.POST,auto_id="%s")
-        if form.is_valid():
-            UserModel=get_user_model()
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user=UserModel.objects.create_user(username=username,email=email,password=password)
-            user.save()
-            auth_user = authenticate(username=username,password=password)
-            auth_login(request,auth_user)
-            request.session['IS_LOGIN'] = True
-            request.session['USRNAME'] = username
-            request.session['EMAIL'] = email
-            address1='./User/'+username
-            address2 = './User/' + username+'-ml'
-            os.mkdir(address1)
-            os.mkdir(address2)
-            print('创建成功')
-            return redirect("home")
-    else:
-        form = SignupForm(auto_id="%s")
-    return render(request, 'signup.html', locals())
+    try:
+        path=request.get_full_path()
+        if request.method=='POST':
+            form=SignupForm(data=request.POST,auto_id="%s")
+            if form.is_valid():
+                UserModel=get_user_model()
+                username = form.cleaned_data['username']
+                email = form.cleaned_data['email']
+                password = form.cleaned_data['password']
+                user=UserModel.objects.create_user(username=username,email=email,password=password)
+                user.save()
+                auth_user = authenticate(username=username,password=password)
+                auth_login(request,auth_user)
+                request.session['IS_LOGIN'] = True
+                request.session['USRNAME'] = username
+                request.session['EMAIL'] = email
+                address1='./User/'+username
+                address2 = './User/' + username+'-ml'
+                os.mkdir(address1)
+                os.mkdir(address2)
+                print('创建成功')
+                return redirect("home")
+        else:
+            form = SignupForm(auto_id="%s")
+        return render(request, 'signup.html', locals())
+    except BaseException as e:
+        with open('testlog', 'wb') as destination:
+            e = str(e)
+            e = e.encode()
+            destination.write(e)
+        destination.close()
+
 #用户登录界面
 @csrf_exempt
 def login(request):
@@ -1060,6 +1070,141 @@ def svc(request):
         return JsonResponse(data, safe=False)
     else:
         return render(request, "svc.html")
+#机器学习SVC方法
+@csrf_exempt
+def linear(request):
+    if request.method == 'POST':
+        time1 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+        username = request.session.get('USRNAME', False)
+        csv_file = request.FILES.get("file")
+        task_name=request.POST.get('task_name')
+        eta = float(request.POST.get('eta'))
+        middle=pd.read_csv(csv_file)
+        middle.to_csv('middle.csv',index=False,encoding="UTF8")
+        print('成功了吗')
+        address = './User/' + username + '-ml/' + task_name
+        csvadress = './User/' + username + '-ml/' + task_name + '/resultnew.csv'
+        os.mkdir(address)
+#代码融合开始
+        with open("middle.csv", "r", encoding="utf-8") as vsvfile:
+            reader = csv.reader(vsvfile)
+            rows = [row for row in reader]
+        # array1是元素的列名，array2是元素所在的列号,rows表示有多少行（算上了表头）一个元素会增加59个额外特征
+        array1 = []
+        array2 = []
+        print(len(rows))
+        for i in range(0, len(rows[0])):
+            if rows[0][i].startswith('element'):
+                array1.append(rows[0][i])
+                array2.append(i)
+        if len(array2) == 0:
+            middle.to_csv(csvadress, index=False, encoding="UTF8")
+        else:
+            num_feature_original = (len(rows[0]) - len(array1) - 3)
+            num_feature_change = num_feature_original + 59 * len(array1)
+            print(num_feature_original, num_feature_change)
+            # --------------------------------------------获得基本数据结束----------------------------------
+            # 读取数据表
+            aFile = open('middle.csv', 'r')
+            aInfo = csv.reader(aFile)
+            bfile = open('C:\\Users\\xiaoxiaobo123\\PycharmProjects\\BM_Project\\bm_project\\elements.csv', 'r')
+            bInfo = csv.reader(bfile)
+            # 构造结果csv文件
+            cfile = open('result.csv', 'w', newline="")
+            abcsv = csv.writer(cfile, dialect='excel')
+            a = list()
+            # c做一个备份
+            c = a
+            b = list()
+            for info in aInfo:
+                a.append(info)
+            for info in bInfo:
+                b.append(info)
+            # 将elements表格去掉前两列
+            b = list(map(lambda x: x[2:], b))
+            for index in range(len(a)):
+                for i in range(len(array1)):
+                    if index == 0:
+                        c[index].extend(b[index])
+                    else:
+                        c[index].extend(b[int(a[index][array2[i]])])
+                abcsv.writerow(c[index])
+            # ---------------------------------------------拼接完成-------------------------------------
+            # --------------------------------对拼接完的表格进行完善------------------------------------
+            resultnum = list()
+            aFile = open('result.csv', 'r')
+            aInfo = csv.reader(aFile)
+            for info in aInfo:
+                resultnum.append(info)
+
+            print('lalalala')
+            print(csvadress)
+            cfile = open(csvadress, 'w', newline="")
+            colname1 = []
+            colname2 = []
+            for i in range(num_feature_original, num_feature_change):
+                colname1.append('a' + str(i + 1))
+            for i in range(num_feature_original):
+                colname2.append('a' + str(i + 1))
+            colname = ['NO', 'Class', 'Target'] + colname2 + colname1
+            print(colname)
+            abcsv = csv.writer(cfile, dialect='excel')
+            for index in range(0, len(resultnum)):
+                print(index)
+                if index == 0:
+                    resultnum[index] = (colname)
+                else:
+                    num = array2[1] - 1
+                    for i in array2:
+                        del resultnum[index][num]
+                        # resultnum[index]=resultnum[index].remove(resultnum[index][num])
+                abcsv.writerow(resultnum[index])
+            cfile.close()
+        #代码融合结束
+
+        #机器学习代码开始
+        df = pd.read_csv(r'./User/'+username+'-ml/'+task_name+'/resultnew.csv', index_col=0)
+        columns = df.columns.values.tolist()
+        col_target = []
+        col_Class = []
+        col_feature = []
+        for i in columns:
+            if i == 'Class':
+                col_Class.append(i)
+            else:
+                if i == 'Target':
+                    col_target.append(i)
+                else:
+                    col_feature.append(i)
+        df_target = df[col_target]
+        df_feature = df[col_feature]
+        df_target = df_target['Target']
+        df_class = df[col_Class]
+        # model = SVC(kernel='linear')#线性可分
+        reg = linearR()
+        reg.fit_gd(df_feature, df_target, eta=eta)
+
+        modelname='./User/'+username+'-ml/'+task_name+'/'+task_name+'.model'
+        print('lalalalal')
+        print(modelname)
+        starttime='./User/'+username+'-ml/'+task_name+'/starttime.txt'
+        endtime = './User/' + username + '-ml/' + task_name + '/endtime.txt'
+        print(modelname)
+        joblib.dump(filename=modelname, value=reg)
+        time2 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+        time2 = datetime.datetime.now().strftime('%Y-%m-%d  %H:%M:%S')
+        with open(starttime, 'wb') as destination:
+            time1=time1.encode()
+            destination.write(time1)
+        destination.close()
+        with open(endtime, 'wb') as destination:
+            time2=time2.encode()
+            destination.write(time2)
+        destination.close()
+        data = '1'
+        return JsonResponse(data, safe=False)
+    else:
+        return render(request, "linear.html")
 #机器学习DTC方法
 def dtc(request):
     if request.method == 'POST':
